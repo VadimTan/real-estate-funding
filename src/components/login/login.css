@@ -18,10 +18,10 @@
 	flex-direction: column;
 	align-items: flex-start;
 	padding: 48px;
-	gap: 24px;
+	gap: 16px;
 	position: absolute;
 	width: 480px;
-	height: 382px;
+	height: 400px;
 	left: calc(50% - 480px / 2);
 	top: calc(50% - 382px / 2);
 	background: #ffffff;
@@ -54,6 +54,10 @@
 	order: 0;
 	align-self: stretch;
 	flex-grow: 0;
+}
+
+.login-form :first-child {
+	padding-bottom: 4px;
 }
 
 .login-form .email-text {
