@@ -1,0 +1,98 @@
+.logo-dubX {
+	position: absolute;
+	width: 238px;
+	height: 120px;
+	left: calc(50% - 238px / 2);
+	top: calc(50% - 120px / 2 - 315px);
+}
+
+.logo-dub {
+	position: absolute;
+	left: 0%;
+	right: 38.43%;
+	top: 17.68%;
+	bottom: 33.99%;
+	background: #161618;
+}
+
+/* Xmark */
+.logo-x-mark {
+	position: absolute;
+	left: 57.42%;
+	right: 1.03%;
+	top: 0.1%;
+	bottom: -0.11%;
+}
+
+/* Vector */
+.logo-vector {
+	position: absolute;
+	left: 0%;
+	right: 6.6%;
+	top: 0%;
+	bottom: 52.07%;
+
+	background: linear-gradient(127.47deg, #eb1e27 59.23%, #f33e48 84.29%),
+		#15142f;
+}
+
+/* Vector */
+.logo-vector-1 {
+	position: absolute;
+	left: 4.93%;
+	right: 0%;
+	top: 52.06%;
+	bottom: 0%;
+
+	background: linear-gradient(
+			93.61deg,
+			#f3952c 4.88%,
+			#ed4128 42.31%,
+			#ec2b27 67.28%,
+			#f0602a 99.98%
+		),
+		#15142f;
+}
+
+/* Intersect */
+.logo-intersect {
+	position: absolute;
+	width: 70.85px;
+	height: 97.38px;
+	left: 21.43px;
+	top: 8.74px;
+
+	background: linear-gradient(213.04deg, #eb1d26 54.74%, #f3952c 113.97%);
+	mix-blend-mode: screen;
+	opacity: 0.56;
+}
+
+/* Vector */
+.logo-vector-2 {
+	position: absolute;
+	left: 0%;
+	right: 0%;
+	top: 0%;
+	bottom: 0%;
+
+	background: linear-gradient(
+			97.13deg,
+			#f3952c 14.56%,
+			#ed4128 48.18%,
+			#ec2b27 70.61%,
+			#f0602a 99.98%
+		),
+		#15142f;
+}
+
+/* Vector */
+.logo-vector-3 {
+	position: absolute;
+	left: 7.94%;
+	right: 3.61%;
+	top: 7.26%;
+	bottom: 2.78%;
+	background: linear-gradient(215.91deg, #eb1d26 48.85%, #f3952c 99.99%);
+	mix-blend-mode: screen;
+	opacity: 0.56;
+}
