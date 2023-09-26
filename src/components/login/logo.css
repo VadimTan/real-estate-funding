@@ -1,8 +1,18 @@
 .logo-dubX {
-	margin-top: 2.5%;
 	position: absolute;
 	width: 238px;
 	height: 120px;
 	left: calc(50% - 238px / 2);
-	top: calc(50% - 120px / 2 - 315px);
+	top: calc(55% - 120px / 2 - 315px);
+}
+
+@media screen and (max-width: 760px) {
+	.logo-dubX {
+		padding-top: 5%;
+		position: absolute;
+		width: 174px;
+		height: 88px;
+		left: calc(50% - 174px / 2 - 0.5px);
+		top: calc(50% - 88px / 2 - 275px);
+	}
 }
