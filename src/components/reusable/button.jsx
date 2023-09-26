@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-export const Button = ({ className, clickHandler, children }) => {
+const Button = ({ className, clickHandler, children }) => {
 	return (
 		<button
 			className={className}
@@ -8,3 +8,5 @@ export const Button = ({ className, clickHandler, children }) => {
 		</button>
 	);
 };
+
+export default Button;

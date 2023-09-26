@@ -1,12 +1,16 @@
 import './App.css';
-import { Login } from './components/login/Login';
-import { Logo } from './components/login/Logo';
+import { ListOfProp } from './components/list-of-properties/ListOfProp';
+import { NavMenu } from './components/list-of-properties/NavMenu';
+// import { Login } from './components/login/Login';
+// import { Logo } from './components/login/Logo';
 
 function App() {
 	return (
 		<>
-			<Logo />
-			<Login />
+			<NavMenu />
+			<ListOfProp />
+			{/* <Logo />
+			<Login /> */}
 		</>
 	);
 }
