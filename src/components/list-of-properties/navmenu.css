@@ -4,12 +4,12 @@
 }
 
 .nav-menu {
-	box-sizing: border-box;
 	display: flex;
+	box-sizing: border-box;
 	flex-direction: row;
 	align-items: flex-start;
 	padding: 16px 100px;
-	gap: 42px;
+	gap: 48px;
 	position: absolute;
 	width: 100%;
 	height: 65px;
@@ -34,11 +34,11 @@
 	align-items: center;
 	padding: 0px;
 	gap: 16px;
-	width: 1106px;
+	width: 1090px;
 	height: 32px;
 	flex: none;
 	order: 1;
-	flex-grow: 1;
+	flex-grow: 0.01;
 }
 
 .frame-11 {
@@ -138,4 +138,10 @@
 	flex-grow: 0;
 	cursor: pointer;
 	font-family: SF Pro Display;
+}
+
+.nav-button-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }

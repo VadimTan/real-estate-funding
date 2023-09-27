@@ -70,3 +70,9 @@
 	flex-grow: 0;
 	cursor: pointer;
 }
+
+.button-container-list-of-props {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

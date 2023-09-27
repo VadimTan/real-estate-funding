@@ -32,9 +32,11 @@ export const NavMenu = () => {
 						</Label>
 					</div>
 				</div>
-				<Button className={'nav-menu-button'}>
-					<Label className={'nav-label-button'}>Log out</Label>
-				</Button>
+				<div className="nav-button-container">
+					<Button className={'nav-menu-button'}>
+						<Label className={'nav-label-button'}>Log out</Label>
+					</Button>
+				</div>
 			</div>
 		</div>
 	);
