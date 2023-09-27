@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const Label = ({ className, children }) => {
+export const Label = ({ className, children }) => {
 	return <label className={className}>{children}</label>;
 };
 

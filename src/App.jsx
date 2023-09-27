@@ -1,16 +1,21 @@
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import { ListOfProp } from './components/list-of-properties/ListOfProp';
-import { NavMenu } from './components/list-of-properties/NavMenu';
-// import { Login } from './components/login/Login';
-// import { Logo } from './components/login/Logo';
+import { Login } from './components/login/Login';
 
 function App() {
 	return (
 		<>
-			<NavMenu />
-			<ListOfProp />
-			{/* <Logo />
-			<Login /> */}
+			<Routes>
+				<Route
+					path="/list-of-props"
+					element={<ListOfProp />}
+				/>
+				<Route
+					path="/login-window"
+					element={<Login />}
+				/>
+			</Routes>
 		</>
 	);
 }
