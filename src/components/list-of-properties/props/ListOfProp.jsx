@@ -1,7 +1,8 @@
-import '../list-of-properties/listofprops.css';
-import { NavMenu } from '../list-of-properties/NavMenu';
-import Button from '../reusable/button';
-import Label from '../reusable/label';
+import '../props/listofprops.css';
+import { NavMenu } from '../navigation/NavMenu';
+import Button from '../../reusable/button';
+import Label from '../../reusable/label';
+import PropertyCard from './property/PropertyCard';
 
 export const ListOfProp = () => {
 	return (
@@ -17,6 +18,7 @@ export const ListOfProp = () => {
 					</div>
 				</div>
 			</div>
+			<PropertyCard />
 		</>
 	);
 };

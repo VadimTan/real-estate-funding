@@ -1,0 +1,136 @@
+@font-face {
+	font-family: SF Pro Regular;
+	src: url(../../../fonts/SF/SF-Pro-Display-Regular.otf) format(opentype);
+}
+
+.frame-18 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0px;
+	gap: 64px;
+	position: absolute;
+	width: 1200px;
+	height: 34px;
+	left: 100px;
+	top: 96px;
+}
+
+.h1-list-of-props {
+	width: 1047px;
+	height: 34px;
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 34px;
+	letter-spacing: 0.36px;
+	color: #000000;
+	flex: none;
+	order: 0;
+	flex-grow: 1;
+}
+
+.btn-list-of-props {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 7px 16px;
+	gap: 8px;
+	width: 89px;
+	height: 32px;
+	background: #ff9500;
+	border-radius: 8px;
+	flex: none;
+	order: 1;
+	flex-grow: 0;
+}
+
+.label-for-btn-list-of-props {
+	height: 18px;
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 13px;
+	line-height: 18px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	letter-spacing: -0.078px;
+	color: #ffffff;
+	flex: none;
+	order: 1;
+	flex-grow: 0;
+	cursor: pointer;
+}
+
+.button-container-list-of-props {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@media screen and (max-width: 760px) {
+	.frame-18 {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 0px;
+		gap: 16px;
+
+		position: absolute;
+		width: 361px;
+		height: 34px;
+		left: 100px;
+		top: 96px;
+	}
+
+	.h1-list-of-props {
+		width: 256px;
+		height: 34px;
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 700;
+		font-size: 28px;
+		line-height: 34px;
+		letter-spacing: 0.36px;
+		color: #000000;
+		flex: none;
+		order: 0;
+		flex-grow: 1;
+	}
+
+	.btn-list-of-props {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		padding: 7px 16px;
+		gap: 8px;
+		width: 89px;
+		height: 32px;
+		background: #ff9500;
+		border-radius: 8px;
+		flex: none;
+		order: 1;
+		flex-grow: 0;
+	}
+
+	.label-for-btn-list-of-props {
+		height: 18px;
+		font-family: SF Pro Regular;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 13px;
+		line-height: 18px;
+		display: flex;
+		align-items: center;
+		text-align: center;
+		letter-spacing: -0.078px;
+		color: #ffffff;
+		flex: none;
+		order: 1;
+		flex-grow: 0;
+	}
+}
