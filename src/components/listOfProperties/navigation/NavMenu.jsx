@@ -5,16 +5,21 @@ import Button from '../../../common/Button';
 import Label from '../../../common/Label';
 
 export const NavMenu = () => {
+	const handleClick = () => {
+		localStorage.clear();
+		window.location.reload();
+	};
+
 	return (
 		<nav className="nav-menu">
-			<div className="nav-menu-logo">
-				<img
-					className="dubX-logo"
-					src={DubX}
-					alt=""
-				/>
-			</div>
 			<div className="nav-menu-actions">
+				<div className="nav-menu-logo">
+					<img
+						className="dubX-logo"
+						src={DubX}
+						alt=""
+					/>
+				</div>
 				<div className="frame-11">
 					<div className="search-field">
 						<Label
@@ -32,11 +37,14 @@ export const NavMenu = () => {
 						</Label>
 					</div>
 				</div>
-				<div className="nav-button-container">
-					<Button className={'nav-menu-button'}>
-						<Label className={'nav-label-button'}>Log Out</Label>
-					</Button>
-				</div>
+			</div>
+
+			<div className="nav-button-container">
+				<Button
+					className={'nav-menu-button'}
+					clickHandler={handleClick}>
+					<Label className={'nav-label-button'}>Log Out</Label>
+				</Button>
 			</div>
 		</nav>
 	);

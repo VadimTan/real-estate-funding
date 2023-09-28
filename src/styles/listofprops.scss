@@ -7,18 +7,14 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	padding: 0px;
+	justify-content: space-between;
+	padding: 16px 100px;
 	gap: 64px;
-	position: absolute;
-	width: 1200px;
-	height: 34px;
 	left: 100px;
 	top: 96px;
 }
 
 .h1-list-of-props {
-	width: 1047px;
-	height: 34px;
 	font-family: SF Pro Display;
 	font-style: normal;
 	font-weight: 700;
@@ -28,7 +24,6 @@
 	color: #000000;
 	flex: none;
 	order: 0;
-	flex-grow: 1;
 }
 
 .btn-list-of-props {
@@ -44,7 +39,6 @@
 	border-radius: 8px;
 	flex: none;
 	order: 1;
-	flex-grow: 0;
 }
 
 .label-for-btn-list-of-props {
@@ -69,6 +63,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding-right: 10%;
 }
 
 @media screen and (max-width: 800px) {
@@ -76,19 +71,14 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		padding: 0px;
-		gap: 16px;
-
-		position: absolute;
-		width: 361px;
-		height: 34px;
+		justify-content: space-between;
+		padding: 16px 100px;
+		gap: 64px;
 		left: 100px;
 		top: 96px;
 	}
 
 	.h1-list-of-props {
-		width: 256px;
-		height: 34px;
 		font-family: SF Pro Display;
 		font-style: normal;
 		font-weight: 700;
@@ -98,7 +88,6 @@
 		color: #000000;
 		flex: none;
 		order: 0;
-		flex-grow: 1;
 	}
 
 	.btn-list-of-props {
