@@ -1,0 +1,55 @@
+.container-add-edit {
+	display: flex;
+	flex-direction: column;
+	padding: 16px 100px;
+}
+
+.header-of-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+}
+
+.arrow-header-of-container-block {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.h1-header {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 34px;
+	letter-spacing: 0.36px;
+	color: #000000;
+	flex: none;
+	order: 1;
+	flex-grow: 1;
+}
+
+.toggle-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-right: 10%;
+	gap: 16px;
+}
+
+.toggle-sold {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0px 0px 0px 16px;
+	gap: 16px;
+	width: 129px;
+	height: 32px;
+	background: #ffffff;
+	border-radius: 8px;
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+}

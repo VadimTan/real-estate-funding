@@ -14,10 +14,7 @@ export const Login = () => {
 	const getPassword = localStorage.getItem('PasswordData');
 
 	const handleSubmit = () => {
-		if (
-			email.current.value.includes('@gmail.com') &&
-			password.current.value.length >= 8
-		) {
+		if (email.current.value && password.current.value) {
 			localStorage.setItem('EmailData', email.current.value);
 			localStorage.setItem('PasswordData', password.current.value);
 		}
@@ -48,7 +45,8 @@ export const Login = () => {
 										className="email-input"
 										type="email"
 										placeholder="email@example.com"
-										ref={email}></input>
+										ref={email}
+										required></input>
 								</div>
 								<div>
 									<Label className="password-text">Password</Label>
@@ -56,7 +54,9 @@ export const Login = () => {
 										className="password-input"
 										type="password"
 										placeholder="Password"
-										ref={password}></input>
+										ref={password}
+										required
+										minLength={8}></input>
 								</div>
 								<div className="button-sign-in-register">
 									<Button className={'login-btn-sign-in'}>

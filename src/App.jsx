@@ -3,6 +3,7 @@ import './App.css';
 import { useRoutes } from 'react-router-dom';
 import { ListOfProp } from './components/listOfProperties/props/ListOfProp';
 import { Login } from './components/login/Login';
+import { AddNEdit } from './components/addNEdit/AddNEdit';
 
 function App() {
 	const routing = useRoutes([
@@ -15,6 +16,10 @@ function App() {
 			path: '/list-of-props',
 			element: <ListOfProp />,
 			//  isLoggedIn ? <ListOfProp /> : <Navigate to={'/login-window'} /
+		},
+		{
+			path: '/add',
+			element: <AddNEdit />,
 		},
 	]);
 
