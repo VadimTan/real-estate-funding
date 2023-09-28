@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { ListOfProp } from './components/list-of-properties/props/ListOfProp';
+import { ListOfProp } from './components/listOfProperties/props/ListOfProp';
 import { Login } from './components/login/Login';
 
 function App() {

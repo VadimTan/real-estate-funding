@@ -1,6 +1,6 @@
 @font-face {
 	font-family: SF Pro Regular;
-	src: url(../../fonts/SF/SF-Pro-Display-Regular.otf) format(opentype);
+	src: url(../assets/fonts/SF/SF-Pro-Display-Regular.otf) format(opentype);
 }
 
 .nav-menu {
@@ -10,8 +10,8 @@
 	align-items: flex-start;
 	padding: 16px 100px;
 	gap: 48px;
-	position: absolute;
 	width: 100%;
+	position: absolute;
 	height: 65px;
 	left: 0px;
 	top: 0px;
@@ -125,7 +125,7 @@
 	height: 18px;
 	font-style: normal;
 	font-weight: 500;
-	font-size: 13px;
+	font-size: 14px;
 	line-height: 18px;
 	display: flex;
 	align-items: center;
@@ -145,7 +145,7 @@
 	align-items: center;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 800px) {
 	.nav-menu {
 		gap: 20px;
 	}

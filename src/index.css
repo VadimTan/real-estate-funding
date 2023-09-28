@@ -1,6 +1,6 @@
 @font-face {
 	font-family: SF Pro Display;
-	src: url(../src/fonts/SF/SF-Pro-Display-Bold.otf) format(truetype);
+	src: url(../src/assets/fonts/SF/SF-Pro-Display-Bold.otf) format(truetype);
 }
 
 :root {
@@ -28,11 +28,8 @@ a:hover {
 }
 
 body {
-	margin: 0px;
-	display: flex;
-	min-width: 500px;
-	min-height: 200vh;
-	background-color: #f2f2f7;
+	margin: 0;
+	padding: 0;
 }
 
 h1 {
@@ -62,7 +59,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;
-		background-color: #ffffff;
+		background-color: #f2f2f7;
 	}
 	a:hover {
 		color: #747bff;

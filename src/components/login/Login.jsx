@@ -1,7 +1,7 @@
-import { Button } from '../reusable/button.jsx';
-import { Label } from '../reusable/label.jsx';
+import Label from '../../common/Label';
+import Button from '../../common/Button';
 import { Logo } from '../login/Logo.jsx';
-import '../login/login.css';
+import '../../styles/login.scss';
 
 export const Login = () => {
 	return (

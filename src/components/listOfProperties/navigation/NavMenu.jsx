@@ -1,12 +1,12 @@
-import DubX from '../../../assets/logo-assets/DubX.svg';
-import Button from '../../reusable/button';
-import Label from '../../reusable/label';
-import '../navigation/navmenu.css';
-import magnify_glass from '../../../assets/logo-assets/magnifyingglass.svg';
+import DubX from '../../../assets/images/DubX.svg';
+import '../../../styles/navmenu.scss';
+import magnify_glass from '../../../assets/images/magnifyingglass.svg';
+import Button from '../../../common/Button';
+import Label from '../../../common/Label';
 
 export const NavMenu = () => {
 	return (
-		<div className="nav-menu">
+		<nav className="nav-menu">
 			<div className="nav-menu-logo">
 				<img
 					className="dubX-logo"
@@ -38,6 +38,6 @@ export const NavMenu = () => {
 					</Button>
 				</div>
 			</div>
-		</div>
+		</nav>
 	);
 };

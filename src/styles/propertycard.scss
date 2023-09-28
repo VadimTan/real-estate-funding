@@ -4,11 +4,10 @@
 }
 
 .property-card-container {
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 24px;
 	padding: 0px;
-	gap: 24px;
 	isolation: isolate;
 	position: absolute;
 	width: 384px;
@@ -101,11 +100,11 @@
 	align-items: center;
 	padding: 7px 16px;
 	gap: 8px;
-	position: absolute;
+	position: relative;
 	width: 368px;
 	height: 32px;
 	left: 8px;
-	top: 168px;
+	top: -254px;
 	background: #007aff;
 	border-radius: 8px;
 	flex: none;
@@ -119,7 +118,7 @@
 	height: 18px;
 	font-family: SF Pro Regular;
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 700;
 	font-size: 14px;
 	line-height: 18px;
 	display: flex;
@@ -133,10 +132,112 @@
 	cursor: pointer;
 }
 
-@media screen and (max-width: 760px) {
+// .tag-row {
+// 	display: flex;
+// 	flex-direction: row;
+// 	align-items: flex-start;
+// 	padding: 0px;
+// 	gap: 8px;
+// 	position: relative;
+// 	width: 149px;
+// 	height: 21px;
+// 	right: -204px;
+// 	top: -447px;
+// 	flex: none;
+// 	order: 3;
+// 	flex-grow: 0;
+// 	z-index: 3;
+// }
+
+// .row-completed {
+// 	display: flex;
+// 	flex-direction: row;
+// 	align-items: center;
+// 	padding: 4px;
+// 	gap: 6px;
+// 	width: 88px;
+// 	height: 16px;
+// 	background: #ffffff;
+// 	border-radius: 18px;
+// 	flex: none;
+// 	order: 0;
+// 	flex-grow: 0;
+// }
+
+// .row-completed img {
+// 	width: 12px;
+// 	height: 9px;
+// 	flex: none;
+// 	order: 0;
+// 	flex-grow: 0;
+// }
+
+// .completed-text-row {
+// 	width: 60px;
+// 	height: 13px;
+// 	font-family: SF Pro Regular;
+// 	font-style: normal;
+// 	font-weight: 700;
+// 	font-size: 14px;
+// 	line-height: 13px;
+// 	letter-spacing: 0.06px;
+// 	font-feature-settings: 'case' on;
+// 	color: #000000;
+// 	flex: none;
+// 	order: 1;
+// 	flex-grow: 0;
+// }
+
+// .row-sold {
+// 	display: flex;
+// 	flex-direction: row;
+// 	align-items: center;
+// 	padding: 4px 8px;
+// 	gap: 4px;
+// 	width: 53px;
+// 	height: 16px;
+// 	background: #ffffff;
+// 	border-radius: 18px;
+// 	flex: none;
+// 	order: 1;
+// 	flex-grow: 0;
+// }
+
+// .row-sold img {
+// 	width: 12px;
+// 	height: 9px;
+// 	flex: none;
+// 	order: 0;
+// 	flex-grow: 0;
+// }
+
+// .sold-text-row {
+// 	width: 30px;
+// 	height: 13px;
+// 	font-family: SF Pro Regular;
+// 	font-style: normal;
+// 	font-weight: 700;
+// 	font-size: 14px;
+// 	line-height: 13px;
+// 	letter-spacing: 0.06px;
+// 	font-feature-settings: 'case' on;
+// 	color: #000000;
+// 	flex: none;
+// 	order: 1;
+// 	flex-grow: 0;
+// }
+
+@media screen and (max-width: 1350px) {
 	.property-card-container {
-		display: flex;
-		flex-direction: column;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.property-card-container {
+		display: grid;
+		grid-template-columns: 1fr;
 		align-items: flex-start;
 		padding: 0px;
 		gap: 8px;
@@ -228,11 +329,11 @@
 		align-items: center;
 		padding: 7px 16px;
 		gap: 8px;
-		position: absolute;
+		position: relative;
 		width: 345px;
 		height: 32px;
 		left: 8px;
-		top: 155px;
+		top: -236px;
 		background: #007aff;
 		border-radius: 8px;
 		flex: none;
@@ -252,7 +353,6 @@
 		display: flex;
 		align-items: center;
 		text-align: center;
-
 		color: #ffffff;
 		flex: none;
 		order: 1;
