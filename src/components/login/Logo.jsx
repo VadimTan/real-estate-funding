@@ -1,5 +1,5 @@
 import DubX from '../../assets/images/DubX.svg';
-import '../../styles/logo.scss';
+import '../../../styles/logo.scss';
 
 export const Logo = () => {
 	return (

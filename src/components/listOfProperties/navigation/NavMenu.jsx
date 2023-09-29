@@ -1,13 +1,16 @@
 import DubX from '../../../assets/images/DubX.svg';
-import '../../../styles/navmenu.scss';
+import '../../../../styles/navmenu.scss';
 import magnify_glass from '../../../assets/images/magnifyingglass.svg';
 import Button from '../../../common/Button';
 import Label from '../../../common/Label';
+import { useNavigate } from 'react-router-dom';
 
 export const NavMenu = () => {
+	const navigate = useNavigate();
+
 	const handleClick = () => {
 		localStorage.clear();
-		window.location.reload();
+		navigate('/', { replace: true });
 	};
 
 	return (

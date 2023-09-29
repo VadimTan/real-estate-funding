@@ -1,0 +1,506 @@
+.global-container-add-edit {
+	display: flex;
+	flex-direction: row;
+	padding: 16px 100px;
+}
+
+.main-metrics-container {
+	display: flex;
+	box-sizing: border-box;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 24px;
+	gap: 24px;
+	background: #ffffff;
+	border: 1px solid rgba(120, 120, 128, 0.2);
+	border-radius: 16px;
+}
+
+.main-metrics-text {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 34px;
+	letter-spacing: 0.36px;
+	color: #000000;
+	flex: none;
+	order: 0;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.main-metrics-field-1 {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-bottom: 10px;
+	gap: 4px;
+	flex: none;
+	order: 0;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.main-metrics-field-2 {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-bottom: 10px;
+	gap: 4px;
+	flex: none;
+	order: 0;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.main-metrics-label {
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: -0.078px;
+	color: #000000;
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+}
+
+.input-field {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.main-metrics-input {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 10px;
+	gap: 8px;
+	border: 1px solid #d1d1d6;
+	border-radius: 12px;
+	width: 300px;
+}
+
+.text-near-input-app-fee {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.32px;
+	color: #aeaeb2;
+	position: absolute;
+	left: 396px;
+}
+
+.text-near-input {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.32px;
+	color: #aeaeb2;
+	position: absolute;
+	left: 382px;
+}
+
+.input-field-small {
+	display: flex;
+	flex-direction: column;
+}
+
+.small-div-for-double-input {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.main-metrics-input-small {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 10px;
+	gap: 8px;
+	border: 1px solid #d1d1d6;
+	border-radius: 12px;
+	width: 145px;
+}
+
+.text-near-input-small {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.32px;
+	color: #aeaeb2;
+	position: absolute;
+	left: 242px;
+	top: 475px;
+}
+
+.text-near-input-small-2 {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.32px;
+	color: #aeaeb2;
+	position: absolute;
+	left: 396px;
+	top: 475px;
+}
+
+.text-near-input-small-3 {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.32px;
+	color: #aeaeb2;
+	position: absolute;
+	left: 364px;
+	top: 753px;
+}
+
+.text-near-input-small-4 {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.32px;
+	color: #aeaeb2;
+	position: absolute;
+	left: 210px;
+	top: 753px;
+}
+
+.text-near-input-small-5 {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.32px;
+	color: #aeaeb2;
+	position: absolute;
+	left: 210px;
+	top: 822px;
+}
+
+.text-near-input-small-6 {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.32px;
+	color: #aeaeb2;
+	position: absolute;
+	left: 364px;
+	top: 822px;
+}
+
+@media screen and (max-width: 1183px) {
+	.text-near-input-small {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 242px;
+		top: 509px;
+	}
+
+	.text-near-input-small-2 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 396px;
+		top: 509px;
+	}
+
+	.text-near-input-small-3 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 364px;
+		top: 787px;
+	}
+
+	.text-near-input-small-4 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 210px;
+		top: 787px;
+	}
+
+	.text-near-input-small-5 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 210px;
+		top: 857px;
+	}
+
+	.text-near-input-small-6 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 364px;
+		top: 857px;
+	}
+}
+
+@media screen and (max-width: 928px) {
+	.text-near-input-small {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 242px;
+		top: 542px;
+	}
+
+	.text-near-input-small-2 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 396px;
+		top: 542px;
+	}
+
+	.text-near-input-small-3 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 364px;
+		top: 821px;
+	}
+
+	.text-near-input-small-4 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 210px;
+		top: 821px;
+	}
+
+	.text-near-input-small-5 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 210px;
+		top: 890px;
+	}
+
+	.text-near-input-small-6 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 364px;
+		top: 890px;
+	}
+}
+
+@media screen and (max-width: 916px) {
+	.text-near-input-small {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 242px;
+		top: 577px;
+	}
+
+	.text-near-input-small-2 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 396px;
+		top: 577px;
+	}
+
+	.text-near-input-small-3 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 364px;
+		top: 856px;
+	}
+
+	.text-near-input-small-4 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 210px;
+		top: 856px;
+	}
+
+	.text-near-input-small-5 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 210px;
+		top: 925px;
+	}
+
+	.text-near-input-small-6 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 364px;
+		top: 925px;
+	}
+}

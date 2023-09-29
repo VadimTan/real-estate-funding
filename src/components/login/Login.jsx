@@ -1,73 +1,58 @@
 import Label from '../../common/Label';
 import Button from '../../common/Button';
-import { Logo } from '../login/Logo.jsx';
-import '../../styles/login.scss';
-//  useState
-import { useRef } from 'react';
-import { ListOfProp } from '../listOfProperties/props/ListOfProp';
+import { Logo } from './Logo.jsx';
+import '../../../styles/login.scss';
+// import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
-	// const [loggedIn, setLoggedIn] = useState(false);
-	const email = useRef();
-	const password = useRef();
-	const getEmail = localStorage.getItem('EmailData');
-	const getPassword = localStorage.getItem('PasswordData');
+	// const [email, setEmail] = useState('');
+	// const [password, setPassword] = useState('');
+	const navigate = useNavigate();
 
 	const handleSubmit = () => {
-		if (email.current.value && password.current.value) {
-			localStorage.setItem('EmailData', email.current.value);
-			localStorage.setItem('PasswordData', password.current.value);
-		}
+		// if (email && password) {
+		// 	localStorage.setItem('EmailData', email);
+		// 	localStorage.setItem('PasswordData', password);
+		// }
+		navigate('/list-of-props', { replace: true });
 	};
-
-	// const loginLogIn = () => {
-	// 	setLoggedIn(true);
-	// };
 
 	return (
 		<>
-			{getEmail && getPassword ? (
-				<ListOfProp />
-			) : (
-				<>
-					<Logo />
-					<div className="login-window">
-						<div className="h1-login-text">
-							<h1 className="h1-sign-in">Sign In</h1>
+			<Logo />
+			<div className="login-window">
+				<div className="h1-login-text">
+					<h1 className="h1-sign-in">Sign In</h1>
+				</div>
+				<div className="registration-window">
+					<form
+						className="login-form"
+						onSubmit={handleSubmit}>
+						<div>
+							<Label className="email-text">Email</Label>
+							<input
+								className="email-input"
+								type="text"
+								placeholder="email@example.com"
+							/>
 						</div>
-						<div className="registration-window">
-							<form
-								className="login-form"
-								onSubmit={handleSubmit}>
-								<div>
-									<Label className="email-text">Email</Label>
-									<input
-										className="email-input"
-										type="email"
-										placeholder="email@example.com"
-										ref={email}
-										required></input>
-								</div>
-								<div>
-									<Label className="password-text">Password</Label>
-									<input
-										className="password-input"
-										type="password"
-										placeholder="Password"
-										ref={password}
-										required
-										minLength={8}></input>
-								</div>
-								<div className="button-sign-in-register">
-									<Button className={'login-btn-sign-in'}>
-										<Label className={'btn-label-sign-in'}>Sign In</Label>
-									</Button>
-								</div>
-							</form>
+						<div>
+							<Label className="password-text">Password</Label>
+							<input
+								className="password-input"
+								type="password"
+								placeholder="Password"
+							/>
 						</div>
-					</div>
-				</>
-			)}
+						<div className="button-sign-in-register">
+							<Button className={'login-btn-sign-in'}>
+								<Label className={'btn-label-sign-in'}>Sign In</Label>
+							</Button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</>
 	);
 };

@@ -3,7 +3,7 @@ import Button from '../../../../common/Button';
 import Label from '../../../../common/Label';
 // import tag_blue from '../../../../assets/images/tag_blue.svg';
 // import tag_green from '../../../../assets/images/tag_green.svg';
-import '../../../../styles/propertycard.scss';
+import '../../../../../styles/propertycard.scss';
 
 export const PropertyCard = () => {
 	const arrayOfProperties = [

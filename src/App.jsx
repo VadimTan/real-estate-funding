@@ -1,25 +1,22 @@
-import './App.css';
-// Navigate,
+import './App.scss';
 import { useRoutes } from 'react-router-dom';
-import { ListOfProp } from './components/listOfProperties/props/ListOfProp';
-import { Login } from './components/login/Login';
-import { AddNEdit } from './components/addNEdit/AddNEdit';
+import { LoginPage } from './pages/LoginPage';
+import { ListOfPropPage } from './pages/ListOfPropPage';
+import { AddNEditPage } from './pages/AddNEditPage';
 
 function App() {
 	const routing = useRoutes([
 		{
 			path: '/',
-			element: <Login />,
-			// isLoggedIn ? <Navigate to={'/list-of-props'} /> :
+			element: <LoginPage />,
 		},
 		{
 			path: '/list-of-props',
-			element: <ListOfProp />,
-			//  isLoggedIn ? <ListOfProp /> : <Navigate to={'/login-window'} /
+			element: <ListOfPropPage />,
 		},
 		{
 			path: '/add',
-			element: <AddNEdit />,
+			element: <AddNEditPage />,
 		},
 	]);
 
