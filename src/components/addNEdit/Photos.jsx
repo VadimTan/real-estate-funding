@@ -31,7 +31,7 @@ export const PhotosBox = () => {
 				/>
 				<div className="checkbox-container-upload">
 					<img
-						className="checkbox-for-uploaded"
+						className="checkbox-for-upload"
 						src={Checkbox}
 						alt=""
 					/>
