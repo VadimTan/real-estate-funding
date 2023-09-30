@@ -1,0 +1,204 @@
+.photos-upload-container {
+	display: flex;
+	box-sizing: border-box;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 24px;
+	gap: 24px;
+	background: #ffffff;
+	border: 1px solid rgba(120, 120, 128, 0.2);
+	border-radius: 16px;
+	height: 100%;
+	margin-right: 135px;
+}
+
+.photos-upload-text {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 34px;
+	letter-spacing: 0.36px;
+	color: #000000;
+	flex: none;
+	order: 0;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.header-for-photos {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 0px;
+	gap: 24px;
+	width: 336px;
+	height: 18px;
+	flex: none;
+	order: 0;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.span-for-header-symbol {
+	width: 16px;
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: -0.078px;
+	color: rgba(60, 60, 67, 0.6);
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+}
+
+.span-for-header-photo {
+	width: 75px;
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: -0.078px;
+	color: rgba(60, 60, 67, 0.6);
+	flex: none;
+	order: 1;
+	flex-grow: 0;
+}
+
+.span-for-header-delete {
+	width: 100px;
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: -0.078px;
+	color: rgba(60, 60, 67, 0.6);
+	flex: none;
+	order: 2;
+	flex-grow: 0;
+}
+
+.span-for-header-main-image {
+	width: 128px;
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	display: flex;
+	align-items: flex-end;
+	text-align: right;
+	letter-spacing: -0.078px;
+	color: rgba(60, 60, 67, 0.6);
+	flex: none;
+	order: 3;
+	flex-grow: 1;
+}
+
+.button-for-uploading {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 15px 16px;
+	gap: 8px;
+	width: 336px;
+	height: 48px;
+	background: #f2f2f7;
+	border: 1px dashed #007aff;
+	border-radius: 12px;
+	flex: none;
+	order: 2;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.text-for-button-uploading {
+	width: 86px;
+	height: 18px;
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 13px;
+	line-height: 18px;
+	display: flex;
+	align-items: flex-end;
+	text-align: center;
+	letter-spacing: 0.3px;
+	color: #000000;
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+	cursor: pointer;
+}
+
+.list-of-uploading-files {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0px;
+	gap: 24px;
+	isolation: isolate;
+	width: 336px;
+	height: 80px;
+	flex: none;
+}
+
+.label-for-row {
+	width: 16px;
+	height: 18px;
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 18px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: -0.078px;
+	color: #000000;
+	flex: none;
+	flex-grow: 0;
+	z-index: 0;
+}
+
+.picture-uploaded-file {
+	width: 80px;
+	height: 80px;
+	background: url(image.png), #d9d9d9;
+	border-radius: 8px;
+	flex: none;
+	flex-grow: 0;
+	z-index: 1;
+}
+
+.trash-can {
+	width: 24px;
+	height: 24px;
+	flex: none;
+	flex-grow: 0;
+	z-index: 2;
+}
+
+.checkbox-container-upload {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 12px;
+	gap: 32px;
+	flex: none;
+	order: 3;
+	flex-grow: 1;
+	z-index: 3;
+}
