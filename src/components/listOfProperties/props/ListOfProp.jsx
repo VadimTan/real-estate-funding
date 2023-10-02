@@ -17,7 +17,6 @@ export const ListOfProp = () => {
 			<Layout>
 				<div className="frame-18">
 					<h1 className="h1-list-of-props">List Of Properties</h1>
-
 					<div className="button-container-list-of-props">
 						<Button
 							className={'btn-list-of-props'}
