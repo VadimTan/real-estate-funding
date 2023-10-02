@@ -18,7 +18,7 @@ export const PhotosBox = () => {
 				<span className="span-for-header-main-image">Main Image</span>
 			</div>
 			<div className="list-of-uploading-files">
-				<Label className={'label-for-row'}>1.</Label>
+				<Label className="label-for-row">1.</Label>
 				<img
 					className="picture-uploaded-file"
 					src={rectangle}
@@ -38,8 +38,8 @@ export const PhotosBox = () => {
 				</div>
 			</div>
 			<div className="button-upload-photos-container">
-				<Button className={'button-for-uploading'}>
-					<Label className={'text-for-button-uploading'}>Add Image(s)</Label>
+				<Button className="button-for-uploading">
+					<Label className="text-for-button-uploading">Add Image(s)</Label>
 				</Button>
 			</div>
 		</div>

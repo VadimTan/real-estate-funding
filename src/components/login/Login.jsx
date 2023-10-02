@@ -45,15 +45,14 @@ export const Login = () => {
 								placeholder="Password"
 							/>
 						</div>
-						<form
-							className="button-sign-in-register"
-							onSubmit={handleSubmit}>
+						<div className="button-sign-in-register">
 							<Button
-								className={'login-btn-sign-in'}
-								type="submit">
-								<a className={'btn-label-sign-in'}>Sign In</a>
+								className="login-btn-sign-in"
+								type="submit"
+								clickHandler={handleSubmit}>
+								<span className="btn-label-sign-in">Sign In</span>
 							</Button>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>

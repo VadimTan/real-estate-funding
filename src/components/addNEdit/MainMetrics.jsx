@@ -21,7 +21,7 @@ export const MainMetrics = () => {
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">
-					<Label className={'main-metrics-label'}>Price</Label>
+					<Label className="main-metrics-label">Price</Label>
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
@@ -31,8 +31,8 @@ export const MainMetrics = () => {
 					</Label>
 				</div>
 				<div className="main-metrics-field-2">
-					<Label className={'main-metrics-label'}>Annual Profit</Label>
-					<Label className={'input-field-small'}>
+					<Label className="main-metrics-label">Annual Profit</Label>
+					<Label className="input-field-small">
 						<div className="small-div-for-double-input">
 							<div>
 								<input
@@ -52,7 +52,7 @@ export const MainMetrics = () => {
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">
-					<Label className={'main-metrics-label'}>Sell Price</Label>
+					<Label className="main-metrics-label">Sell Price</Label>
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
@@ -62,7 +62,7 @@ export const MainMetrics = () => {
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">
-					<Label className={'main-metrics-label'}>App Fee</Label>
+					<Label className="main-metrics-label">App Fee</Label>
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
@@ -72,7 +72,7 @@ export const MainMetrics = () => {
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">
-					<Label className={'main-metrics-label'}>Additional Charges</Label>
+					<Label className="main-metrics-label">Additional Charges</Label>
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
@@ -82,8 +82,8 @@ export const MainMetrics = () => {
 					</Label>
 				</div>
 				<div className="main-metrics-field-2">
-					<Label className={'main-metrics-label'}>Period</Label>
-					<Label className={'input-field-small'}>
+					<Label className="main-metrics-label">Period</Label>
+					<Label className="input-field-small">
 						<div className="small-div-for-double-input">
 							<div>
 								<input
@@ -103,8 +103,8 @@ export const MainMetrics = () => {
 					</Label>
 				</div>
 				<div className="main-metrics-field-2">
-					<Label className={'main-metrics-label'}>Handover</Label>
-					<Label className={'input-field-small'}>
+					<Label className="main-metrics-label">Handover</Label>
+					<Label className="input-field-small">
 						<div className="small-div-for-double-input">
 							<div>
 								<input

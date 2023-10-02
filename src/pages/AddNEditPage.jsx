@@ -4,6 +4,7 @@ import AddNEdit from '../components/addNEdit/AddNEdit';
 import '../../styles/mainmetrics.scss';
 import { AboutProperty } from '../components/addNEdit/AboutProperty';
 import { PhotosBox } from '../components/addNEdit/Photos';
+import { Footer } from '../components/listOfProperties/Footer/Footer';
 
 export const AddNEditPage = () => {
 	return (
@@ -14,6 +15,7 @@ export const AddNEditPage = () => {
 				<AboutProperty />
 				<PhotosBox />
 			</div>
+			<Footer />
 		</Layout>
 	);
 };

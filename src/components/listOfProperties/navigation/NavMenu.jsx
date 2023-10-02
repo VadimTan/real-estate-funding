@@ -44,9 +44,9 @@ export const NavMenu = () => {
 
 			<div className="nav-button-container">
 				<Button
-					className={'nav-menu-button'}
+					className="nav-menu-button"
 					clickHandler={handleClick}>
-					<Label className={'nav-label-button'}>Log Out</Label>
+					<span className="nav-label-button">Log Out</span>
 				</Button>
 			</div>
 		</nav>
