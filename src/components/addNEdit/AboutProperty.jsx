@@ -35,14 +35,14 @@ export const AboutProperty = () => {
 									className="main-metrics-input-small"
 									type="text"
 								/>
-								<span className="text-near-input-about-2">X</span>
+								{/* <span className="text-near-input-about-2">X</span> */}
 							</div>
 							<div>
 								<input
 									className="main-metrics-input-small"
 									type="text"
 								/>
-								<span className="text-near-input-about-3">Y</span>
+								{/* <span className="text-near-input-about-3">Y</span> */}
 							</div>
 						</div>
 					</Label>
@@ -89,7 +89,7 @@ export const AboutProperty = () => {
 							className="main-metrics-input"
 							type="text"
 						/>
-						<span className="text-near-input-about">#</span>
+						{/* <span className="text-near-input-about">#</span> */}
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">
@@ -99,7 +99,7 @@ export const AboutProperty = () => {
 							className="main-metrics-input"
 							type="text"
 						/>
-						<span className="text-near-input-about-1">Sq.Ft</span>
+						{/* <span className="text-near-input-about-1">Sq.Ft</span> */}
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">

@@ -26,35 +26,6 @@
 	flex-grow: 0;
 }
 
-.text-near-input-small-about {
-	font-family: SF Pro Display;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 14px;
-	line-height: 20px;
-	display: flex;
-	align-items: flex-end;
-	letter-spacing: 0.32px;
-	color: #aeaeb2;
-	position: absolute;
-	left: 1213px;
-	top: 475px;
-}
-.text-near-input-small-about-1 {
-	font-family: SF Pro Display;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 14px;
-	line-height: 20px;
-	display: flex;
-	align-items: flex-end;
-	letter-spacing: 0.32px;
-	color: #aeaeb2;
-	position: absolute;
-	left: 1367px;
-	top: 475px;
-}
-
 .about-property-textarea {
 	box-sizing: border-box;
 	display: flex;
@@ -92,6 +63,7 @@
 	font-size: 14px;
 	line-height: 20px;
 	display: flex;
+	flex-grow: 100;
 	align-items: flex-end;
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
@@ -128,4 +100,190 @@
 	position: absolute;
 	left: 838px;
 	top: 475px;
+}
+
+@media screen and (max-width: 968px) {
+	.text-near-input-about {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: none;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 841px;
+		top: 823px;
+	}
+
+	.text-near-input-about-1 {
+		font-family: SF Pro Regular;
+		font-style: normal;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 20px;
+		display: none;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 820px;
+		top: 892px;
+	}
+
+	.text-near-input-about-2 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: none;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 685px;
+		top: 475px;
+	}
+
+	.text-near-input-about-3 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: none;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 838px;
+		top: 475px;
+	}
+}
+
+@media screen and (max-width: 1082px) {
+	.text-near-input-about {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 841px;
+		top: 858px;
+	}
+
+	.text-near-input-about-1 {
+		font-family: SF Pro Regular;
+		font-style: normal;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 820px;
+		top: 927px;
+	}
+
+	.text-near-input-about-2 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 685px;
+		top: 509px;
+	}
+
+	.text-near-input-about-3 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 838px;
+		top: 509px;
+	}
+}
+
+@media screen and (max-width: 1513px) {
+	.text-near-input-about {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 830px;
+		top: 823px;
+	}
+
+	.text-near-input-about-1 {
+		font-family: SF Pro Regular;
+		font-style: normal;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 805px;
+		top: 892px;
+	}
+
+	.text-near-input-about-2 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 680px;
+		top: 474px;
+	}
+
+	.text-near-input-about-3 {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 830px;
+		top: 474px;
+	}
 }

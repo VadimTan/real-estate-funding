@@ -5,8 +5,6 @@
 	justify-content: space-between;
 	padding: 16px 100px;
 	gap: 64px;
-	left: 100px;
-	top: 96px;
 }
 
 .h1-list-of-props {
@@ -58,6 +56,119 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.global-fee-exchange {
+	display: flex;
+	padding: 16px 100px;
+}
+
+.fee-exchange-container {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	gap: 24px;
+	background: #ffffff;
+	border: 1px solid rgba(120, 120, 128, 0.2);
+	border-radius: 16px;
+	width: fit-content;
+	padding: 16px;
+}
+
+.dld-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0px;
+	gap: 4px;
+}
+
+.exchange-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0px;
+	gap: 4px;
+}
+
+.dld-fee-label {
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 13px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.1px;
+	font-feature-settings: 'case' on;
+	color: #000000;
+}
+
+.exchange-label {
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 13px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.1px;
+	font-feature-settings: 'case' on;
+	color: #000000;
+}
+
+.dld-fee-input {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 8px;
+	gap: 10px;
+	width: 213px;
+	height: 32px;
+	border: 1px solid #d1d1d6;
+	border-radius: 8px;
+}
+
+.exchange-input {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 8px;
+	gap: 10px;
+	width: 213px;
+	height: 32px;
+	border: 1px solid #d1d1d6;
+	border-radius: 8px;
+}
+
+.fee-exchange-button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 6px 24px;
+	gap: 10px;
+	width: 145px;
+	height: 30px;
+	background: #c7c7cc;
+	border-radius: 8px;
+}
+
+.text-fee-button {
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 20px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	letter-spacing: 0px;
+	font-feature-settings: 'case' on;
+	color: #8e8e93;
 }
 
 @media screen and (max-width: 800px) {
