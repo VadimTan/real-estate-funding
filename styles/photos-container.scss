@@ -273,8 +273,13 @@
 		gap: 250px;
 	}
 
-	.photos-global-container {
+	#closed.photos-global-container {
 		display: none;
+	}
+
+	#show.photos-global-container {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.button-upload-photos-container {

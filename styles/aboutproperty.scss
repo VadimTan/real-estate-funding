@@ -335,6 +335,15 @@
 		display: none;
 	}
 
+	#closed.about-property-fields-container {
+		display: none;
+	}
+
+	#show.about-property-fields-container {
+		display: flex;
+		flex-direction: column;
+	}
+
 	.about-property-block-text {
 		display: flex;
 		flex-direction: row;

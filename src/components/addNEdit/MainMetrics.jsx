@@ -6,11 +6,11 @@ import { useState } from 'react';
 
 export const MainMetrics = () => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
-	const [show, setShow] = useState('.closed');
+	const [show, setShow] = useState('closed');
 
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
-		setShow((state) => (state == '.closed' ? '.show' : '.closed'));
+		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
 	};
 
 	return (
@@ -27,7 +27,9 @@ export const MainMetrics = () => {
 					</div>
 				)}
 			</div>
-			<div className={`main-metrics-fields-container ` + show}>
+			<div
+				id={show}
+				className={`main-metrics-fields-container`}>
 				<div className="main-metrics-field-1">
 					<Label className={'main-metrics-label'}>
 						Total Price (общая цена недвижимости)
@@ -103,7 +105,16 @@ export const MainMetrics = () => {
 				</div>
 				<div className="main-metrics-field-2">
 					<Label className="main-metrics-label">Period</Label>
-					<Label className="input-field-small">
+					<Label className="input-field">
+						<input
+							className="main-metrics-input"
+							type="text"
+						/>
+						<span className="text-near-input-months">MONTHS</span>
+					</Label>
+					<Label
+						id={show}
+						className="input-field-small">
 						<div className="small-div-for-double-input">
 							<div>
 								<input

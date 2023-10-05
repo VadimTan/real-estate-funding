@@ -10,9 +10,11 @@ import { useState } from 'react';
 
 export const PhotosBox = () => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
+	const [show, setShow] = useState('closed');
 
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
+		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
 	};
 
 	return (
@@ -29,7 +31,9 @@ export const PhotosBox = () => {
 					</div>
 				)}
 			</div>
-			<div className="photos-global-container">
+			<div
+				id={show}
+				className="photos-global-container">
 				<div className="header-for-photos">
 					<span className="span-for-header-symbol">#</span>
 					<span className="span-for-header-photo">Photo</span>

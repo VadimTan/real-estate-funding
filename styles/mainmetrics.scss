@@ -570,11 +570,20 @@
 		gap: 200px;
 	}
 
-	.main-metrics-fields-container .closed {
+	#closed.main-metrics-fields-container {
 		display: none;
 	}
 
-	.main-metrics-fields-container .show {
+	#show.main-metrics-fields-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	#show.input-field-small {
+		display: none;
+	}
+
+	#closed.input-field-small {
 		display: flex;
 		flex-direction: column;
 	}

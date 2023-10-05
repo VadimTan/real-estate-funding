@@ -6,9 +6,11 @@ import { useState } from 'react';
 
 export const AboutProperty = () => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
+	const [show, setShow] = useState('closed');
 
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
+		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
 	};
 
 	return (
@@ -25,7 +27,9 @@ export const AboutProperty = () => {
 					</div>
 				)}
 			</div>
-			<div className="about-property-fields-container">
+			<div
+				id={show}
+				className="about-property-fields-container">
 				<div className="main-metrics-field-1">
 					<Label className="main-metrics-label">Name</Label>
 					<Label className="input-field">
