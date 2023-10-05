@@ -1,13 +1,31 @@
 import '../../../styles/aboutproperty.scss';
 import Label from '../../common/Label';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { useState } from 'react';
 
 export const AboutProperty = () => {
+	const [stateOfIcon, setStateOfIcon] = useState(false);
+
+	const changeStateHandler = () => {
+		setStateOfIcon((icon) => !icon);
+	};
+
 	return (
 		<div className="about-property-container">
 			<div className="about-property-block-text">
 				<h1 className="about-property-text">About Property</h1>
+				{stateOfIcon ? (
+					<div className="expand-less-icon">
+						<ExpandLessIcon onClick={changeStateHandler} />
+					</div>
+				) : (
+					<div className="expand-more-icon">
+						<ExpandMoreIcon onClick={changeStateHandler} />
+					</div>
+				)}
 			</div>
-			<div className="main-metrics-fields-container">
+			<div className="about-property-fields-container">
 				<div className="main-metrics-field-1">
 					<Label className="main-metrics-label">Name</Label>
 					<Label className="input-field">

@@ -171,6 +171,32 @@
 	color: #8e8e93;
 }
 
+.dld-icon {
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	align-items: flex-end;
+	color: #aeaeb2;
+	position: absolute;
+	top: 226px;
+	left: 302px;
+}
+
+.exchange-icon {
+	font-family: SF Pro Regular;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	align-items: flex-end;
+	color: #aeaeb2;
+	position: absolute;
+	top: 226px;
+	left: 503px;
+}
+
 @media screen and (max-width: 800px) {
 	.frame-18 {
 		display: flex;
@@ -226,5 +252,20 @@
 		flex: none;
 		order: 1;
 		flex-grow: 0;
+	}
+}
+
+@media screen and (max-width: 551px) {
+	.exchange-icon {
+		font-family: SF Pro Regular;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 16px;
+		align-items: flex-end;
+		color: #aeaeb2;
+		position: absolute;
+		top: 226px;
+		left: 500px;
 	}
 }

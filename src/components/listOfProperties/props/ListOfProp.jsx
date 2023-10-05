@@ -29,10 +29,13 @@ export const ListOfProp = () => {
 					<div className="fee-exchange-container">
 						<div className="dld-container">
 							<Label className="dld-fee-label">DLD Fee</Label>
-							<input
-								className="dld-fee-input"
-								type="text"
-							/>
+							<div>
+								<input
+									className="dld-fee-input"
+									type="text"
+								/>
+								<span className="dld-icon">%</span>
+							</div>
 						</div>
 						<div className="exchange-container">
 							<Label className="exchange-label">Exchange Rate</Label>
@@ -40,6 +43,7 @@ export const ListOfProp = () => {
 								className="exchange-input"
 								type="text"
 							/>
+							<span className="exchange-icon">= 1 USD</span>
 						</div>
 						<Button className="fee-exchange-button">
 							<span className="text-fee-button">Save Changes</span>
