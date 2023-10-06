@@ -2,6 +2,7 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(384px, 1fr));
 	padding: 16px 100px;
+	gap: 16px;
 }
 
 .main-metrics-container {
@@ -15,7 +16,6 @@
 	border: 1px solid rgba(120, 120, 128, 0.2);
 	border-radius: 16px;
 	height: fit-content;
-	width: fit-content;
 }
 
 .expand-less-icon {
@@ -91,6 +91,8 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	position: relative;
+	width: 100%;
 }
 
 .main-metrics-input {
@@ -102,7 +104,7 @@
 	gap: 8px;
 	border: 1px solid #d1d1d6;
 	border-radius: 12px;
-	width: 300px;
+	width: 100%;
 }
 
 .main-metrics-select {
@@ -128,7 +130,7 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 396px;
+	right: 8px;
 }
 
 .text-near-input {
@@ -142,7 +144,7 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 382px;
+	right: 7px;
 }
 
 .input-field-small {
@@ -170,7 +172,7 @@
 	gap: 8px;
 	border: 1px solid #d1d1d6;
 	border-radius: 12px;
-	width: 145px;
+	width: 100%;
 }
 
 .text-near-input-small {
@@ -184,8 +186,8 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 242px;
-	top: 475px;
+	right: 7px;
+	top: 9px;
 }
 
 .text-near-input-small-2 {
@@ -199,8 +201,8 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 396px;
-	top: 475px;
+	right: 7px;
+	top: 9px;
 }
 
 .text-near-input-small-3 {
@@ -214,8 +216,8 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 364px;
-	top: 753px;
+	right: 7px;
+	top: 9px;
 }
 
 .text-near-input-small-4 {
@@ -229,8 +231,8 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 210px;
-	top: 753px;
+	right: 7px;
+	top: 9px;
 }
 
 .text-near-input-small-5 {
@@ -244,8 +246,8 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 210px;
-	top: 822px;
+	right: 7px;
+	top: 9px;
 }
 
 .text-near-input-small-6 {
@@ -259,287 +261,11 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 364px;
-	top: 822px;
+	right: 7px;
+	top: 9px;
 }
 
-@media screen and (max-width: 1082px) {
-	.text-near-input-small {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 242px;
-		top: 509px;
-	}
-
-	.text-near-input-small-2 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 396px;
-		top: 509px;
-	}
-
-	.text-near-input-small-3 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 364px;
-		top: 787px;
-	}
-
-	.text-near-input-small-4 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 210px;
-		top: 787px;
-	}
-
-	.text-near-input-small-5 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 210px;
-		top: 857px;
-	}
-
-	.text-near-input-small-6 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 364px;
-		top: 857px;
-	}
-}
-
-@media screen and (max-width: 967px) {
-	.text-near-input-small {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 242px;
-		top: 525px;
-	}
-
-	.text-near-input-small-2 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 396px;
-		top: 525px;
-	}
-
-	.text-near-input-small-3 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 364px;
-		top: 803px;
-	}
-
-	.text-near-input-small-4 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 210px;
-		top: 803px;
-	}
-
-	.text-near-input-small-5 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 210px;
-		top: 873px;
-	}
-
-	.text-near-input-small-6 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 364px;
-		top: 873px;
-	}
-}
-
-@media screen and (max-width: 696px) {
-	.text-near-input-small {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 242px;
-		top: 558px;
-	}
-
-	.text-near-input-small-2 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 396px;
-		top: 558px;
-	}
-
-	.text-near-input-small-3 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 364px;
-		top: 837px;
-	}
-
-	.text-near-input-small-4 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 210px;
-		top: 837px;
-	}
-
-	.text-near-input-small-5 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 210px;
-		top: 906px;
-	}
-
-	.text-near-input-small-6 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 364px;
-		top: 906px;
-	}
-}
-
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 768px) {
 	.main-metrics-text {
 		font-family: SF Pro Regular;
 		font-style: normal;
