@@ -36,6 +36,9 @@ export const AboutProperty = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="text"
+							name="name"
+							value={formState.name}
+							onChange={handleChange}
 						/>
 					</Label>
 				</div>
@@ -45,6 +48,9 @@ export const AboutProperty = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="text"
+							name="location"
+							value={formState.location}
+							onChange={handleChange}
 						/>
 					</Label>
 				</div>
@@ -56,6 +62,7 @@ export const AboutProperty = ({ handleChange, formState }) => {
 								<input
 									className="main-metrics-input-small"
 									type="text"
+									name="coordinate_x"
 									value={formState.coordinate_x}
 									onChange={handleChange}
 								/>
@@ -65,6 +72,9 @@ export const AboutProperty = ({ handleChange, formState }) => {
 								<input
 									className="main-metrics-input-small"
 									type="text"
+									name="coordinate_y"
+									value={formState.coordinate_y}
+									onChange={handleChange}
 								/>
 								{/* <span className="text-near-input-about-3">Y</span> */}
 							</div>
@@ -77,6 +87,9 @@ export const AboutProperty = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="text"
+							name="developer"
+							value={formState.developer}
+							onChange={handleChange}
 						/>
 					</Label>
 				</div>
@@ -98,6 +111,9 @@ export const AboutProperty = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="text"
+							name="developer_specs_subtitle"
+							value={formState.developer_specs_subtitle}
+							onChange={handleChange}
 						/>
 					</Label>
 				</div>
@@ -106,7 +122,10 @@ export const AboutProperty = ({ handleChange, formState }) => {
 					<Label className="input-field">
 						<select
 							className="main-metrics-select"
-							type="text"></select>
+							type="text"
+							name="type"
+							value={formState.type}
+							onChange={handleChange}></select>
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">
@@ -115,6 +134,9 @@ export const AboutProperty = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="number"
+							name="bed"
+							value={formState.bed}
+							onChange={handleChange}
 						/>
 						{/* <span className="text-near-input-about">#</span> */}
 					</Label>
@@ -125,16 +147,22 @@ export const AboutProperty = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="number"
+							name="meter"
+							value={formState.meter}
+							onChange={handleChange}
 						/>
 						{/* <span className="text-near-input-about-1">Sq.Ft</span> */}
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">
-					<Label className="main-metrics-label">Location</Label>
+					<Label className="main-metrics-label">About The Property</Label>
 					<Label className="input-field">
 						<textarea
 							className="about-property-textarea"
 							type="text"
+							name="about"
+							value={formState.about}
+							onChange={handleChange}
 						/>
 					</Label>
 				</div>

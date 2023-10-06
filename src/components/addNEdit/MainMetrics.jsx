@@ -66,6 +66,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								<input
 									className="main-metrics-input-small"
 									type="number"
+									name="annual_profit"
+									value={formState.annual_profit}
+									onChange={handleChange}
 								/>
 								<span className="text-near-input-small">%</span>
 							</div>
@@ -73,6 +76,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								<input
 									className="main-metrics-input-small"
 									type="number"
+									name="annual_profit"
+									value={formState.annual_profit}
+									onChange={handleChange}
 								/>
 								<span className="text-near-input-small-2">%</span>
 							</div>
@@ -85,6 +91,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="number"
+							name="sell_price"
+							value={formState.sell_price}
+							onChange={handleChange}
 						/>
 						<span className="text-near-input">AED</span>
 					</Label>
@@ -95,6 +104,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="number"
+							name="app_fee"
+							value={formState.app_fee}
+							onChange={handleChange}
 						/>
 						<span className="text-near-input-app-fee">%</span>
 					</Label>
@@ -105,6 +117,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="number"
+							name="additional_charges"
+							value={formState.additional_charges}
+							onChange={handleChange}
 						/>
 						<span className="text-near-input">AED</span>
 					</Label>
@@ -117,6 +132,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 						<input
 							className="main-metrics-input"
 							type="number"
+							name="period"
+							value={formState.period}
+							onChange={handleChange}
 						/>
 						<span className="text-near-input-months">MONTHS</span>
 					</Label>
@@ -128,6 +146,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								<input
 									className="main-metrics-input-small"
 									type="text"
+									name="period"
+									value={formState.period}
+									onChange={handleChange}
 								/>
 								<span className="text-near-input-small-3">YEARS</span>
 							</div>
@@ -135,6 +156,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								<input
 									className="main-metrics-input-small"
 									type="text"
+									name="period"
+									value={formState.period}
+									onChange={handleChange}
 								/>
 								<span className="text-near-input-small-4">YEARS</span>
 							</div>
@@ -151,6 +175,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								<input
 									className="main-metrics-input-small"
 									type="text"
+									name="handover"
+									value={formState.handover}
+									onChange={handleChange}
 								/>
 								<span className="text-near-input-small-5">YEARS</span>
 							</div>
@@ -158,6 +185,9 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								<input
 									className="main-metrics-input-small"
 									type="text"
+									name="handover"
+									value={formState.handover}
+									onChange={handleChange}
 								/>
 								<span className="text-near-input-small-6">YEARS</span>
 							</div>
