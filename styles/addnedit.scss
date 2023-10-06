@@ -103,3 +103,13 @@
 		gap: 16px;
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.container-add-edit {
+		padding: 16px;
+	}
+
+	.global-container-add-edit {
+		padding: 16px;
+	}
+}

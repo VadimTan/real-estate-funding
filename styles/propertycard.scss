@@ -218,3 +218,8 @@
 // 	order: 1;
 // 	flex-grow: 0;
 // }
+@media screen and (max-width: 768px) {
+	.main-container-of-cards {
+		padding: 16px;
+	}
+}

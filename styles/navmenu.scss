@@ -121,9 +121,10 @@
 	font-family: SF Pro Display;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
 	.nav-menu {
 		gap: 20px;
+		padding: 16px;
 	}
 
 	.nav-menu-actions {

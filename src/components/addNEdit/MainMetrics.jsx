@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
 
-export const MainMetrics = () => {
+export const MainMetrics = ({ handleChange, formState }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
 
@@ -37,7 +37,10 @@ export const MainMetrics = () => {
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
-							type="text"
+							type="number"
+							name="total_price"
+							value={formState.total_price}
+							onChange={handleChange}
 						/>
 						<span className="text-near-input">AED</span>
 					</Label>
@@ -47,7 +50,10 @@ export const MainMetrics = () => {
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
-							type="text"
+							type="number"
+							name="price"
+							value={formState.price}
+							onChange={handleChange}
 						/>
 						<span className="text-near-input">AED</span>
 					</Label>
@@ -59,14 +65,14 @@ export const MainMetrics = () => {
 							<div>
 								<input
 									className="main-metrics-input-small"
-									type="text"
+									type="number"
 								/>
 								<span className="text-near-input-small">%</span>
 							</div>
 							<div>
 								<input
 									className="main-metrics-input-small"
-									type="text"
+									type="number"
 								/>
 								<span className="text-near-input-small-2">%</span>
 							</div>
@@ -78,7 +84,7 @@ export const MainMetrics = () => {
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
-							type="text"
+							type="number"
 						/>
 						<span className="text-near-input">AED</span>
 					</Label>
@@ -88,7 +94,7 @@ export const MainMetrics = () => {
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
-							type="text"
+							type="number"
 						/>
 						<span className="text-near-input-app-fee">%</span>
 					</Label>
@@ -98,17 +104,19 @@ export const MainMetrics = () => {
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
-							type="text"
+							type="number"
 						/>
 						<span className="text-near-input">AED</span>
 					</Label>
 				</div>
 				<div className="main-metrics-field-2">
 					<Label className="main-metrics-label">Period</Label>
-					<Label className="input-field">
+					<Label
+						id={show}
+						className="input-field-months">
 						<input
 							className="main-metrics-input"
-							type="text"
+							type="number"
 						/>
 						<span className="text-near-input-months">MONTHS</span>
 					</Label>
@@ -133,7 +141,9 @@ export const MainMetrics = () => {
 						</div>
 					</Label>
 				</div>
-				<div className="main-metrics-field-2">
+				<div
+					id={show}
+					className="main-metrics-field-2">
 					<Label className="main-metrics-label">Handover</Label>
 					<Label className="input-field-small">
 						<div className="small-div-for-double-input">

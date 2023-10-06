@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
 
-export const AboutProperty = () => {
+export const AboutProperty = ({ handleChange, formState }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
 
@@ -56,6 +56,8 @@ export const AboutProperty = () => {
 								<input
 									className="main-metrics-input-small"
 									type="text"
+									value={formState.coordinate_x}
+									onChange={handleChange}
 								/>
 								{/* <span className="text-near-input-about-2">X</span> */}
 							</div>
@@ -84,6 +86,9 @@ export const AboutProperty = () => {
 						<input
 							className="main-metrics-input"
 							type="text"
+							name="developer_specs_title"
+							value={formState.developer_specs_title}
+							onChange={handleChange}
 						/>
 					</Label>
 				</div>
@@ -105,21 +110,21 @@ export const AboutProperty = () => {
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">
-					<Label className="main-metrics-label">Bed</Label>
+					<Label className="main-metrics-label">Bed(#)</Label>
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
-							type="text"
+							type="number"
 						/>
 						{/* <span className="text-near-input-about">#</span> */}
 					</Label>
 				</div>
 				<div className="main-metrics-field-1">
-					<Label className="main-metrics-label">Meter</Label>
+					<Label className="main-metrics-label">Meter (Sq.Ft)</Label>
 					<Label className="input-field">
 						<input
 							className="main-metrics-input"
-							type="text"
+							type="number"
 						/>
 						{/* <span className="text-near-input-about-1">Sq.Ft</span> */}
 					</Label>

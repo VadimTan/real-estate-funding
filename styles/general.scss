@@ -7,3 +7,12 @@
 	font-family: SF Pro Display;
 	src: url(../src/assets/fonts/SF/SF-Pro-Display-Bold.otf) format(opentype);
 }
+
+input {
+	outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}

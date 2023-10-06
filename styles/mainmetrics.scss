@@ -157,6 +157,10 @@
 	gap: 8px;
 }
 
+.input-field-months {
+	display: none;
+}
+
 .main-metrics-input-small {
 	box-sizing: border-box;
 	display: flex;
@@ -588,6 +592,24 @@
 		flex-direction: column;
 	}
 
+	#show.input-field-months {
+		display: flex;
+		flex-direction: column;
+	}
+
+	#closed.input-field-months {
+		display: none;
+	}
+
+	#show.main-metrics-field-2 {
+		display: none;
+	}
+
+	#closed.main-metrics-field-2 {
+		display: flex;
+		flex-direction: column;
+	}
+
 	.text-near-input-small {
 		font-family: SF Pro Display;
 		font-style: normal;
@@ -676,5 +698,20 @@
 		position: absolute;
 		left: 361px;
 		top: 838px;
+	}
+
+	.text-near-input-months {
+		font-family: SF Pro Display;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: 0.32px;
+		color: #aeaeb2;
+		position: absolute;
+		left: 348px;
+		top: 769px;
 	}
 }
