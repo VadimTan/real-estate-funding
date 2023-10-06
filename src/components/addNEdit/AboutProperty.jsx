@@ -66,7 +66,7 @@ export const AboutProperty = ({ handleChange, formState }) => {
 									value={formState.coordinate_x}
 									onChange={handleChange}
 								/>
-								{/* <span className="text-near-input-about-2">X</span> */}
+								<span className="text-near-input-about-2">X</span>
 							</div>
 							<div>
 								<input
@@ -76,7 +76,7 @@ export const AboutProperty = ({ handleChange, formState }) => {
 									value={formState.coordinate_y}
 									onChange={handleChange}
 								/>
-								{/* <span className="text-near-input-about-3">Y</span> */}
+								<span className="text-near-input-about-3">Y</span>
 							</div>
 						</div>
 					</Label>

@@ -5,6 +5,12 @@
 	gap: 16px;
 }
 
+.main-metrics-fields-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
 .main-metrics-container {
 	display: flex;
 	box-sizing: border-box;
@@ -116,7 +122,7 @@
 	gap: 8px;
 	border: 1px solid #d1d1d6;
 	border-radius: 12px;
-	width: 300px;
+	width: 100%;
 }
 
 .text-near-input-app-fee {
@@ -150,6 +156,7 @@
 .input-field-small {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 .small-div-for-double-input {

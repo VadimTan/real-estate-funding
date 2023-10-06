@@ -57,6 +57,12 @@
 	outline: none;
 }
 
+.about-property-fields-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
 .text-near-input-about {
 	font-family: SF Pro Display;
 	font-style: normal;
@@ -99,8 +105,6 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 685px;
-	top: 475px;
 }
 
 .text-near-input-about-3 {
@@ -114,8 +118,6 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
-	left: 838px;
-	top: 475px;
 }
 
 @media screen and (max-width: 968px) {
