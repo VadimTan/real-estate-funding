@@ -34,7 +34,7 @@ export const MainMetrics = ({ handleChange, formState }) => {
 					<Label className={'main-metrics-label'}>
 						Total Price (общая цена недвижимости)
 					</Label>
-					<Label className="input-field">
+					<div className="input-field">
 						<input
 							className="main-metrics-input"
 							type="number"
@@ -43,11 +43,11 @@ export const MainMetrics = ({ handleChange, formState }) => {
 							onChange={handleChange}
 						/>
 						<span className="text-near-input">AED</span>
-					</Label>
+					</div>
 				</div>
 				<div className="main-metrics-field-1">
 					<Label className="main-metrics-label">Price</Label>
-					<Label className="input-field">
+					<div className="input-field">
 						<input
 							className="main-metrics-input"
 							type="number"
@@ -56,13 +56,13 @@ export const MainMetrics = ({ handleChange, formState }) => {
 							onChange={handleChange}
 						/>
 						<span className="text-near-input">AED</span>
-					</Label>
+					</div>
 				</div>
 				<div className="main-metrics-field-2">
 					<Label className="main-metrics-label">Annual Profit</Label>
-					<Label className="input-field-small">
+					<div className="input-field-small">
 						<div className="small-div-for-double-input">
-							<div>
+							<div className="relative">
 								<input
 									className="main-metrics-input-small"
 									type="number"
@@ -72,7 +72,7 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								/>
 								<span className="text-near-input-small">%</span>
 							</div>
-							<div>
+							<div className="relative">
 								<input
 									className="main-metrics-input-small"
 									type="number"
@@ -83,11 +83,11 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								<span className="text-near-input-small-2">%</span>
 							</div>
 						</div>
-					</Label>
+					</div>
 				</div>
 				<div className="main-metrics-field-1">
 					<Label className="main-metrics-label">Sell Price</Label>
-					<Label className="input-field">
+					<div className="input-field">
 						<input
 							className="main-metrics-input"
 							type="number"
@@ -96,11 +96,11 @@ export const MainMetrics = ({ handleChange, formState }) => {
 							onChange={handleChange}
 						/>
 						<span className="text-near-input">AED</span>
-					</Label>
+					</div>
 				</div>
 				<div className="main-metrics-field-1">
 					<Label className="main-metrics-label">App Fee</Label>
-					<Label className="input-field">
+					<div className="input-field">
 						<input
 							className="main-metrics-input"
 							type="number"
@@ -109,11 +109,11 @@ export const MainMetrics = ({ handleChange, formState }) => {
 							onChange={handleChange}
 						/>
 						<span className="text-near-input-app-fee">%</span>
-					</Label>
+					</div>
 				</div>
 				<div className="main-metrics-field-1">
 					<Label className="main-metrics-label">Additional Charges</Label>
-					<Label className="input-field">
+					<div className="input-field">
 						<input
 							className="main-metrics-input"
 							type="number"
@@ -122,11 +122,11 @@ export const MainMetrics = ({ handleChange, formState }) => {
 							onChange={handleChange}
 						/>
 						<span className="text-near-input">AED</span>
-					</Label>
+					</div>
 				</div>
 				<div className="main-metrics-field-2">
 					<Label className="main-metrics-label">Period</Label>
-					<Label
+					<div
 						id={show}
 						className="input-field-months">
 						<input
@@ -137,12 +137,12 @@ export const MainMetrics = ({ handleChange, formState }) => {
 							onChange={handleChange}
 						/>
 						<span className="text-near-input-months">MONTHS</span>
-					</Label>
-					<Label
+					</div>
+					<div
 						id={show}
 						className="input-field-small">
 						<div className="small-div-for-double-input">
-							<div>
+							<div className="relative">
 								<input
 									className="main-metrics-input-small"
 									type="text"
@@ -152,7 +152,7 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								/>
 								<span className="text-near-input-small-3">YEARS</span>
 							</div>
-							<div>
+							<div className="relative">
 								<input
 									className="main-metrics-input-small"
 									type="text"
@@ -163,15 +163,15 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								<span className="text-near-input-small-4">YEARS</span>
 							</div>
 						</div>
-					</Label>
+					</div>
 				</div>
 				<div
 					id={show}
 					className="main-metrics-field-2">
 					<Label className="main-metrics-label">Handover</Label>
-					<Label className="input-field-small">
+					<div className="input-field-small">
 						<div className="small-div-for-double-input">
-							<div>
+							<div className="relative">
 								<input
 									className="main-metrics-input-small"
 									type="text"
@@ -181,7 +181,7 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								/>
 								<span className="text-near-input-small-5">YEARS</span>
 							</div>
-							<div>
+							<div className="relative">
 								<input
 									className="main-metrics-input-small"
 									type="text"
@@ -192,7 +192,7 @@ export const MainMetrics = ({ handleChange, formState }) => {
 								<span className="text-near-input-small-6">YEARS</span>
 							</div>
 						</div>
-					</Label>
+					</div>
 				</div>
 			</div>
 		</div>
