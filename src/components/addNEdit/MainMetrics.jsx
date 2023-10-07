@@ -3,8 +3,9 @@ import '../../../styles/mainmetrics.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
+import Button from '../../common/Button';
 
-export const MainMetrics = ({ handleChange, formState }) => {
+export const MainMetrics = ({ handleChange, formState, onSubmit }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
 
@@ -193,6 +194,16 @@ export const MainMetrics = ({ handleChange, formState }) => {
 							</div>
 						</div>
 					</div>
+				</div>
+				<div
+					id={show}
+					className="button-submit-save">
+					<Button
+						type="submit"
+						className="footer-button-show"
+						clickHandler={onSubmit}>
+						<span className="text-for-button">Save Changes</span>
+					</Button>
 				</div>
 			</div>
 		</div>

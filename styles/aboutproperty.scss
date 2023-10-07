@@ -94,6 +94,17 @@
 	top: 892px;
 }
 
+.footer-button-show {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 12px 20px;
+	gap: 10px;
+	background: #007aff;
+	border-radius: 14px;
+}
+
 .text-near-input-about-2 {
 	font-family: SF Pro Display;
 	font-style: normal;
@@ -105,6 +116,8 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
+	top: 9px;
+	right: 8px;
 }
 
 .text-near-input-about-3 {
@@ -118,195 +131,11 @@
 	letter-spacing: 0.32px;
 	color: #aeaeb2;
 	position: absolute;
+	top: 9px;
+	right: 8px;
 }
 
-@media screen and (max-width: 968px) {
-	.text-near-input-about {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: none;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 841px;
-		top: 823px;
-	}
-
-	.text-near-input-about-1 {
-		font-family: SF Pro Regular;
-		font-style: normal;
-		font-weight: 700;
-		font-size: 14px;
-		line-height: 20px;
-		display: none;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 820px;
-		top: 892px;
-	}
-
-	.text-near-input-about-2 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: none;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 685px;
-		top: 475px;
-	}
-
-	.text-near-input-about-3 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: none;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 838px;
-		top: 475px;
-	}
-}
-
-@media screen and (max-width: 1082px) {
-	.text-near-input-about {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 841px;
-		top: 858px;
-	}
-
-	.text-near-input-about-1 {
-		font-family: SF Pro Regular;
-		font-style: normal;
-		font-weight: 700;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 820px;
-		top: 927px;
-	}
-
-	.text-near-input-about-2 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 685px;
-		top: 509px;
-	}
-
-	.text-near-input-about-3 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 838px;
-		top: 509px;
-	}
-}
-
-@media screen and (max-width: 1513px) {
-	.text-near-input-about {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 830px;
-		top: 823px;
-	}
-
-	.text-near-input-about-1 {
-		font-family: SF Pro Regular;
-		font-style: normal;
-		font-weight: 700;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 805px;
-		top: 892px;
-	}
-
-	.text-near-input-about-2 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 680px;
-		top: 474px;
-	}
-
-	.text-near-input-about-3 {
-		font-family: SF Pro Display;
-		font-style: normal;
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 20px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: 0.32px;
-		color: #aeaeb2;
-		position: absolute;
-		left: 830px;
-		top: 474px;
-	}
-}
-
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 768px) {
 	.about-property-text {
 		font-family: SF Pro Regular;
 		font-style: normal;
@@ -352,5 +181,12 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: 180px;
+		width: 100%;
+	}
+
+	#show.button-submit-save {
+		display: flex;
+		flex-direction: column;
+		padding: 16px;
 	}
 }

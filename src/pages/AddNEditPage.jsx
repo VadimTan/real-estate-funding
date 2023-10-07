@@ -6,7 +6,6 @@ import { AboutProperty } from '../components/addNEdit/AboutProperty';
 import { PhotosBox } from '../components/addNEdit/Photos';
 import { Footer } from '../components/listOfProperties/Footer/Footer';
 import { useState } from 'react';
-import Button from '../common/Button';
 
 export const AddNEditPage = () => {
 	const [formState, setFormState] = useState({
@@ -44,7 +43,7 @@ export const AddNEditPage = () => {
 
 	const handleChange = (event) => {
 		const value = event.target.value;
-		console.log('value: value');
+		console.log(`value: `, value);
 
 		setFormState({
 			...formState,
@@ -59,22 +58,20 @@ export const AddNEditPage = () => {
 				<MainMetrics
 					formState={formState}
 					handleChange={handleChange}
+					onSubmit={onSubmit}
 				/>
 				<AboutProperty
 					formState={formState}
 					handleChange={handleChange}
+					onSubmit={onSubmit}
 				/>
 				<PhotosBox
 					formState={formState}
 					handleChange={handleChange}
+					onSubmit={onSubmit}
 				/>
 			</div>
-			<Button
-				type="submit"
-				clickHandler={onSubmit}>
-				Save form
-			</Button>
-			<Footer />
+			<Footer onSubmit={onSubmit} />
 		</Layout>
 	);
 };

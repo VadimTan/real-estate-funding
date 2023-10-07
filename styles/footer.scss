@@ -3,7 +3,7 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	margin-top: 15%;
+	margin-top: 30px;
 	padding: 16px 100px;
 	gap: 32px;
 	background: #ffffff;
@@ -17,12 +17,12 @@
 	align-items: center;
 	padding: 12px 20px;
 	gap: 10px;
-	background: #c7c7cc;
+	background: #007aff;
 	border-radius: 14px;
 }
 
 .text-for-button {
-	font-family: SF Pro Display;
+	font-family: SF Pro Regular;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
@@ -30,9 +30,9 @@
 	display: flex;
 	align-items: center;
 	text-align: center;
-	letter-spacing: -0.408px;
+	letter-spacing: 0.3px;
 	font-feature-settings: 'case' on;
-	color: #8e8e93;
+	color: #ffffff;
 }
 
 @media screen and (max-width: 768px) {

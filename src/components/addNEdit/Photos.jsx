@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
 
-export const PhotosBox = () => {
+export const PhotosBox = ({ onSubmit }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
 
@@ -63,6 +63,16 @@ export const PhotosBox = () => {
 				<div className="button-upload-photos-container">
 					<Button className="button-for-uploading">
 						<Label className="text-for-button-uploading">Add Image(s)</Label>
+					</Button>
+				</div>
+				<div
+					id={show}
+					className="button-submit-save">
+					<Button
+						type="submit"
+						className="footer-button-show"
+						clickHandler={onSubmit}>
+						<span className="text-for-button">Save Changes</span>
 					</Button>
 				</div>
 			</div>
