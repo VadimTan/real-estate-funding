@@ -30,7 +30,6 @@ export const Login = () => {
 
 	const handleSubmit = () => {
 		dispatch(userLogin({email: 'test@test.test', password: 'password'}))
-		// navigate('/list-of-props', { replace: true });
 	};
 
 	return (
