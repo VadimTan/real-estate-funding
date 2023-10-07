@@ -5,10 +5,16 @@ import Button from '../../../common/Button';
 import Label from '../../../common/Label';
 import { logout } from '../../../redux/auth.slice'
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const NavMenu = () => {
 	const dispatch = useDispatch()
+	const nav = useNavigate()
 
+	const handleLogout = () => {
+		dispatch(logout())
+		nav('/login')
+	}
 	return (
 		<nav className="nav-menu">
 			<div className="nav-menu-actions">
@@ -41,7 +47,7 @@ export const NavMenu = () => {
 			<div className="nav-button-container">
 				<Button
 					className="nav-menu-button"
-					clickHandler={() => dispatch(logout())}>
+					clickHandler={handleLogout}>
 					<span className="nav-label-button">Log Out</span>
 				</Button>
 			</div>

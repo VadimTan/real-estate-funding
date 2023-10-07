@@ -7,7 +7,7 @@ export const AddNEdit = () => {
 	const navigate = useNavigate();
 
 	const handleNavigate = () => {
-		navigate('/list-of-props', { replace: true });
+		navigate('/', { replace: true });
 	};
 
 	return (

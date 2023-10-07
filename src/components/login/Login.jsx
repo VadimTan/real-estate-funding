@@ -13,21 +13,22 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 export const Login = () => {
-	const { loading, userInfo, error } = useSelector((state) => state.auth)
+	const { loading, error, isLoggedIn } = useSelector((state) => state.auth)
 	const dispatch = useDispatch();
 	// const [email, setEmail] = useState('');
 	// const [password, setPassword] = useState('');
+	
 	const navigate = useNavigate();
+	console.log('isLoggedIn', isLoggedIn)
 
 	// redirect authenticated user to profile screen
 	useEffect(() => {
-		if (userInfo) {
-			navigate('/properties')
+		if (isLoggedIn) {
+			navigate('/')
 		}
-	}, [navigate, userInfo])
+	}, [navigate, isLoggedIn])
 
 	const handleSubmit = () => {
-		
 		dispatch(userLogin({email: 'test@test.test', password: 'password'}))
 		// navigate('/list-of-props', { replace: true });
 	};

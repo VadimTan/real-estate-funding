@@ -7,15 +7,15 @@ import { AddNEditPage } from './pages/AddNEditPage';
 function App() {
 	const routing = useRoutes([
 		{
-			path: '/',
+			path: '/login',
 			element: <LoginPage />,
 		},
 		{
-			path: '/properties',
+			path: '/',
 			element: <ListOfPropPage />,
 		},
 		{
-			path: '/properties/add',
+			path: '/add',
 			element: <AddNEditPage />,
 		},
 	]);

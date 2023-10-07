@@ -8,7 +8,7 @@ const userToken = localStorage.getItem('userToken')
 
 const initialState = {
   loading: false,
-  userInfo: null,
+  isLoggedIn: !!userToken,
   userToken,
   error: null,
   success: false,
@@ -21,7 +21,9 @@ const authSlice = createSlice({
     logout: (state) => {
       // console.log('reducer: ', {state, actions})
       state.userToken = null;
+      state.isLoggedIn = false;
       localStorage.removeItem('userToken')
+      
     }
   },
   extraReducers: {
@@ -31,12 +33,13 @@ const authSlice = createSlice({
     },
     [userLogin.fulfilled]: (state, { payload }) => {
       state.loading = false
-      state.userInfo = payload
+      state.isLoggedIn = true;
       state.userToken = payload.userToken
       state.success = true
     },
     [userLogin.rejected]: (state, { payload }) => {
       state.loading = false
+      state.isLoggedIn = false;
       state.error = payload
     },
     // register user reducer...
