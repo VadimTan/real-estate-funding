@@ -3,15 +3,11 @@ import '../../../../styles/navmenu.scss';
 import magnify_glass from '../../../assets/images/magnifyingglass.svg';
 import Button from '../../../common/Button';
 import Label from '../../../common/Label';
-import { useNavigate } from 'react-router-dom';
+import { logout } from '../../../redux/auth.slice'
+import { useDispatch } from 'react-redux';
 
 export const NavMenu = () => {
-	const navigate = useNavigate();
-
-	const handleClick = () => {
-		localStorage.clear();
-		navigate('/', { replace: true });
-	};
+	const dispatch = useDispatch()
 
 	return (
 		<nav className="nav-menu">
@@ -45,7 +41,7 @@ export const NavMenu = () => {
 			<div className="nav-button-container">
 				<Button
 					className="nav-menu-button"
-					clickHandler={handleClick}>
+					clickHandler={() => dispatch(logout())}>
 					<span className="nav-label-button">Log Out</span>
 				</Button>
 			</div>
