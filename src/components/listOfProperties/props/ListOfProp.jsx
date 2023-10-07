@@ -9,7 +9,7 @@ export const ListOfProp = () => {
 	const navigate = useNavigate();
 
 	const handleClick = () => {
-		navigate('/properties/add', { replace: true });
+		navigate('/add', { replace: true });
 	};
 
 	return (
