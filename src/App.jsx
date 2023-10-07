@@ -11,11 +11,11 @@ function App() {
 			element: <LoginPage />,
 		},
 		{
-			path: '/list-of-props',
+			path: '/properties',
 			element: <ListOfPropPage />,
 		},
 		{
-			path: '/add',
+			path: '/properties/add',
 			element: <AddNEditPage />,
 		},
 	]);

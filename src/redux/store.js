@@ -1,19 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import authReducer from "./auth.slice";
 
-const defaultState = {
-	isLoggedIn: false,
-	token: '',
-};
+const store = configureStore({
+	reducer: {
+		auth: authReducer
+	},
+}) 
 
-const reducer = (state = defaultState, action) => {
-	switch (action.type) {
-		case 'IS_LOGGED':
-			return { ...state, isLoggedIn: true, token: action.token };
-		case 'IS_NOT_LOGGED':
-			return { ...state, isLoggedIn: false };
-		default:
-			return state;
-	}
-};
-
-const store = configureStore(reducer);
+export default store;

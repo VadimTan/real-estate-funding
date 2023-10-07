@@ -1,4 +1,6 @@
 import Layout from '../common/Layout';
+import { useSelector } from "react-redux";
+
 import { MainMetrics } from '../components/addNEdit/MainMetrics';
 import AddNEdit from '../components/addNEdit/AddNEdit';
 import '../../styles/mainmetrics.scss';
@@ -8,6 +10,10 @@ import { Footer } from '../components/listOfProperties/Footer/Footer';
 import { useState } from 'react';
 
 export const AddNEditPage = () => {
+	const test = useSelector((state) => state.auth);
+
+	console.log('store : ', test);
+
 	const [formState, setFormState] = useState({
 		total_price: 0,
 		price: 0,
