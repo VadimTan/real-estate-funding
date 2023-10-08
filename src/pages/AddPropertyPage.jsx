@@ -1,15 +1,15 @@
 import Layout from '../common/Layout';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 import { MainMetrics } from '../components/addNEdit/MainMetrics';
-import AddNEdit from '../components/addNEdit/AddNEdit';
+import AddNEdit from '../components/AddNEdit/AddNEdit';
 import '../../styles/mainmetrics.scss';
 import { AboutProperty } from '../components/addNEdit/AboutProperty';
 import { PhotosBox } from '../components/addNEdit/Photos';
-import { Footer } from '../components/listOfProperties/Footer/Footer';
+import { Footer } from '../components/Footer/Footer';
 import { useState } from 'react';
 
-export const AddNEditPage = () => {
+export const AddPropertyPage = () => {
 	const test = useSelector((state) => state.auth);
 
 	console.log('store : ', test);

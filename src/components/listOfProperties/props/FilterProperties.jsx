@@ -5,7 +5,7 @@ import Layout from '../../../common/Layout';
 import '../../../../styles/listofprops.scss';
 import PropertyCard from './Property/PropertyCard';
 
-export const ListOfProp = () => {
+export const FilterProperties = () => {
 	const navigate = useNavigate();
 
 	const handleClick = () => {

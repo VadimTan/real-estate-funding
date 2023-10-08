@@ -1,5 +1,5 @@
-import Button from '../../../common/Button';
-import '../../../../styles/footer.scss';
+import Button from '../../common/Button';
+import '../../../styles/footer.scss';
 
 export const Footer = ({ onSubmit }) => {
 	return (

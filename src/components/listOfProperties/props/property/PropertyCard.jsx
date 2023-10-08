@@ -4,64 +4,10 @@ import Label from '../../../../common/Label';
 // import tag_blue from '../../../../assets/images/tag_blue.svg';
 // import tag_green from '../../../../assets/images/tag_green.svg';
 import '../../../../../styles/propertycard.scss';
+import data from '../../../../constants/constants';
 
 export const PropertyCard = () => {
-	const arrayOfProperties = [
-		{
-			name: '1 Bed in Old Town DownTown Dubai',
-			totalPrice: '$4,304 • AED 48,000',
-			price: '$2,101 • AED 24,500',
-			sold: '—',
-			type: 'New',
-			growth: '9,98%',
-			period: '12 Months',
-		},
-		{
-			name: '1 Bed in Old Town DownTown Dubai',
-			totalPrice: '$4,304 • AED 48,000',
-			price: '$2,101 • AED 24,500',
-			sold: '—',
-			type: 'New',
-			growth: '9,98%',
-			period: '12 Months',
-		},
-		{
-			name: '1 Bed in Old Town DownTown Dubai',
-			totalPrice: '$4,304 • AED 48,000',
-			price: '$2,101 • AED 24,500',
-			sold: '—',
-			type: 'New',
-			growth: '9,98%',
-			period: '12 Months',
-		},
-		{
-			name: '1 Bed in Old Town DownTown Dubai',
-			totalPrice: '$4,304 • AED 48,000',
-			price: '$2,101 • AED 24,500',
-			sold: '—',
-			type: 'New',
-			growth: '9,98%',
-			period: '12 Months',
-		},
-		{
-			name: '1 Bed in Old Town DownTown Dubai',
-			totalPrice: '$4,304 • AED 48,000',
-			price: '$2,101 • AED 24,500',
-			sold: '—',
-			type: 'New',
-			growth: '9,98%',
-			period: '12 Months',
-		},
-		{
-			name: '1 Bed in Old Town DownTown Dubai',
-			totalPrice: '$4,304 • AED 48,000',
-			price: '$2,101 • AED 24,500',
-			sold: '—',
-			type: 'New',
-			growth: '9,98%',
-			period: '12 Months',
-		},
-	];
+	const arrayOfProperties = data;
 
 	return (
 		<div className="main-container-of-cards">
