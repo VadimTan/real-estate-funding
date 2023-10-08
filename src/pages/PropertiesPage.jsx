@@ -1,9 +1,9 @@
-import { FilterProperties } from '../components/listOfProperties/props/FilterProperties';
+import { FilterOfProperties } from '../components/listOfProperties/props/FilterOfProperties';
 
 export const PropertiesPage = () => {
 	return (
 		<>
-			<FilterProperties />
+			<FilterOfProperties />
 		</>
 	);
 };

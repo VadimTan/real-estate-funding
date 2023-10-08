@@ -3,9 +3,9 @@ import Button from '../../../common/Button';
 import Label from '../../../common/Label';
 import Layout from '../../../common/Layout';
 import '../../../../styles/listofprops.scss';
-import PropertyCard from './Property/PropertyCard';
+import Properties from './Property/Properties';
 
-export const FilterProperties = () => {
+export const FilterOfProperties = () => {
 	const navigate = useNavigate();
 
 	const handleClick = () => {
@@ -50,7 +50,7 @@ export const FilterProperties = () => {
 						</Button>
 					</div>
 				</div>
-				<PropertyCard />
+				<Properties />
 			</Layout>
 		</>
 	);

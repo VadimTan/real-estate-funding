@@ -6,7 +6,7 @@ import Label from '../../../../common/Label';
 import '../../../../../styles/propertycard.scss';
 import data from '../../../../constants/constants';
 
-export const PropertyCard = () => {
+export const Properties = () => {
 	const arrayOfProperties = data;
 
 	return (
@@ -87,4 +87,4 @@ export const PropertyCard = () => {
 	);
 };
 
-export default PropertyCard;
+export default Properties;
