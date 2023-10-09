@@ -4,6 +4,9 @@ import Label from '../../../common/Label';
 import Layout from '../../../common/Layout';
 import '../../../../styles/listofprops.scss';
 import Properties from './Property/Properties';
+import { useEffect } from 'react';
+import axios from 'axios';
+import baseUrl from '../../../constants/config';
 
 export const FilterOfProperties = () => {
 	const navigate = useNavigate();
@@ -11,6 +14,18 @@ export const FilterOfProperties = () => {
 	const handleClick = () => {
 		navigate('/add', { replace: true });
 	};
+
+	useEffect(() => {
+		const getAllProperties = async () => {
+			try {
+				const response = await axios.get(`${baseUrl}/admin/property/getAll`);
+				console.log(response);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		getAllProperties();
+	}, []);
 
 	return (
 		<>
