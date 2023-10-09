@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import baseUrl from '../constants/constants';
-
+import baseUrl from '../constants/config';
+console.log(baseUrl);
 export const userLogin = createAsyncThunk(
 	'auth/login',
 	async ({ email, password }, { rejectWithValue }) => {
@@ -22,23 +22,15 @@ export const userLogin = createAsyncThunk(
 				config
 			);
 
-			console.log(email, password);
+			axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
 
-			// const data = {
-			// 	userToken:
-			// 		'longlongToken2342342ih4i2uh3i4uh2i3u4h2i3uh42iu3h423u42i3h42iu3h42u3h4i2u3h458734yt28437ghoershvarunviusrbv',
-			// 	email,
-			// 	password,
-			// };
-
-			console.log(data);
 			// store user's token in local storage
-			localStorage.setItem('userToken', data.userToken);
+			localStorage.setItem('accessToken', data.token);
 			return data;
 		} catch (error) {
 			// return custom error message from API if any
-			if (error.response && error.response.data.message) {
-				return rejectWithValue(error.response.data.message);
+			if (error.response && error.response.data) {
+				return rejectWithValue(error.response.data);
 			} else {
 				return rejectWithValue(error.message);
 			}

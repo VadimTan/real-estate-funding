@@ -1,6 +1,4 @@
-export const baseUrl = import.meta.env.VITE_API_URL;
-console.log(baseUrl);
-export const data = [
+const data = [
 	{
 		name: '1 Bed in Old Town DownTown Dubai',
 		totalPrice: '$4,304 • AED 48,000',
