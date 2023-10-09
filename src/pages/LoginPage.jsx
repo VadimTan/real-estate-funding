@@ -29,7 +29,12 @@ const LoginPage = () => {
 	}, [navigate, isLoggedIn]);
 
 	const handleSubmit = () => {
-		dispatch(userLogin({ email: 'cred.email', password: 'cred.password' }));
+		dispatch(
+			userLogin({
+				email: 'admin@example.com',
+				password: 'dubairealestate2023!',
+			})
+		);
 	};
 
 	// const handleChange = (event) => {

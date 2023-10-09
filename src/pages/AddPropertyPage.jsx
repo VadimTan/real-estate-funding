@@ -35,6 +35,8 @@ export const AddPropertyPage = () => {
 		bed: 0,
 		meter: 0,
 		about: '',
+		photos: [],
+		documents: [],
 	});
 
 	const onSubmit = async () => {
