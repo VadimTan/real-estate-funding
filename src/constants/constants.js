@@ -1,3 +1,5 @@
+const URL = process.env.REACT_APP_API_URL;
+
 const data = [
 	{
 		name: '1 Bed in Old Town DownTown Dubai',
