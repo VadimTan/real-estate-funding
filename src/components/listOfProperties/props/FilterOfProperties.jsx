@@ -4,11 +4,12 @@ import Label from '../../../common/Label';
 import Layout from '../../../common/Layout';
 import '../../../../styles/listofprops.scss';
 import Properties from './Property/Properties';
-import { useEffect } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
+import axios from '../../../axios.config';
 import baseUrl from '../../../constants/config';
 
 export const FilterOfProperties = () => {
+	const [properties, setProperties] = useState([]);
 	const navigate = useNavigate();
 
 	const handleClick = () => {
@@ -20,6 +21,7 @@ export const FilterOfProperties = () => {
 			try {
 				const response = await axios.get(`${baseUrl}/admin/property/getAll`);
 				console.log(response);
+				setProperties(response.data.data.property);
 			} catch (error) {
 				console.log(error);
 			}
@@ -65,7 +67,7 @@ export const FilterOfProperties = () => {
 						</Button>
 					</div>
 				</div>
-				<Properties />
+				<Properties properties={properties} />
 			</Layout>
 		</>
 	);
