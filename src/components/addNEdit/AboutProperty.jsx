@@ -121,6 +121,7 @@ export const AboutProperty = ({ handleChange, formState, onSubmit }) => {
 				<div className="main-metrics-field-1">
 					<Label className="main-metrics-label">Type</Label>
 					<div className="input-field">
+						{/* TODO: Add Options */}
 						<select
 							className="main-metrics-select"
 							type="text"

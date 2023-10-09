@@ -24,11 +24,9 @@ export const userLogin = createAsyncThunk(
 
 			axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
 
-			// store user's token in local storage
 			localStorage.setItem('accessToken', data.token);
 			return data;
 		} catch (error) {
-			// return custom error message from API if any
 			if (error.response && error.response.data) {
 				return rejectWithValue(error.response.data);
 			} else {

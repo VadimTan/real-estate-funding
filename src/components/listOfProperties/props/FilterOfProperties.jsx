@@ -20,7 +20,6 @@ export const FilterOfProperties = () => {
 		const getAllProperties = async () => {
 			try {
 				const response = await axios.get(`${baseUrl}/admin/property/getAll`);
-				console.log(response);
 				setProperties(response.data.data.property);
 			} catch (error) {
 				console.log(error);

@@ -2,16 +2,15 @@ import '../../../styles/photos-container.scss';
 import Button from '../../common/Button';
 import Label from '../../common/Label';
 import trashCan from '../../assets/images/trash.svg';
-import rectangle from '../../assets/images/Rectangle.svg';
+// import rectangle from '../../assets/images/Rectangle.svg';
 import Checkbox from '../../assets/images/Checkbox.svg';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
 
-export const PhotosBox = ({ onSubmit, handleImage }) => {
+export const PhotosBox = ({ onSubmit, handleImage, images }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
-
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
 		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
@@ -41,24 +40,32 @@ export const PhotosBox = ({ onSubmit, handleImage }) => {
 					<span className="span-for-header-main-image">Main Image</span>
 				</div>
 				<div className="list-of-uploading-files">
-					<Label className="label-for-row">1.</Label>
-					<img
-						className="picture-uploaded-file"
-						src={rectangle}
-						alt=""
-					/>
-					<img
-						className="trash-can"
-						src={trashCan}
-						alt=""
-					/>
-					<div className="checkbox-container-upload">
-						<img
-							className="checkbox-for-upload"
-							src={Checkbox}
-							alt=""
-						/>
-					</div>
+					{/* TODO: Make stylization and delete, checkbox for photos*/}
+					{images.length == 0 && <h3>No images!</h3>}
+					{images.map((image, index) => {
+						return (
+							<div key={index}>
+								<Label className="label-for-row">{index + 1}.</Label>
+								<img
+									className="picture-uploaded-file"
+									src={image}
+									alt=""
+								/>
+								<img
+									className="trash-can"
+									src={trashCan}
+									alt=""
+								/>
+								<div className="checkbox-container-upload">
+									<img
+										className="checkbox-for-upload"
+										src={Checkbox}
+										alt=""
+									/>
+								</div>
+							</div>
+						);
+					})}
 				</div>
 				<div className="button-upload-photos-container">
 					<input
