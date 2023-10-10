@@ -1,20 +1,31 @@
 import '../../../styles/photos-container.scss';
 import Button from '../../common/Button';
 import Label from '../../common/Label';
-import trashCan from '../../assets/images/trash.svg';
-// import rectangle from '../../assets/images/Rectangle.svg';
-import Checkbox from '../../assets/images/Checkbox.svg';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Checkbox } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
 
-export const PhotosBox = ({ onSubmit, handleImage, images }) => {
+export const PhotosBox = ({
+	onSubmit,
+	handleImage,
+	images,
+	handleDelete,
+	selectedPhotos,
+	handleCheckboxChange,
+	inputRef,
+}) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
 		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
 	};
+
+	// const label = {
+	// 	inputProps: { 'aria-label': 'Checkbox demo' },
+	// };
 
 	return (
 		<div className="photos-upload-container">
@@ -44,23 +55,35 @@ export const PhotosBox = ({ onSubmit, handleImage, images }) => {
 					{images.length == 0 && <h3>No images!</h3>}
 					{images.map((image, index) => {
 						return (
-							<div key={index}>
-								<Label className="label-for-row">{index + 1}.</Label>
-								<img
-									className="picture-uploaded-file"
-									src={image}
-									alt=""
-								/>
-								<img
-									className="trash-can"
-									src={trashCan}
-									alt=""
-								/>
-								<div className="checkbox-container-upload">
+							<div
+								className="photo-box"
+								key={index}
+								id={index}>
+								<div>
+									<Label className="label-for-row">{index + 1}.</Label>
+								</div>
+								<div>
 									<img
-										className="checkbox-for-upload"
-										src={Checkbox}
+										className="picture-uploaded-file"
+										src={image}
 										alt=""
+									/>
+								</div>
+								<div>
+									<Button
+										className="delete-icon-div"
+										clickHandler={() => handleDelete(index)}>
+										<DeleteIcon />
+									</Button>
+								</div>
+								<div
+									className="checkbox-container-upload"
+									style={{ marginLeft: 'auto' }}>
+									<Checkbox
+										// {...label}
+										checked={selectedPhotos.includes(index) ? true : false}
+										onChange={() => handleCheckboxChange()}
+										sx={{ display: 'flex', justifyContent: 'flex-end' }}
 									/>
 								</div>
 							</div>
@@ -68,13 +91,18 @@ export const PhotosBox = ({ onSubmit, handleImage, images }) => {
 					})}
 				</div>
 				<div className="button-upload-photos-container">
-					<input
-						type="file"
-						name="file"
-						className="button-for-uploading"
-						onChange={handleImage}>
-						{/* <Label className="text-for-button-uploading">Add Image(s)</Label> */}
-					</input>
+					<Label
+						for="files"
+						className="text-for-button-uploading">
+						Add Image(s)
+						<input
+							ref={inputRef}
+							type="file"
+							name="file"
+							className="button-for-uploading"
+							onChange={handleImage}
+						/>
+					</Label>
 				</div>
 				<div
 					id={show}

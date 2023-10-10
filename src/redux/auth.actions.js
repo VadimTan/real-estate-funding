@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import baseUrl from '../constants/config';
-console.log(baseUrl);
+
 export const userLogin = createAsyncThunk(
 	'auth/login',
 	async ({ email, password }, { rejectWithValue }) => {

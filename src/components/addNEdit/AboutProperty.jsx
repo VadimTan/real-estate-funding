@@ -127,7 +127,9 @@ export const AboutProperty = ({ handleChange, formState, onSubmit }) => {
 							type="text"
 							name="type"
 							value={formState.type}
-							onChange={handleChange}></select>
+							onChange={handleChange}>
+							<option>Apartment</option>
+						</select>
 					</div>
 				</div>
 				<div className="main-metrics-field-1">

@@ -3,9 +3,9 @@ import { MainMetrics } from '../components/addNEdit/MainMetrics';
 import AddNEdit from '../components/AddNEdit/AddNEdit';
 import '../../styles/mainmetrics.scss';
 import { AboutProperty } from '../components/addNEdit/AboutProperty';
-import { PhotosBox } from '../components/addNEdit/Photos';
+import { PhotosBox } from '../components/AddNEdit/Photos';
 import { Footer } from '../components/Footer/Footer';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import axios from '../axios.config';
 import baseUrl from '../constants/config';
 import { useNavigate } from 'react-router-dom';
@@ -14,30 +14,32 @@ import { Snackbar, Alert } from '@mui/material';
 export const AddPropertyPage = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [photos, setPhotos] = useState([]);
+	const [selectedPhotos, setSelectedPhotos] = useState([]);
+	const inputRef = useRef(null);
 	const documents = [];
 	const navigate = useNavigate();
 
 	const [formState, setFormState] = useState({
-		total_price: '',
-		price: '',
-		annual_profit: '',
-		sell_price: '',
-		app_fee: '',
-		additional_charges: '',
-		period: '',
-		handover: '',
-		name: '',
-		location: '',
-		coordinate_x: '',
-		coordinate_y: '',
-		seller: 'anton',
-		developer: '',
-		developer_specs_title: '',
-		developer_specs_subtitle: '',
-		type: '5',
-		bed: '',
-		meter: '',
-		about: '',
+		total_price: '1000000',
+		price: '500000',
+		annual_profit: '10,20',
+		sell_price: '600000',
+		app_fee: '2',
+		additional_charges: '1000',
+		period: '2,5',
+		handover: '3,7',
+		name: 'Sample Property',
+		location: 'Sample Location',
+		coordinate_x: '123.456',
+		coordinate_y: '78.910',
+		seller: '',
+		developer: 'Sample Developer',
+		developer_specs_title: 'Sample Title',
+		developer_specs_subtitle: 'Sample Subtitle',
+		type: 'Apartment',
+		bed: '2',
+		meter: '120',
+		about: 'This is sample property description',
 		photos: [],
 		documents: [],
 	});
@@ -49,7 +51,6 @@ export const AddPropertyPage = () => {
 	};
 
 	const onSubmit = async () => {
-		console.log(formState);
 		const formData = new FormData();
 		for (const key in formState) {
 			const value = formState[key];
@@ -90,6 +91,24 @@ export const AddPropertyPage = () => {
 
 	const handleImage = (e) => {
 		setPhotos([...photos, URL.createObjectURL(e.target.files[0])]);
+	};
+
+	const handleCheckboxChange = (index) => {
+		if (selectedPhotos.includes(index)) {
+			setSelectedPhotos((prevSelected) =>
+				prevSelected.filter((item) => item !== index)
+			);
+		} else {
+			setSelectedPhotos((prevSelected) => [...prevSelected, index]);
+		}
+		// setPhotos(selectedPhotos);
+	};
+
+	const handleDeleteImg = (id) => {
+		const filteredPhotos = [...photos];
+		filteredPhotos.splice(id, 1);
+		setPhotos(filteredPhotos);
+		inputRef.current.value = '';
 	};
 
 	const handleChange = (event) => {
@@ -165,6 +184,10 @@ export const AddPropertyPage = () => {
 					onSubmit={onSubmit}
 					handleImage={handleImage}
 					images={photos}
+					handleDelete={handleDeleteImg}
+					selectedPhotos={selectedPhotos}
+					handleCheckboxChange={handleCheckboxChange}
+					inputRef={inputRef}
 				/>
 			</div>
 			<Footer onSubmit={onSubmit} />
