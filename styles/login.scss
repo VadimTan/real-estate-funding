@@ -1,6 +1,20 @@
+.login-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.h1-login-text {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
 .h1-sign-in {
-	width: 384px;
-	height: 34px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 28px;
@@ -16,17 +30,15 @@
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
+	justify-content: center;
+	align-items: center;
 	padding: 24px 48px;
 	gap: 24px;
-	position: absolute;
-	width: 480px;
-	height: 390px;
-	left: calc(50% - 480px / 2);
-	top: calc(50% - 382px / 2);
 	background: #ffffff;
 	border: 1px solid rgba(120, 120, 128, 0.2);
 	border-radius: 16px;
+	width: fit-content;
+	height: fit-content;
 }
 
 .registration-window {
@@ -35,8 +47,6 @@
 	align-items: flex-start;
 	padding: 0px;
 	gap: 8px;
-	width: 384px;
-	height: 142px;
 	flex: none;
 	order: 1;
 	flex-grow: 0;
@@ -54,8 +64,6 @@
 	align-items: flex-start;
 	padding: 0px;
 	gap: 4px;
-	width: 384px;
-	height: 67px;
 	flex: none;
 	order: 0;
 	align-self: stretch;
@@ -162,26 +170,16 @@
 }
 
 @media screen and (max-width: 760px) {
-	.login-window {
-		box-sizing: border-box;
+	.h1-login-text {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		padding: 12px 24px 24px;
-		gap: 20px;
-		position: absolute;
-		width: 361px;
-		height: 360px;
-		left: calc(50% - 361px / 2);
-		top: calc(50% - 334px / 2);
-		background: #ffffff;
-		border: 1px solid rgba(120, 120, 128, 0.2);
-		border-radius: 16px;
+		width: 100%;
 	}
 
 	.h1-sign-in {
-		width: 313px;
-		height: 34px;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
 		font-style: normal;
 		font-weight: 700;
 		font-size: 28px;
@@ -190,8 +188,22 @@
 		color: #000000;
 		flex: none;
 		order: 0;
-		align-self: stretch;
 		flex-grow: 0;
+	}
+
+	.login-window {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 12px 24px;
+		gap: 24px;
+		background: #ffffff;
+		border: 1px solid rgba(120, 120, 128, 0.2);
+		border-radius: 16px;
+		width: fit-content;
+		height: fit-content;
 	}
 
 	.registration-window {
@@ -200,12 +212,15 @@
 		align-items: flex-start;
 		padding: 0px;
 		gap: 8px;
-		width: 313px;
-		height: 142px;
 		flex: none;
 		order: 1;
-		align-self: stretch;
 		flex-grow: 0;
+	}
+
+	.button-sign-in-register {
+		display: flex;
+		padding: 25px 0;
+		text-align: center;
 	}
 
 	.login-form {
@@ -214,12 +229,14 @@
 		align-items: flex-start;
 		padding: 0px;
 		gap: 4px;
-		width: 313px;
-		height: 67px;
 		flex: none;
 		order: 0;
 		align-self: stretch;
 		flex-grow: 0;
+	}
+
+	.login-form :first-child {
+		padding-bottom: 4px;
 	}
 
 	.login-form .email-text {
@@ -245,7 +262,7 @@
 		align-items: flex-start;
 		padding: 12px;
 		gap: 8px;
-		width: 313px;
+		width: 384px;
 		height: 45px;
 		border: 1px solid #d1d1d6;
 		border-radius: 14px;
@@ -278,7 +295,7 @@
 		align-items: flex-start;
 		padding: 12px;
 		gap: 8px;
-		width: 313px;
+		width: 384px;
 		height: 45px;
 		border: 1px solid #d1d1d6;
 		border-radius: 14px;
@@ -294,19 +311,13 @@
 		justify-content: center;
 		align-items: center;
 		gap: 10px;
-		width: 313px;
-		height: 62px;
 		background: #007aff;
 		border-radius: 14px;
 		flex: none;
-		order: 2;
 		align-self: stretch;
-		flex-grow: 0;
 	}
 
 	.btn-label-sign-in {
-		width: 55px;
-		height: 22px;
 		font-family: SF Pro Regular;
 		font-style: normal;
 		font-weight: 600;
@@ -318,8 +329,6 @@
 		letter-spacing: 0.5px;
 		font-feature-settings: 'case' on;
 		color: #ffffff;
-		flex: none;
-		order: 1;
-		flex-grow: 0;
+		cursor: pointer;
 	}
 }

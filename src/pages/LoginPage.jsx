@@ -57,58 +57,60 @@ const LoginPage = () => {
 	return (
 		<>
 			<Logo />
-			<div className="login-window">
-				<div className="h1-login-text">
-					<h1 className="h1-sign-in">Sign In</h1>
-				</div>
-				<div className="registration-window">
-					{error && (
-						<Snackbar
-							anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-							severity="error"
-							open={true}
-							autoHideDuration={3000}>
-							<Alert severity="error">{Object.values(error)}</Alert>
-						</Snackbar>
-					)}{' '}
-					{/* <>{error}</> - this should a component <Error /> separate file for that */}
-					<div
-						className="login-form"
-						onSubmit={handleSubmit}>
-						<div>
-							<Label className="email-text">Email</Label>
-							<input
-								className="email-input"
-								type="text"
-								name="email"
-								required
-								placeholder="email@example.com"
-								onChange={handleChange}
-							/>
-						</div>
-						<div>
-							<Label className="password-text">Password</Label>
-							<input
-								className="password-input"
-								type="password"
-								name="password"
-								required
-								placeholder="Password"
-								onChange={handleChange}
-							/>
-						</div>
-						<div className="button-sign-in-register">
-							<Button
-								className="login-btn-sign-in"
-								type="submit"
-								disabled={loading}
-								clickHandler={handleSubmit}>
-								{loading ? (
-									<CircularProgress />
-								) : (
-									<span className="btn-label-sign-in">Sign In</span>
-								)}
-							</Button>
+			<div className="login-container">
+				<div className="login-window">
+					<div className="h1-login-text">
+						<h1 className="h1-sign-in">Sign In</h1>
+					</div>
+					<div className="registration-window">
+						{error && (
+							<Snackbar
+								anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+								severity="error"
+								open={true}
+								autoHideDuration={3000}>
+								<Alert severity="error">{Object.values(error)}</Alert>
+							</Snackbar>
+						)}{' '}
+						{/* <>{error}</> - this should a component <Error /> separate file for that */}
+						<div
+							className="login-form"
+							onSubmit={handleSubmit}>
+							<div>
+								<Label className="email-text">Email</Label>
+								<input
+									className="email-input"
+									type="text"
+									name="email"
+									required
+									placeholder="email@example.com"
+									onChange={handleChange}
+								/>
+							</div>
+							<div>
+								<Label className="password-text">Password</Label>
+								<input
+									className="password-input"
+									type="password"
+									name="password"
+									required
+									placeholder="Password"
+									onChange={handleChange}
+								/>
+							</div>
+							<div className="button-sign-in-register">
+								<Button
+									className="login-btn-sign-in"
+									type="submit"
+									disabled={loading}
+									clickHandler={handleSubmit}>
+									{loading ? (
+										<CircularProgress />
+									) : (
+										<span className="btn-label-sign-in">Sign In</span>
+									)}
+								</Button>
+							</div>
 						</div>
 					</div>
 				</div>

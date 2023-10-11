@@ -15,17 +15,15 @@ export const PhotosBox = ({
 	selectedPhotos,
 	handleCheckboxChange,
 	inputRef,
+	fileSize,
 }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
+
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
 		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
 	};
-
-	// const label = {
-	// 	inputProps: { 'aria-label': 'Checkbox demo' },
-	// };
 
 	return (
 		<div className="photos-upload-container">
@@ -54,9 +52,10 @@ export const PhotosBox = ({
 					{/* TODO: Make stylization and delete, checkbox for photos*/}
 					{images.length == 0 && <h3>No images!</h3>}
 					{images.map((image, index) => {
+						const isChecked = selectedPhotos.includes(index);
 						return (
 							<div
-								className="photo-box"
+								className={`photo-box${isChecked ? ' checked' : ' disabled'}`}
 								key={index}
 								id={index}>
 								<div>
@@ -64,11 +63,13 @@ export const PhotosBox = ({
 								</div>
 								<div>
 									<img
+										id={index}
 										className="picture-uploaded-file"
 										src={image}
 										alt=""
 									/>
 								</div>
+								{}
 								<div>
 									<Button
 										className="delete-icon-div"
@@ -81,8 +82,8 @@ export const PhotosBox = ({
 									style={{ marginLeft: 'auto' }}>
 									<Checkbox
 										// {...label}
-										checked={selectedPhotos.includes(index) ? true : false}
-										onChange={() => handleCheckboxChange()}
+										checked={isChecked}
+										onChange={() => handleCheckboxChange(index)}
 										sx={{ display: 'flex', justifyContent: 'flex-end' }}
 									/>
 								</div>
@@ -90,6 +91,8 @@ export const PhotosBox = ({
 						);
 					})}
 				</div>
+
+				{fileSize >= 500000 ? <div>Image is too heavy!</div> : null}
 				<div className="button-upload-photos-container">
 					<Label
 						for="files"

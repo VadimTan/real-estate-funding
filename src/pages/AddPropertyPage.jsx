@@ -15,6 +15,7 @@ export const AddPropertyPage = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [photos, setPhotos] = useState([]);
 	const [selectedPhotos, setSelectedPhotos] = useState([]);
+	const [fileSize, setFileSize] = useState(null);
 	const inputRef = useRef(null);
 	const documents = [];
 	const navigate = useNavigate();
@@ -51,27 +52,38 @@ export const AddPropertyPage = () => {
 	};
 
 	const onSubmit = async () => {
+		console.log(selectedPhotos);
+		if (fileSize >= 500000) return;
 		const formData = new FormData();
 		for (const key in formState) {
 			const value = formState[key];
 			if (Array.isArray(value)) {
 				if (key === 'photos') {
-					if (photos.length) {
-						photos.forEach((photo, index) => {
-							formData.append(`${key}[${index}]`, photo);
+					if (selectedPhotos.length) {
+						selectedPhotos.forEach((selectedIndex, index) => {
+							formData.append(`${key}[${index}]`, photos[selectedIndex]);
 						});
 					} else {
-						formData.append(`photos`, photos);
+						if (photos.length) {
+							photos.forEach((photo, index) => {
+								formData.append(`${key}[${index}]`, photo);
+							});
+						}
 					}
+					// }
+					// else {
+					// 	formData.append(`photos`, photos);
+					// }
 				}
 				if (key === 'documents') {
 					if (documents.length) {
 						documents.forEach((document, index) => {
 							formData.append(`${key}[${index}]`, document);
 						});
-					} else {
-						formData.append(`documents`, documents);
 					}
+					// else {
+					// 	formData.append(`documents`, documents);
+					// }
 				}
 			} else {
 				formData.append(key, value);
@@ -79,29 +91,51 @@ export const AddPropertyPage = () => {
 		}
 		try {
 			const response = await saveProperty(formData);
-			if (response.data.responseCode.responseCode !== 1) {
-				setErrorMessage('Failed!');
-			} else {
+			if (
+				response.data.responseCode.responseCode === '1' ||
+				response.data.responseCode.responseCode === '11'
+			) {
 				navigate('/');
+			} else {
+				setErrorMessage('Failed!');
 			}
 		} catch (error) {
 			setErrorMessage(error.message);
 		}
 	};
 
-	const handleImage = (e) => {
-		setPhotos([...photos, URL.createObjectURL(e.target.files[0])]);
+	const convertBase64 = (file) => {
+		return new Promise((resolve, reject) => {
+			const fileReader = new FileReader();
+			fileReader.readAsDataURL(file);
+
+			fileReader.onload = () => {
+				resolve(fileReader.result);
+			};
+
+			fileReader.onerror = (error) => {
+				reject(error);
+			};
+		});
+	};
+
+	const handleImage = async (e) => {
+		const file = e.target.files[0];
+		const base64 = await convertBase64(file);
+		setFileSize(file.size);
+		setPhotos((prevPhotos) => [...prevPhotos, base64]);
 	};
 
 	const handleCheckboxChange = (index) => {
 		if (selectedPhotos.includes(index)) {
+			// Uncheck the image and remove it from selectedPhotos
 			setSelectedPhotos((prevSelected) =>
 				prevSelected.filter((item) => item !== index)
 			);
 		} else {
-			setSelectedPhotos((prevSelected) => [...prevSelected, index]);
+			// Check the image and move it to the start of the photos array
+			setSelectedPhotos((prevSelected) => [index, ...prevSelected]);
 		}
-		// setPhotos(selectedPhotos);
 	};
 
 	const handleDeleteImg = (id) => {
@@ -157,7 +191,7 @@ export const AddPropertyPage = () => {
 
 	return (
 		<Layout>
-			<AddNEdit />
+			<AddNEdit formState={formState} />
 			<div className="global-container-add-edit">
 				{errorMessage && (
 					<Snackbar
@@ -188,6 +222,7 @@ export const AddPropertyPage = () => {
 					selectedPhotos={selectedPhotos}
 					handleCheckboxChange={handleCheckboxChange}
 					inputRef={inputRef}
+					fileSize={fileSize}
 				/>
 			</div>
 			<Footer onSubmit={onSubmit} />

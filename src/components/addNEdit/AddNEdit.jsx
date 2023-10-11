@@ -3,7 +3,7 @@ import '../../../styles/addnedit.scss';
 import IOSSwitch from '../../common/IOSSwitch';
 import { useNavigate } from 'react-router-dom';
 
-export const AddNEdit = () => {
+export const AddNEdit = (formState) => {
 	const navigate = useNavigate();
 
 	const handleNavigate = () => {
@@ -21,7 +21,7 @@ export const AddNEdit = () => {
 							onClick={handleNavigate}
 						/>
 						<div className="h1-for-header-of-container">
-							<h1 className="h1-header">1 Bed in Old Town Downtown Dubai</h1>
+							<h1 className="h1-header">{formState.name}</h1>
 						</div>
 					</div>
 					<div className="toggle-container">

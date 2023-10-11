@@ -1,4 +1,3 @@
-import MainImage from '../../../../assets/images/MainImage.svg';
 import Button from '../../../../common/Button';
 import Label from '../../../../common/Label';
 // import tag_blue from '../../../../assets/images/tag_blue.svg';
@@ -17,7 +16,7 @@ export const Properties = ({ properties }) => {
 							<div className="main-image-for-property">
 								<img
 									className="image-for-property"
-									src={MainImage}
+									src={property.images[0] || null}
 									alt=""
 								/>
 							</div>
@@ -30,28 +29,38 @@ export const Properties = ({ properties }) => {
 									<li className="list-property-1">
 										<span className="metric-name">Total Price</span>
 										<span className="value-of-property">
-											{property.totalPrice}
+											{property.total_price || '-'}
 										</span>
 									</li>
 									<li className="list-property-1">
 										<span className="metric-name">Price</span>
-										<span className="value-of-property">{property.price}</span>
+										<span className="value-of-property">
+											{property.price || '-'}
+										</span>
 									</li>
 									<li className="list-property-1">
 										<span className="metric-name">Sold</span>
-										<span className="value-of-property">{property.sold}</span>
+										<span className="value-of-property">
+											{property.sold || '-'}
+										</span>
 									</li>
 									<li className="list-property-1">
 										<span className="metric-name">Type</span>
-										<span className="value-of-property">{property.type}</span>
+										<span className="value-of-property">
+											{property.type || '-'}
+										</span>
 									</li>
 									<li className="list-property-1">
 										<span className="metric-name">Growth</span>
-										<span className="value-of-property">{property.growth}</span>
+										<span className="value-of-property">
+											{property.annual_profit + '%' || '-'}
+										</span>
 									</li>
 									<li className="list-property-1">
 										<span className="metric-name">Period</span>
-										<span className="value-of-property">{property.period}</span>
+										<span className="value-of-property">
+											{property.period || '-'}
+										</span>
 									</li>
 								</ul>
 							</div>
