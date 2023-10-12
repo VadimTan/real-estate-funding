@@ -10,7 +10,6 @@ import { useState } from 'react';
 export const PhotosBox = ({
 	onSubmit,
 	handleImage,
-	images,
 	handleDelete,
 	selectedPhotos,
 	handleCheckboxChange,
@@ -24,7 +23,6 @@ export const PhotosBox = ({
 		setStateOfIcon((icon) => !icon);
 		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
 	};
-	console.log(images);
 
 	return (
 		<div className="photos-upload-container">
@@ -50,7 +48,6 @@ export const PhotosBox = ({
 					<span className="span-for-header-main-image">Main Image</span>
 				</div>
 				<div className="list-of-uploading-files">
-					{/* TODO: Make stylization and delete, checkbox for photos*/}
 					{photosPreview.length == 0 && <h3>No images!</h3>}
 					{photosPreview.map((image, index) => {
 						const isChecked = selectedPhotos.includes(index);

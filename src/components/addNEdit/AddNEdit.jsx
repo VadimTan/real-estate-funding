@@ -3,7 +3,7 @@ import '../../../styles/addnedit.scss';
 import IOSSwitch from '../../common/IOSSwitch';
 import { useNavigate } from 'react-router-dom';
 
-export const AddNEdit = (formState) => {
+export const AddNEdit = ({ formState }) => {
 	const navigate = useNavigate();
 
 	const handleNavigate = () => {

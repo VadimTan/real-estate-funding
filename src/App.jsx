@@ -32,6 +32,10 @@ function App() {
 			element: <ProtectedRoute element={<AddPropertyPage />} />,
 		},
 		{
+			path: '/edit/:id',
+			element: <ProtectedRoute element={<AddPropertyPage />} />,
+		},
+		{
 			path: '*',
 			element: <NotFoundPage />,
 		},

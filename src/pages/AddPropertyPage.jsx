@@ -5,12 +5,13 @@ import '../../styles/mainmetrics.scss';
 import { AboutProperty } from '../components/addNEdit/AboutProperty';
 import { PhotosBox } from '../components/AddNEdit/Photos';
 import { Footer } from '../components/Footer/Footer';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from '../axios.config';
 import baseUrl from '../constants/config';
 import { Snackbar, Alert } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../common/Loader';
+import { hostUrl } from '../constants/constants';
 
 export const AddPropertyPage = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -21,28 +22,31 @@ export const AddPropertyPage = () => {
 	const [documents, setDocuments] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
+	const location = useLocation();
+	const isAddMode = location.pathname === '/add';
+	const params = useParams();
 
 	const [formState, setFormState] = useState({
-		total_price: '1000000',
-		price: '500000',
-		annual_profit: '10,20',
-		sell_price: '600000',
-		app_fee: '2',
-		additional_charges: '1000',
-		period: '2,5',
-		handover: '3,7',
-		name: 'Sample Property',
-		location: 'Sample Location',
-		coordinate_x: '123.456',
-		coordinate_y: '78.910',
+		total_price: '',
+		price: '',
+		annual_profit: '',
+		sell_price: '',
+		app_fee: '',
+		additional_charges: '',
+		period: '',
+		handover: '',
+		name: '',
+		location: '',
+		coordinate_x: '',
+		coordinate_y: '',
 		seller: '',
-		developer: 'Sample Developer',
-		developer_specs_title: 'Sample Title',
-		developer_specs_subtitle: 'Sample Subtitle',
-		type: 'Apartment',
-		bed: '2',
-		meter: '120',
-		about: 'This is sample property description',
+		developer: '',
+		developer_specs_title: '',
+		developer_specs_subtitle: '',
+		type: '',
+		bed: '',
+		meter: '',
+		about: '',
 		photos: [],
 		documents: [],
 	});
@@ -51,6 +55,58 @@ export const AddPropertyPage = () => {
 		return await axios.post(`${baseUrl}/admin/property/add`, formData, {
 			headers: { 'Content-Type': 'multipart/form-data' },
 		});
+	};
+
+	const updateProperty = async (formData) => {
+		return await axios.post(
+			`${baseUrl}/admin/property/update/?id=${params.id}`,
+			formData,
+			{
+				headers: { 'Content-Type': 'multipart/form-data' },
+			}
+		);
+	};
+
+	useEffect(() => {
+		if (!isAddMode) {
+			setIsLoading(true);
+			const getOneProperty = async () => {
+				try {
+					const response = await axios.get(
+						`${baseUrl}/admin/property/getOne?id=${params.id}`
+					);
+					const convertedImg = response.data.data.images.map((img) => {
+						return `${hostUrl}${img.path}`;
+					});
+					setPhotosPreview(convertedImg);
+					setPhotos(convertedImg);
+					setFormState(response.data.data && { ...response.data.data });
+					setIsLoading(false);
+				} catch (error) {
+					setIsLoading(false);
+					console.log(error);
+				}
+			};
+			getOneProperty();
+		}
+	}, [isAddMode, params.id]);
+
+	const onUpdate = async () => {
+		setIsLoading(true);
+		try {
+			const response = await updateProperty({ ...formState, images: photos });
+			setIsLoading(false);
+			console.log(response);
+			if (
+				response.data.responseCode.responseCode === '1' ||
+				response.data.responseCode.responseCode === '11'
+			) {
+				navigate('/');
+			}
+		} catch (error) {
+			setIsLoading(false);
+			console.log(error);
+		}
 	};
 
 	const onSubmit = async () => {
@@ -138,9 +194,10 @@ export const AddPropertyPage = () => {
 	};
 
 	const handleDeleteImg = (id) => {
-		const filteredPhotos = [...photos];
+		const filteredPhotos = [...photosPreview];
 		filteredPhotos.splice(id, 1);
 		setPhotos(filteredPhotos);
+		setPhotosPreview(filteredPhotos);
 		inputRef.current.value = '';
 	};
 
@@ -164,29 +221,6 @@ export const AddPropertyPage = () => {
 			[name]: updatedValue,
 		});
 	};
-
-	// 'total_price' => 'required|numeric',
-	// 'price' => 'required|numeric',
-	// 'annual_profit' => 'string|numeric',
-	// 'sell_price' => 'required|numeric',
-	// 'app_fee' => 'required|numeric',
-	// 'additional_charges' => 'required|numeric',
-	// 'period' => 'string|numeric',
-	// 'handover' => 'string|numeric',
-	// 'name' => 'required|string',
-	// 'location' => 'required|string',
-	// 'coordinate_x' => 'required|string',
-	// 'coordinate_y' => 'required|string',
-	// 'seller' => 'required|string',
-	// 'developer' => 'required|string',
-	// 'developer_specs_title' => 'required|string',
-	// 'developer_specs_subtitle' => 'required|string',
-	// 'type' => 'required|string',
-	// 'bed' => 'required|numeric',
-	// 'meter' => 'required|numeric',
-	// 'about' => 'required|string',
-	// ‘photos’ массив из картинок
-	// ‘documents’  массив из документов
 
 	return (
 		<Layout>
@@ -225,7 +259,11 @@ export const AddPropertyPage = () => {
 					photosPreview={photosPreview}
 				/>
 			</div>
-			<Footer onSubmit={onSubmit} />
+			<Footer
+				isAddMode={isAddMode}
+				onSubmit={onSubmit}
+				onUpdate={onUpdate}
+			/>
 		</Layout>
 	);
 };

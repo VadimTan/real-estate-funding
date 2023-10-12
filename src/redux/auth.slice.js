@@ -33,7 +33,6 @@ const authSlice = createSlice({
 			const searchValue = action.payload.toLowerCase();
 			state.properties = state.properties.filter((property) => {
 				property.name.toLowerCase().includes(searchValue);
-				console.log(property.name);
 			});
 		},
 	},
@@ -54,7 +53,6 @@ const authSlice = createSlice({
 			state.loading = false;
 			state.isLoggedIn = false;
 			state.error = payload;
-			console.log(payload);
 		},
 		// register user reducer...
 	},

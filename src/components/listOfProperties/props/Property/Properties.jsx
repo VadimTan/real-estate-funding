@@ -5,12 +5,18 @@ import Label from '../../../../common/Label';
 import '../../../../../styles/propertycard.scss';
 import { useSelector } from 'react-redux';
 import { Loader } from '../../../../common/Loader';
+import { useNavigate } from 'react-router-dom';
+import { hostUrl } from '../../../../constants/constants';
 
 export const Properties = () => {
+	const nav = useNavigate();
 	const { filteredProperties, isLoading } = useSelector(
 		(state) => state.search
 	);
-	console.log(isLoading);
+
+	const handleNavigate = (id) => {
+		nav(`/edit/${id}`);
+	};
 
 	return (
 		<div className="main-container-of-cards">
@@ -34,7 +40,7 @@ export const Properties = () => {
 									<div
 										className="image-for-property"
 										style={{
-											backgroundImage: `url(https://afehe-hwf.buzz/storage/${property.images[0].path})`,
+											backgroundImage: `url(${hostUrl}${property.images[0].path})`,
 											backgroundRepeat: 'no-repeat',
 											backgroundSize: 'cover',
 											height: '208px',
@@ -89,7 +95,9 @@ export const Properties = () => {
 								</ul>
 							</div>
 							<div className="btn-container-for-property">
-								<Button className={'btn-for-property'}>
+								<Button
+									className={'btn-for-property'}
+									clickHandler={() => handleNavigate(property.id)}>
 									<Label className={'label-for-property'}>
 										View Details Of Property
 									</Label>
