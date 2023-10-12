@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from '../../../axios.config';
 import baseUrl from '../../../constants/config';
 import { useDispatch } from 'react-redux';
-import { setData } from '../../../redux/auth.slice';
+import { storeProperties } from '../../../redux/search.slice';
 
 export const FilterOfProperties = () => {
 	const [properties, setProperties] = useState([]);
@@ -24,13 +24,16 @@ export const FilterOfProperties = () => {
 			try {
 				const response = await axios.get(`${baseUrl}/admin/property/getAll`);
 				setProperties(response.data.data.property);
-				dispatch(setData(properties));
 			} catch (error) {
 				console.log(error);
 			}
 		};
 		getAllProperties();
 	}, []);
+
+	useEffect(() => {
+		dispatch(storeProperties(properties));
+	}, [dispatch, properties]);
 
 	return (
 		<>
@@ -70,7 +73,7 @@ export const FilterOfProperties = () => {
 						</Button>
 					</div>
 				</div>
-				<Properties properties={properties} />
+				<Properties />
 			</Layout>
 		</>
 	);

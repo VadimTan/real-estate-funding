@@ -128,7 +128,8 @@ export const AboutProperty = ({ handleChange, formState, onSubmit }) => {
 							name="type"
 							value={formState.type}
 							onChange={handleChange}>
-							<option>Apartment</option>
+							<option>Off-plan</option>
+							<option>Ready</option>
 						</select>
 					</div>
 				</div>

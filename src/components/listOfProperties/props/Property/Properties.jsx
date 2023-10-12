@@ -3,22 +3,46 @@ import Label from '../../../../common/Label';
 // import tag_blue from '../../../../assets/images/tag_blue.svg';
 // import tag_green from '../../../../assets/images/tag_green.svg';
 import '../../../../../styles/propertycard.scss';
+import { useSelector } from 'react-redux';
+import { Loader } from '../../../../common/Loader';
 
-export const Properties = ({ properties }) => {
+export const Properties = () => {
+	const { filteredProperties, isLoading } = useSelector(
+		(state) => state.search
+	);
+	console.log(isLoading);
+
 	return (
 		<div className="main-container-of-cards">
 			<div className="property-card-container">
-				{properties.length > 0 &&
-					properties.map((property, id = 0) => (
+				{isLoading ? <Loader /> : null}
+				{filteredProperties.length > 0 &&
+					filteredProperties.map((property, index) => (
 						<div
-							key={id + 1}
+							key={index + 1}
 							className="grid-element">
 							<div className="main-image-for-property">
-								<img
-									className="image-for-property"
-									src={property.images[0] || null}
-									alt=""
-								/>
+								{property.images.length ? (
+									// <img
+									// 	className="image-for-property"
+									// 	src={
+									// 		`https://afehe-hwf.buzz/storage/${property.images[0].path}` ||
+									// 		null
+									// 	}
+									// 	alt=""
+									// />
+									<div
+										className="image-for-property"
+										style={{
+											backgroundImage: `url(https://afehe-hwf.buzz/storage/${property.images[0].path})`,
+											backgroundRepeat: 'no-repeat',
+											backgroundSize: 'cover',
+											height: '208px',
+										}}
+									/>
+								) : (
+									<div className="image-for-property">No image</div>
+								)}
 							</div>
 							<div className="container-property-card-list">
 								<ul className="list-for-property">
