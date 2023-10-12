@@ -3,11 +3,13 @@ import '../../../styles/navmenu.scss';
 import magnify_glass from '../../assets/images/magnifyingglass.svg';
 import Button from '../../common/Button';
 import Label from '../../common/Label';
-import { logout } from '../../redux/auth.slice';
+import { logout, filterProperties } from '../../redux/auth.slice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export const NavMenu = () => {
+	const [searchValue, setSearchValue] = useState('');
 	const dispatch = useDispatch();
 	const nav = useNavigate();
 
@@ -18,6 +20,11 @@ export const NavMenu = () => {
 
 	const handleRedirect = () => {
 		nav('/');
+	};
+
+	const handleSearch = (e) => {
+		setSearchValue(e.target.value);
+		dispatch(filterProperties(searchValue));
 	};
 
 	return (
@@ -44,6 +51,7 @@ export const NavMenu = () => {
 								type="text"
 								className="nav-menu-input"
 								placeholder="Search"
+								onChange={(e) => handleSearch(e)}
 							/>
 						</Label>
 					</div>

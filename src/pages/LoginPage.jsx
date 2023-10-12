@@ -10,18 +10,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { Alert, Snackbar } from '@mui/material';
 
 const LoginPage = () => {
-	const { loading, error, isLoggedIn, userInfo } = useSelector(
-		(state) => state.auth
-	);
+	const { loading, error, isLoggedIn } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
-	// const [email, setEmail] = useState('');
-	// const [password, setPassword] = useState('');
 	const [cred, setCred] = useState({
 		email: '',
 		password: '',
 	});
 
-	// const [open, setOpen] = useState(false);
 	const navigate = useNavigate();
 
 	// redirect authenticated user to profile screen
@@ -29,7 +24,6 @@ const LoginPage = () => {
 		if (isLoggedIn) {
 			navigate('/');
 		}
-		console.log(userInfo);
 	}, [navigate, isLoggedIn]);
 
 	const handleSubmit = () => {
@@ -43,16 +37,8 @@ const LoginPage = () => {
 		);
 	};
 
-	// const handleClose = (event, reason) => {
-	// 	if (reason === 'clickaway') {
-	// 		return;
-	// 	}
-
-	// 	setOpen(false);
-	// };
 	const handleChange = (event) => {
 		setCred({ ...cred, [event.target.name]: event.target.value });
-		console.log({ ...cred });
 	};
 	return (
 		<>

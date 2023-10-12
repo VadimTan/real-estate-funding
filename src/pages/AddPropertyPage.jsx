@@ -14,7 +14,7 @@ import { Snackbar, Alert } from '@mui/material';
 export const AddPropertyPage = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [photos, setPhotos] = useState([]);
-	const [selectedPhotos, setSelectedPhotos] = useState([]);
+	const [selectedPhotoIndexes, setSelectedPhotoIndexes] = useState([]);
 	const [fileSize, setFileSize] = useState(null);
 	const inputRef = useRef(null);
 	const documents = [];
@@ -52,15 +52,15 @@ export const AddPropertyPage = () => {
 	};
 
 	const onSubmit = async () => {
-		console.log(selectedPhotos);
+		console.log(selectedPhotoIndexes);
 		if (fileSize >= 500000) return;
 		const formData = new FormData();
 		for (const key in formState) {
 			const value = formState[key];
 			if (Array.isArray(value)) {
 				if (key === 'photos') {
-					if (selectedPhotos.length) {
-						selectedPhotos.forEach((selectedIndex, index) => {
+					if (selectedPhotoIndexes.length) {
+						selectedPhotoIndexes.forEach((selectedIndex, index) => {
 							formData.append(`${key}[${index}]`, photos[selectedIndex]);
 						});
 					} else {
@@ -127,14 +127,14 @@ export const AddPropertyPage = () => {
 	};
 
 	const handleCheckboxChange = (index) => {
-		if (selectedPhotos.includes(index)) {
+		if (selectedPhotoIndexes.includes(index)) {
 			// Uncheck the image and remove it from selectedPhotos
-			setSelectedPhotos((prevSelected) =>
+			setSelectedPhotoIndexes((prevSelected) =>
 				prevSelected.filter((item) => item !== index)
 			);
 		} else {
 			// Check the image and move it to the start of the photos array
-			setSelectedPhotos((prevSelected) => [index, ...prevSelected]);
+			setSelectedPhotoIndexes((prevSelected) => [index, ...prevSelected]);
 		}
 	};
 
@@ -219,7 +219,7 @@ export const AddPropertyPage = () => {
 					handleImage={handleImage}
 					images={photos}
 					handleDelete={handleDeleteImg}
-					selectedPhotos={selectedPhotos}
+					selectedPhotos={selectedPhotoIndexes}
 					handleCheckboxChange={handleCheckboxChange}
 					inputRef={inputRef}
 					fileSize={fileSize}

@@ -7,9 +7,12 @@ import Properties from './Property/Properties';
 import { useEffect, useState } from 'react';
 import axios from '../../../axios.config';
 import baseUrl from '../../../constants/config';
+import { useDispatch } from 'react-redux';
+import { setData } from '../../../redux/auth.slice';
 
 export const FilterOfProperties = () => {
 	const [properties, setProperties] = useState([]);
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handleClick = () => {
@@ -21,6 +24,7 @@ export const FilterOfProperties = () => {
 			try {
 				const response = await axios.get(`${baseUrl}/admin/property/getAll`);
 				setProperties(response.data.data.property);
+				dispatch(setData(properties));
 			} catch (error) {
 				console.log(error);
 			}
@@ -48,7 +52,7 @@ export const FilterOfProperties = () => {
 							<div>
 								<input
 									className="dld-fee-input"
-									type="text"
+									type="number"
 								/>
 								<span className="dld-icon">%</span>
 							</div>

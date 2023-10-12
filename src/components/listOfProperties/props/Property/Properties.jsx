@@ -8,7 +8,7 @@ export const Properties = ({ properties }) => {
 	return (
 		<div className="main-container-of-cards">
 			<div className="property-card-container">
-				{properties.length > 0 ? (
+				{properties.length > 0 &&
 					properties.map((property, id = 0) => (
 						<div
 							key={id + 1}
@@ -88,10 +88,7 @@ export const Properties = ({ properties }) => {
 							</div>
 						</div> */}
 						</div>
-					))
-				) : (
-					<div>Not Found</div>
-				)}
+					))}
 			</div>
 		</div>
 	);

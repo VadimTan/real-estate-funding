@@ -10,6 +10,7 @@ const initialState = {
 	loading: false,
 	isLoggedIn: !!accessToken,
 	userInfo: null,
+	properties: [],
 	accessToken,
 	error: null,
 	success: false,
@@ -25,7 +26,18 @@ const authSlice = createSlice({
 			state.isLoggedIn = false;
 			localStorage.removeItem('accessToken');
 		},
+		setData: (state, action) => {
+			state.properties = action.payload;
+		},
+		filterProperties: (state, action) => {
+			const searchValue = action.payload.toLowerCase();
+			state.properties = state.properties.filter((property) => {
+				property.name.toLowerCase().includes(searchValue);
+				console.log(property.name);
+			});
+		},
 	},
+
 	extraReducers: {
 		[userLogin.pending]: (state) => {
 			state.loading = true;
@@ -48,5 +60,5 @@ const authSlice = createSlice({
 	},
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setData, filterProperties } = authSlice.actions;
 export default authSlice.reducer;
