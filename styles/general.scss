@@ -24,13 +24,34 @@ input::-webkit-inner-spin-button {
 
 .global-loader {
 	position: fixed;
-	top: 0;
+	width: 100%;
 	left: 0;
 	right: 0;
+	top: 0;
 	bottom: 0;
-	background: #ffffff;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 9999;
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	z-index: 100;
+	justify-content: center;
+
+	&::after {
+		content: '';
+		width: 65px;
+		height: 65px;
+		border-radius: 50%;
+		display: inline-block;
+		border-top: 3px solid #007aff;
+		border-right: 3px solid transparent;
+		animation: rotation 1s linear infinite;
+	}
+
+	@keyframes rotation {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
 }

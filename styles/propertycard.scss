@@ -21,6 +21,68 @@
 	padding: 16px 100px;
 }
 
+.grid-element {
+	position: relative;
+}
+
+.tag-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 4px;
+	gap: 8px;
+	position: absolute;
+	top: 0;
+	left: 205px;
+}
+
+.row-completed {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 4px;
+	padding: 4px 8px;
+	background: #ffffff;
+	border-radius: 12px;
+}
+
+.row-sold {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 8px;
+	background: #ffffff;
+	border-radius: 12px;
+}
+
+.tag {
+	width: 8px;
+	height: 8px;
+}
+
+.completed-text-row {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 13px;
+	line-height: 13px;
+	letter-spacing: 0.06px;
+	font-feature-settings: 'case' on;
+	color: #000000;
+}
+
+.sold-text-row {
+	font-family: SF Pro Display;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 13px;
+	line-height: 13px;
+	letter-spacing: 0.06px;
+	font-feature-settings: 'case' on;
+	color: #000000;
+}
+
 .container-property-card-list {
 	box-sizing: border-box;
 	display: flex;

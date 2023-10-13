@@ -1,3 +1,3 @@
 export const Loader = () => {
-	return <div className="global-loader">Loading...</div>;
+	return <div className="global-loader"></div>;
 };

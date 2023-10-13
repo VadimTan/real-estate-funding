@@ -1,7 +1,7 @@
 import Button from '../../../../common/Button';
 import Label from '../../../../common/Label';
-// import tag_blue from '../../../../assets/images/tag_blue.svg';
-// import tag_green from '../../../../assets/images/tag_green.svg';
+import tag_blue from '../../../../assets/images/tag_blue.svg';
+import tag_green from '../../../../assets/images/tag_green.svg';
 import '../../../../../styles/propertycard.scss';
 import { useSelector } from 'react-redux';
 import { Loader } from '../../../../common/Loader';
@@ -103,22 +103,24 @@ export const Properties = () => {
 									</Label>
 								</Button>
 							</div>
-							{/* <div className="tag-row">
-							<div className="row-completed">
-								<img
-									src={tag_blue}
-									alt=""
-								/>
-								<span className="completed-text-row">Completed</span>
+							<div className="tag-row">
+								<div className="row-completed">
+									<img
+										className="tag"
+										src={tag_blue}
+										alt=""
+									/>
+									<span className="completed-text-row">Completed</span>
+								</div>
+								<div className="row-sold">
+									<img
+										className="tag"
+										src={tag_green}
+										alt=""
+									/>
+									<span className="sold-text-row">Sold</span>
+								</div>
 							</div>
-							<div className="row-sold">
-								<img
-									src={tag_green}
-									alt=""
-								/>
-								<span className="sold-text-row">Sold</span>
-							</div>
-						</div> */}
 						</div>
 					))}
 			</div>
