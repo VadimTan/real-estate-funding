@@ -5,7 +5,13 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
 import Button from '../../common/Button';
 
-export const AboutProperty = ({ handleChange, formState, onSubmit }) => {
+export const AboutProperty = ({
+	handleChange,
+	formState,
+	onSubmit,
+	isAddMode,
+	onUpdate,
+}) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
 
@@ -177,8 +183,10 @@ export const AboutProperty = ({ handleChange, formState, onSubmit }) => {
 					<Button
 						type="submit"
 						className="footer-button-show"
-						clickHandler={onSubmit}>
-						<span className="text-for-button">Save Changes</span>
+						clickHandler={isAddMode ? onSubmit : onUpdate}>
+						<span className="text-for-button">
+							{isAddMode ? 'Save Changes' : 'Update Changes'}
+						</span>
 					</Button>
 				</div>
 			</div>

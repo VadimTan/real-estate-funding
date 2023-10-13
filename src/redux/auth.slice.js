@@ -26,15 +26,6 @@ const authSlice = createSlice({
 			state.isLoggedIn = false;
 			localStorage.removeItem('accessToken');
 		},
-		setData: (state, action) => {
-			state.properties = action.payload;
-		},
-		filterProperties: (state, action) => {
-			const searchValue = action.payload.toLowerCase();
-			state.properties = state.properties.filter((property) => {
-				property.name.toLowerCase().includes(searchValue);
-			});
-		},
 	},
 
 	extraReducers: {

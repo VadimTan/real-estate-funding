@@ -9,8 +9,14 @@ import axios from '../../../axios.config';
 import baseUrl from '../../../constants/config';
 import { useDispatch } from 'react-redux';
 import { storeProperties } from '../../../redux/search.slice';
+import { Loader } from '../../../common/Loader';
 
 export const FilterOfProperties = () => {
+	const [filterState, setFilterState] = useState({
+		dld_fee: '',
+		exchange_rate: '',
+	});
+	const [isLoading, setIsLoading] = useState(false);
 	const [properties, setProperties] = useState([]);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -19,11 +25,28 @@ export const FilterOfProperties = () => {
 		navigate('/add', { replace: true });
 	};
 
+	const handleChangeFilters = (e) => {
+		setFilterState({ ...filterState, [e.target.name]: e.target.value });
+	};
+
+	const onSaveFilters = async () => {
+		setIsLoading(true);
+		try {
+			await axios.post(`${baseUrl}/admin/config/update`, filterState);
+			setIsLoading(false);
+		} catch (error) {
+			setIsLoading(false);
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		const getAllProperties = async () => {
 			try {
 				const response = await axios.get(`${baseUrl}/admin/property/getAll`);
 				setProperties(response.data.data.property);
+				const { dld_fee, exchange_rate } = response.data.data.config;
+				setFilterState({ dld_fee, exchange_rate });
 			} catch (error) {
 				console.log(error);
 			}
@@ -37,6 +60,7 @@ export const FilterOfProperties = () => {
 
 	return (
 		<>
+			{isLoading ? <Loader /> : null}
 			<Layout>
 				<div className="frame-18">
 					<h1 className="h1-list-of-props">List Of Properties</h1>
@@ -55,7 +79,10 @@ export const FilterOfProperties = () => {
 							<div>
 								<input
 									className="dld-fee-input"
-									type="number"
+									type="text"
+									name="dld_fee"
+									value={filterState.dld_fee || ''}
+									onChange={handleChangeFilters}
 								/>
 								<span className="dld-icon">%</span>
 							</div>
@@ -65,10 +92,15 @@ export const FilterOfProperties = () => {
 							<input
 								className="exchange-input"
 								type="text"
+								name="exchange_rate"
+								value={filterState.exchange_rate || ''}
+								onChange={handleChangeFilters}
 							/>
 							<span className="exchange-icon">= 1 USD</span>
 						</div>
-						<Button className="fee-exchange-button">
+						<Button
+							className="fee-exchange-button"
+							clickHandler={onSaveFilters}>
 							<span className="text-fee-button">Save Changes</span>
 						</Button>
 					</div>

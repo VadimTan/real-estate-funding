@@ -3,7 +3,7 @@ import '../../../styles/addnedit.scss';
 import IOSSwitch from '../../common/IOSSwitch';
 import { useNavigate } from 'react-router-dom';
 
-export const AddNEdit = ({ formState }) => {
+export const AddNEdit = ({ formState, setFormState }) => {
 	const navigate = useNavigate();
 
 	const handleNavigate = () => {
@@ -27,11 +27,27 @@ export const AddNEdit = ({ formState }) => {
 					<div className="toggle-container">
 						<div className="toggle-sold">
 							<span className="text-for-toggle-sold">Sold</span>
-							<IOSSwitch />
+							<IOSSwitch
+								checked={formState.sold === 1}
+								onChange={(event) =>
+									setFormState({
+										...formState,
+										sold: event.target.checked ? 1 : 0,
+									})
+								}
+							/>
 						</div>
 						<div className="toggle-completed">
 							<span className="text-for-toggle-completed">Completed</span>
-							<IOSSwitch />
+							<IOSSwitch
+								checked={formState.completed === 1}
+								onChange={(event) =>
+									setFormState({
+										...formState,
+										completed: event.target.checked ? 1 : 0,
+									})
+								}
+							/>
 						</div>
 					</div>
 				</div>

@@ -49,6 +49,8 @@ export const AddPropertyPage = () => {
 		about: '',
 		photos: [],
 		documents: [],
+		sold: 0,
+		completed: 0,
 	});
 
 	const saveProperty = async (formData) => {
@@ -94,7 +96,7 @@ export const AddPropertyPage = () => {
 	const onUpdate = async () => {
 		setIsLoading(true);
 		try {
-			const response = await updateProperty({ ...formState, images: photos });
+			const response = await updateProperty({ ...formState });
 			setIsLoading(false);
 			console.log(response);
 			if (
@@ -163,6 +165,8 @@ export const AddPropertyPage = () => {
 		});
 	};
 
+	const testPhotos = [];
+
 	const handleImage = async (e) => {
 		const file = e.target.files[0];
 		const base64 = await convertBase64(file);
@@ -172,9 +176,15 @@ export const AddPropertyPage = () => {
 		) {
 			setDocuments((prevDocs) => [...prevDocs, file]);
 		} else {
-			setPhotos((prevPhotos) => [...prevPhotos, file]);
+			setPhotos(() => [...photos, file]);
+			if (isAddMode) {
+				setFormState({ ...formState, images: [...photos, file] });
+			} else {
+				testPhotos.push(file);
+				setFormState({ ...formState, photos: [...testPhotos] });
+			}
 		}
-		setPhotosPreview((prevPhotos) => [...prevPhotos, base64]);
+		setPhotosPreview(() => [...photosPreview, base64]);
 	};
 
 	const handleCheckboxChange = (index) => {
@@ -190,14 +200,22 @@ export const AddPropertyPage = () => {
 		const orderedPhotos = [...photos];
 		const removed = orderedPhotos.splice(index, 1);
 		orderedPhotos.unshift(removed[0]);
+		console.log('spisok photo', orderedPhotos);
 		setPhotos(orderedPhotos);
 	};
 
 	const handleDeleteImg = (id) => {
-		const filteredPhotos = [...photosPreview];
-		filteredPhotos.splice(id, 1);
-		setPhotos(filteredPhotos);
-		setPhotosPreview(filteredPhotos);
+		const photosPreviewCopy = [...photosPreview];
+		const photosCopy = [...photos];
+		photosPreviewCopy.splice(id, 1);
+		photosCopy.splice(id, 1);
+		setPhotos(photosCopy);
+		setPhotosPreview(photosPreviewCopy);
+		// if (!isAddMode) {
+		// 	const imagesCopy = formState.images;
+		// 	imagesCopy.splice(id, 1);
+		// 	setFormState({ ...formState, images: imagesCopy });
+		// }
 		inputRef.current.value = '';
 	};
 
@@ -225,7 +243,10 @@ export const AddPropertyPage = () => {
 	return (
 		<Layout>
 			{isLoading ? <Loader /> : null}
-			<AddNEdit formState={formState} />
+			<AddNEdit
+				formState={formState}
+				setFormState={setFormState}
+			/>
 			<div className="global-container-add-edit">
 				{errorMessage && (
 					<Snackbar
@@ -240,23 +261,26 @@ export const AddPropertyPage = () => {
 					formState={formState}
 					handleChange={handleChange}
 					onSubmit={onSubmit}
+					onUpdate={onUpdate}
+					isAddMode={isAddMode}
 				/>
 				<AboutProperty
 					formState={formState}
 					handleChange={handleChange}
 					onSubmit={onSubmit}
+					onUpdate={onUpdate}
+					isAddMode={isAddMode}
 				/>
 				<PhotosBox
-					formState={formState}
-					handleChange={handleChange}
 					onSubmit={onSubmit}
 					handleImage={handleImage}
-					images={photos}
 					handleDelete={handleDeleteImg}
 					selectedPhotos={selectedPhotoIndexes}
 					handleCheckboxChange={handleCheckboxChange}
 					inputRef={inputRef}
 					photosPreview={photosPreview}
+					onUpdate={onUpdate}
+					isAddMode={isAddMode}
 				/>
 			</div>
 			<Footer

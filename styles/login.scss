@@ -1,16 +1,18 @@
+$black: #000000;
+$white: #ffffff;
+$font-family_1: SF Pro Regular;
+
 .login-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-
 .h1-login-text {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 }
-
 .h1-sign-in {
 	display: flex;
 	flex-direction: row;
@@ -20,12 +22,11 @@
 	font-size: 28px;
 	line-height: 34px;
 	letter-spacing: 0.36px;
-	color: #000000;
+	color: $black;
 	flex: none;
 	order: 0;
 	flex-grow: 0;
 }
-
 .login-window {
 	box-sizing: border-box;
 	display: flex;
@@ -40,7 +41,6 @@
 	width: fit-content;
 	height: fit-content;
 }
-
 .registration-window {
 	display: flex;
 	flex-direction: column;
@@ -51,95 +51,84 @@
 	order: 1;
 	flex-grow: 0;
 }
-
 .button-sign-in-register {
 	display: flex;
-	padding-top: 25px;
+	padding-top: 24px;
 	text-align: center;
 }
-
 .login-form {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	padding: 0px;
-	gap: 4px;
-	flex: none;
-	order: 0;
-	align-self: stretch;
-	flex-grow: 0;
-}
-
-.login-form :first-child {
-	padding-bottom: 4px;
-}
-
-.login-form .email-text {
-	width: 33px;
-	height: 18px;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 13px;
-	line-height: 18px;
-	display: flex;
-	align-items: flex-end;
-	letter-spacing: -0.078px;
-	color: #000000;
-	flex: none;
-	order: 0;
-	flex-grow: 0;
-}
-
-.login-form .email-input {
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	padding: 12px;
 	gap: 8px;
-	width: 384px;
-	height: 45px;
-	border: 1px solid #d1d1d6;
-	border-radius: 14px;
-	flex: none;
-	order: 1;
-	align-self: stretch;
-	flex-grow: 0;
-}
-
-.login-form .password-text {
-	width: 59px;
-	height: 18px;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 13px;
-	line-height: 18px;
-	display: flex;
-	align-items: flex-end;
-	letter-spacing: -0.078px;
-	color: #000000;
 	flex: none;
 	order: 0;
-	flex-grow: 0;
-}
-
-.login-form .password-input {
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	padding: 12px;
-	gap: 8px;
-	width: 384px;
-	height: 45px;
-	border: 1px solid #d1d1d6;
-	border-radius: 14px;
-	flex: none;
-	order: 1;
 	align-self: stretch;
 	flex-grow: 0;
+	.email-text {
+		width: 33px;
+		height: 18px;
+		font-style: normal;
+		font-weight: 400;
+		font-size: 13px;
+		line-height: 18px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: -0.078px;
+		color: $black;
+		flex: none;
+		order: 0;
+		flex-grow: 0;
+	}
+	.email-input {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		padding: 12px;
+		gap: 8px;
+		width: 384px;
+		height: 45px;
+		border: 1px solid #d1d1d6;
+		border-radius: 14px;
+		flex: none;
+		order: 1;
+		align-self: stretch;
+		flex-grow: 0;
+	}
+	.password-text {
+		width: 59px;
+		height: 18px;
+		font-style: normal;
+		font-weight: 400;
+		font-size: 13px;
+		line-height: 18px;
+		display: flex;
+		align-items: flex-end;
+		letter-spacing: -0.078px;
+		color: $black;
+		flex: none;
+		order: 0;
+		flex-grow: 0;
+	}
+	.password-input {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		padding: 12px;
+		gap: 8px;
+		width: 384px;
+		height: 45px;
+		border: 1px solid #d1d1d6;
+		border-radius: 14px;
+		flex: none;
+		order: 1;
+		align-self: stretch;
+		flex-grow: 0;
+	}
 }
-
 .login-btn-sign-in {
 	display: flex;
 	flex-direction: row;
@@ -153,9 +142,8 @@
 	flex: none;
 	align-self: stretch;
 }
-
 .btn-label-sign-in {
-	font-family: SF Pro Regular;
+	font-family: $font-family_1;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 18px;
@@ -165,17 +153,15 @@
 	text-align: center;
 	letter-spacing: 0.5px;
 	font-feature-settings: 'case' on;
-	color: #ffffff;
+	color: $white;
 	cursor: pointer;
 }
-
 @media screen and (max-width: 760px) {
 	.h1-login-text {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
 	}
-
 	.h1-sign-in {
 		display: flex;
 		flex-direction: row;
@@ -185,12 +171,11 @@
 		font-size: 28px;
 		line-height: 34px;
 		letter-spacing: 0.36px;
-		color: #000000;
+		color: $black;
 		flex: none;
 		order: 0;
 		flex-grow: 0;
 	}
-
 	.login-window {
 		box-sizing: border-box;
 		display: flex;
@@ -205,7 +190,6 @@
 		width: fit-content;
 		height: fit-content;
 	}
-
 	.registration-window {
 		display: flex;
 		flex-direction: column;
@@ -216,13 +200,11 @@
 		order: 1;
 		flex-grow: 0;
 	}
-
 	.button-sign-in-register {
 		display: flex;
 		padding: 25px 0;
 		text-align: center;
 	}
-
 	.login-form {
 		display: flex;
 		flex-direction: column;
@@ -233,74 +215,68 @@
 		order: 0;
 		align-self: stretch;
 		flex-grow: 0;
+		&:first-child {
+			padding-bottom: 4px;
+		}
+		.email-text {
+			width: 33px;
+			height: 18px;
+			font-style: normal;
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 18px;
+			display: flex;
+			align-items: flex-end;
+			letter-spacing: -0.078px;
+			color: $black;
+			flex: none;
+			order: 0;
+			flex-grow: 0;
+		}
+		.email-input {
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			padding: 12px;
+			gap: 8px;
+			border: 1px solid #d1d1d6;
+			border-radius: 14px;
+			flex: none;
+			order: 1;
+			align-self: stretch;
+			flex-grow: 0;
+		}
+		.password-text {
+			width: 59px;
+			height: 18px;
+			font-style: normal;
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 18px;
+			display: flex;
+			align-items: flex-end;
+			letter-spacing: -0.078px;
+			color: $black;
+			flex: none;
+			order: 0;
+			flex-grow: 0;
+		}
+		.password-input {
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			padding: 12px;
+			gap: 8px;
+			border: 1px solid #d1d1d6;
+			border-radius: 14px;
+			flex: none;
+			order: 1;
+			align-self: stretch;
+			flex-grow: 0;
+		}
 	}
-
-	.login-form :first-child {
-		padding-bottom: 4px;
-	}
-
-	.login-form .email-text {
-		width: 33px;
-		height: 18px;
-		font-style: normal;
-		font-weight: 400;
-		font-size: 13px;
-		line-height: 18px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: -0.078px;
-		color: #000000;
-		flex: none;
-		order: 0;
-		flex-grow: 0;
-	}
-
-	.login-form .email-input {
-		box-sizing: border-box;
-		display: flex;
-		flex-direction: row;
-		align-items: flex-start;
-		padding: 12px;
-		gap: 8px;
-		border: 1px solid #d1d1d6;
-		border-radius: 14px;
-		flex: none;
-		order: 1;
-		align-self: stretch;
-		flex-grow: 0;
-	}
-
-	.login-form .password-text {
-		width: 59px;
-		height: 18px;
-		font-style: normal;
-		font-weight: 400;
-		font-size: 13px;
-		line-height: 18px;
-		display: flex;
-		align-items: flex-end;
-		letter-spacing: -0.078px;
-		color: #000000;
-		flex: none;
-		order: 0;
-		flex-grow: 0;
-	}
-
-	.login-form .password-input {
-		box-sizing: border-box;
-		display: flex;
-		flex-direction: row;
-		align-items: flex-start;
-		padding: 12px;
-		gap: 8px;
-		border: 1px solid #d1d1d6;
-		border-radius: 14px;
-		flex: none;
-		order: 1;
-		align-self: stretch;
-		flex-grow: 0;
-	}
-
 	.login-btn-sign-in {
 		display: flex;
 		flex-direction: row;
@@ -312,9 +288,8 @@
 		flex: none;
 		align-self: stretch;
 	}
-
 	.btn-label-sign-in {
-		font-family: SF Pro Regular;
+		font-family: $font-family_1;
 		font-style: normal;
 		font-weight: 600;
 		font-size: 18px;
@@ -324,7 +299,7 @@
 		text-align: center;
 		letter-spacing: 0.5px;
 		font-feature-settings: 'case' on;
-		color: #ffffff;
+		color: $white;
 		cursor: pointer;
 	}
 }

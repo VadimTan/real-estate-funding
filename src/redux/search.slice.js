@@ -18,7 +18,9 @@ const searchSlice = createSlice({
 		},
 		searchByName: (state, action) => {
 			const filteredProperties = state.propertyList.filter((property) =>
-				property.name.toLowerCase().includes(action.payload.toLowerCase())
+				property.name
+					.toLowerCase()
+					.includes(action.payload.trim().toLowerCase())
 			);
 			return {
 				...state,

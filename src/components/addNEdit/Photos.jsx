@@ -15,6 +15,8 @@ export const PhotosBox = ({
 	handleCheckboxChange,
 	inputRef,
 	photosPreview,
+	isAddMode,
+	onUpdate,
 }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
@@ -109,8 +111,10 @@ export const PhotosBox = ({
 					<Button
 						type="submit"
 						className="footer-button-show"
-						clickHandler={onSubmit}>
-						<span className="text-for-button">Save Changes</span>
+						clickHandler={isAddMode ? onSubmit : onUpdate}>
+						<span className="text-for-button">
+							{isAddMode ? 'Save Changes' : 'Update Changes'}
+						</span>
 					</Button>
 				</div>
 			</div>

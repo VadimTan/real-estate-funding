@@ -38,14 +38,36 @@ export const Properties = () => {
 									// 	alt=""
 									// />
 									<div
-										className="image-for-property"
+										className="image-for-property relative"
 										style={{
 											backgroundImage: `url(${hostUrl}${property.images[0].path})`,
 											backgroundRepeat: 'no-repeat',
 											backgroundSize: 'cover',
 											height: '208px',
-										}}
-									/>
+										}}>
+										<div className="tag-row">
+											{property.completed === 1 && (
+												<div className="row-completed">
+													<img
+														className="tag"
+														src={tag_blue}
+														alt=""
+													/>
+													<span className="completed-text-row">Completed</span>
+												</div>
+											)}
+											{property.sold === 1 && (
+												<div className="row-sold">
+													<img
+														className="tag"
+														src={tag_green}
+														alt=""
+													/>
+													<span className="sold-text-row">Sold</span>
+												</div>
+											)}
+										</div>
+									</div>
 								) : (
 									<div className="image-for-property">No image</div>
 								)}
@@ -102,24 +124,6 @@ export const Properties = () => {
 										View Details Of Property
 									</Label>
 								</Button>
-							</div>
-							<div className="tag-row">
-								<div className="row-completed">
-									<img
-										className="tag"
-										src={tag_blue}
-										alt=""
-									/>
-									<span className="completed-text-row">Completed</span>
-								</div>
-								<div className="row-sold">
-									<img
-										className="tag"
-										src={tag_green}
-										alt=""
-									/>
-									<span className="sold-text-row">Sold</span>
-								</div>
 							</div>
 						</div>
 					))}

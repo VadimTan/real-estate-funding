@@ -21,19 +21,14 @@
 	padding: 16px 100px;
 }
 
-.grid-element {
-	position: relative;
-}
-
 .tag-row {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	padding: 4px;
-	gap: 8px;
 	position: absolute;
-	top: 0;
-	left: 205px;
+	gap: 8px;
+	top: 8px;
+	right: 8px;
 }
 
 .row-completed {
