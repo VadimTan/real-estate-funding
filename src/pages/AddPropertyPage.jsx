@@ -15,11 +15,11 @@ import { hostUrl } from '../constants/constants';
 
 export const AddPropertyPage = () => {
 	const [errorMessage, setErrorMessage] = useState('');
-	const [photos, setPhotos] = useState([]);
+	const [uploadedFiles, setUploadedFiles] = useState([]);
 	const [photosPreview, setPhotosPreview] = useState([]);
+	const [imagesPreview, setImagesPreview] = useState([]);
 	const [selectedPhotoIndexes, setSelectedPhotoIndexes] = useState([]);
 	const inputRef = useRef(null);
-	const [documents, setDocuments] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -47,22 +47,24 @@ export const AddPropertyPage = () => {
 		bed: '',
 		meter: '',
 		about: '',
+		images: [],
 		photos: [],
 		documents: [],
 		sold: 0,
 		completed: 0,
 	});
 
-	const saveProperty = async (formData) => {
-		return await axios.post(`${baseUrl}/admin/property/add`, formData, {
+	const saveProperty = async (formState) => {
+		// console.log('formState:', formState)
+		return await axios.post(`${baseUrl}/admin/property/add`, formState, {
 			headers: { 'Content-Type': 'multipart/form-data' },
 		});
 	};
 
-	const updateProperty = async (formData) => {
+	const updateProperty = async (formState) => {
 		return await axios.post(
 			`${baseUrl}/admin/property/update/?id=${params.id}`,
-			formData,
+			formState,
 			{
 				headers: { 'Content-Type': 'multipart/form-data' },
 			}
@@ -80,8 +82,8 @@ export const AddPropertyPage = () => {
 					const convertedImg = response.data.data.images.map((img) => {
 						return `${hostUrl}${img.path}`;
 					});
-					setPhotosPreview(convertedImg);
-					setPhotos(convertedImg);
+					setImagesPreview(convertedImg);
+					// setImages(convertedImg);
 					setFormState(response.data.data && { ...response.data.data });
 					setIsLoading(false);
 				} catch (error) {
@@ -98,7 +100,6 @@ export const AddPropertyPage = () => {
 		try {
 			const response = await updateProperty({ ...formState });
 			setIsLoading(false);
-			console.log(response);
 			if (
 				response.data.responseCode.responseCode === '1' ||
 				response.data.responseCode.responseCode === '11'
@@ -112,31 +113,9 @@ export const AddPropertyPage = () => {
 	};
 
 	const onSubmit = async () => {
-		const formData = new FormData();
-		for (const key in formState) {
-			const value = formState[key];
-			if (Array.isArray(value)) {
-				if (key === 'photos') {
-					if (photos.length) {
-						photos.forEach((photo, index) =>
-							formData.append(`${key}[${index}]`, photo)
-						);
-					}
-				}
-				if (key === 'documents') {
-					if (documents.length) {
-						documents.forEach((doc, index) =>
-							formData.append(`${key}[${index}]`, doc)
-						);
-					}
-				}
-			} else {
-				formData.append(key, value);
-			}
-		}
 		try {
 			setIsLoading(true);
-			const response = await saveProperty(formData);
+			const response = await saveProperty(formState);
 			if (
 				response.data.responseCode.responseCode === '1' ||
 				response.data.responseCode.responseCode === '11'
@@ -165,25 +144,22 @@ export const AddPropertyPage = () => {
 		});
 	};
 
-	const testPhotos = [];
 
+  
 	const handleImage = async (e) => {
 		const file = e.target.files[0];
 		const base64 = await convertBase64(file);
+		
 		if (
-			file.type.includes('application/') ||
-			file.type.includes('text/plain')
+		file.type.includes('application/') ||
+		file.type.includes('text/plain')
 		) {
-			setDocuments((prevDocs) => [...prevDocs, file]);
+		setFormState({ ...formState, documents: [...formState.documents, file] });
 		} else {
-			setPhotos(() => [...photos, file]);
-			if (isAddMode) {
-				setFormState({ ...formState, images: [...photos, file] });
-			} else {
-				testPhotos.push(file);
-				setFormState({ ...formState, photos: [...testPhotos] });
-			}
+		setUploadedFiles([...uploadedFiles, file]);
+		setFormState({ ...formState, photos: [...uploadedFiles, file] });
 		}
+		
 		setPhotosPreview(() => [...photosPreview, base64]);
 	};
 
@@ -197,25 +173,26 @@ export const AddPropertyPage = () => {
 			// Check the image and move it to the start of the photos array
 			setSelectedPhotoIndexes((prevSelected) => [index, ...prevSelected]);
 		}
-		const orderedPhotos = [...photos];
-		const removed = orderedPhotos.splice(index, 1);
-		orderedPhotos.unshift(removed[0]);
-		console.log('spisok photo', orderedPhotos);
-		setPhotos(orderedPhotos);
+		// const orderedPhotos = [...photos];
+		// const removed = orderedPhotos.splice(index, 1);
+		// orderedPhotos.unshift(removed[0]);
+		// console.log('spisok photo', orderedPhotos);
+		// setPhotos(orderedPhotos);
 	};
 
-	const handleDeleteImg = (id) => {
-		const photosPreviewCopy = [...photosPreview];
-		const photosCopy = [...photos];
-		photosPreviewCopy.splice(id, 1);
-		photosCopy.splice(id, 1);
-		setPhotos(photosCopy);
-		setPhotosPreview(photosPreviewCopy);
-		// if (!isAddMode) {
-		// 	const imagesCopy = formState.images;
-		// 	imagesCopy.splice(id, 1);
-		// 	setFormState({ ...formState, images: imagesCopy });
-		// }
+	const handleDeleteImg = (index) => {
+		const flattenedArray = [imagesPreview, photosPreview].flat();
+		const fileToRemove = flattenedArray[index];
+		if (fileToRemove.startsWith('https://')) {
+			const idx = imagesPreview.indexOf(fileToRemove);
+			setFormState({...formState, images: formState.images.filter((_, i) => i !== idx)})
+			setImagesPreview((prev) => prev.filter((_, i) => i !== idx))
+		} else {
+			const idx = photosPreview.indexOf(fileToRemove);
+			setFormState((prev) => ({...prev, photos: prev.photos.filter((_, i) => i !== idx)}))
+			setPhotosPreview((prev) => prev.filter((_, i) => i !== idx))
+		}
+
 		inputRef.current.value = '';
 	};
 
@@ -279,6 +256,7 @@ export const AddPropertyPage = () => {
 					handleCheckboxChange={handleCheckboxChange}
 					inputRef={inputRef}
 					photosPreview={photosPreview}
+					imagesPreview={imagesPreview}
 					onUpdate={onUpdate}
 					isAddMode={isAddMode}
 				/>

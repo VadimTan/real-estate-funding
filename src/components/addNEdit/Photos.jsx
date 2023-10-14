@@ -15,6 +15,7 @@ export const PhotosBox = ({
 	handleCheckboxChange,
 	inputRef,
 	photosPreview,
+	imagesPreview,
 	isAddMode,
 	onUpdate,
 }) => {
@@ -25,6 +26,9 @@ export const PhotosBox = ({
 		setStateOfIcon((icon) => !icon);
 		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
 	};
+	// console.log('flat::', )
+
+	// console.log({images: imagesPreview, photos: photosPreview});
 
 	return (
 		<div className="photos-upload-container">
@@ -50,26 +54,23 @@ export const PhotosBox = ({
 					<span className="span-for-header-main-image">Main Image</span>
 				</div>
 				<div className="list-of-uploading-files">
-					{photosPreview.length == 0 && <h3>No images!</h3>}
-					{photosPreview.map((image, index) => {
+					{/* {photosPreview.length === 0 && <h3>No images!</h3>} */}
+					{[imagesPreview, photosPreview].flat().map((img, index) => {
 						const isChecked = selectedPhotos.includes(index);
 						return (
 							<div
 								className={`photo-box${isChecked ? ' checked' : ' disabled'}`}
-								key={index}
-								id={index}>
+								key={img}>
 								<div>
 									<Label className="label-for-row">{index + 1}.</Label>
 								</div>
 								<div>
 									<img
-										id={index}
 										className="picture-uploaded-file"
-										src={photosPreview[index]}
-										alt=""
+										src={img}
+										alt="uploaded doc"
 									/>
 								</div>
-								{}
 								<div>
 									<Button
 										className="delete-icon-div"
@@ -89,6 +90,7 @@ export const PhotosBox = ({
 								</div>
 							</div>
 						);
+						
 					})}
 				</div>
 				<div className="button-upload-photos-container">
