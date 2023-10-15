@@ -16,6 +16,7 @@ export const PhotosBox = ({
 	inputRef,
 	photosPreview,
 	imagesPreview,
+	documentsPreview,
 	isAddMode,
 	onUpdate,
 	checkedFiles
@@ -55,7 +56,7 @@ export const PhotosBox = ({
 				</div>
 				<div className="list-of-uploading-files">
 					{/* {photosPreview.length === 0 && <h3>No images!</h3>} */}
-					{[imagesPreview, photosPreview].flat().map((img, index) => {
+					{[imagesPreview, photosPreview, documentsPreview].flat().map((img, index) => {
 						const isChecked = checkedFiles[index];
 						return (
 							<div

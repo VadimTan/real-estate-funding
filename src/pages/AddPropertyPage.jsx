@@ -16,8 +16,10 @@ import { hostUrl } from '../constants/constants';
 export const AddPropertyPage = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [uploadedFiles, setUploadedFiles] = useState([]);
+	const [uploadedDocuments, setUploadedDocuments] = useState([]);
 	const [photosPreview, setPhotosPreview] = useState([]);
 	const [imagesPreview, setImagesPreview] = useState([]);
+	const [documentsPreview, setDocumentsPreview] = useState([]);
 	// const [selectedPhotoIndexes, setSelectedPhotoIndexes] = useState([]);
 	const [checkedFiles, setCheckedFiles] = useState([]);
 	const inputRef = useRef(null);
@@ -56,7 +58,6 @@ export const AddPropertyPage = () => {
 	});
 
 	const saveProperty = async (formState) => {
-		// console.log('formState:', formState)
 		return await axios.post(`${baseUrl}/admin/property/add`, formState, {
 			headers: { 'Content-Type': 'multipart/form-data' },
 		});
@@ -162,55 +163,65 @@ export const AddPropertyPage = () => {
 		if (file.type.includes('image')) {
 			setUploadedFiles([...uploadedFiles, file]);
 			setFormState({ ...formState, photos: [...uploadedFiles, file] });
+			setPhotosPreview(() => [...photosPreview, base64]);
 		} else {
-			setUploadedFiles([...uploadedFiles, file]);
-			setFormState({ ...formState, documents: [...uploadedFiles, file] });
+			setUploadedDocuments([...uploadedDocuments, file]);
+			setFormState({ ...formState, documents: [...uploadedDocuments, file] });
+			setDocumentsPreview(() => [...documentsPreview, file])
 		}
-		setPhotosPreview(() => [...photosPreview, base64]);
 	};
 
+	
+
 	const handleCheckboxChange = (index, preview) => {
-		const flattenedArray = [imagesPreview, photosPreview].flat();
+		const flattenedArray = [imagesPreview, photosPreview, documentsPreview].flat();
 		const selectedItem = flattenedArray[index];
 
-		const updatedChecks = checkedFiles.map((item, i) =>
-			i === index ? !item : item
-		);
+		
+		if (typeof selectedItem === 'object') {
+			const cloneToUpdate = [...formState.documents]
+			const docIndex = documentsPreview.findIndex(doc => doc.name === preview.name);
+			const moved = cloneToUpdate.splice(docIndex, 1);
+			cloneToUpdate.unshift(moved[0])
+			setFormState({...formState, documents: cloneToUpdate})
+		} else if (selectedItem.includes('https://')){
+			const updatedChecks = checkedFiles.map((item, i) =>
+				i === index ? !item : item
+			);
 
+			setCheckedFiles(updatedChecks);
 
-		setCheckedFiles(updatedChecks);
-
-		if (selectedItem.includes('https://')){
 			const updatedFormStateImages = formState.images.map((item, i) => ({
 				...item,
 				main_image: updatedChecks[i] ? 1 : 0,
 			}));
 
-			console.log(formState);
-			
 			setFormState({ ...formState, images: updatedFormStateImages });
-			
 		} else {
 			const cloneToUpdate = [...formState.photos]
 			const previewIndexOf = photosPreview.indexOf(preview);
 			const moved = cloneToUpdate.splice(previewIndexOf, 1);
 			cloneToUpdate.unshift(moved[0])
+
 			setFormState({...formState, photos: cloneToUpdate})
 		}
 
 	};
 
 	const handleDeleteImg = (index) => {
-		//TODO: need to support documents
-
-		const flattenedArray = [imagesPreview, photosPreview].flat();
+		const flattenedArray = [imagesPreview, photosPreview, documentsPreview].flat();
 		const fileToRemove = flattenedArray[index];
-		if (fileToRemove.startsWith('https://')) {
+
+		//case of uploaded documents
+		if (typeof fileToRemove === 'object') {
+			setFormState({...formState, documents: formState.documents.filter((doc) => doc.name !== fileToRemove.name)})
+			setDocumentsPreview((prev) => prev.filter((doc) => doc.name !== fileToRemove.name))
+		} else if (fileToRemove.startsWith('https://')) { //case of received images
 			const idx = imagesPreview.indexOf(fileToRemove);
 			setCheckedFiles((prev) =>  prev.filter(check => checkedFiles[index] !== check))
 			setFormState({...formState, images: formState.images.filter((_, i) => i !== idx)})
 			setImagesPreview((prev) => prev.filter((_, i) => i !== idx))
-		} else {
+		} else {// case of uploaded images
 			const idx = photosPreview.indexOf(fileToRemove);
 			setFormState((prev) => ({...prev, photos: prev.photos.filter((_, i) => i !== idx)}))
 			setPhotosPreview((prev) => prev.filter((_, i) => i !== idx))
@@ -280,6 +291,7 @@ export const AddPropertyPage = () => {
 					inputRef={inputRef}
 					photosPreview={photosPreview}
 					imagesPreview={imagesPreview}
+					documentsPreview={documentsPreview}
 					onUpdate={onUpdate}
 					isAddMode={isAddMode}
 					checkedFiles={checkedFiles}
