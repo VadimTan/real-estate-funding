@@ -22,15 +22,17 @@ export const MainMetrics = ({
 
 	return (
 		<div className="main-metrics-container">
-			<div className="main-metrics-block-text">
+			<div
+				className="main-metrics-block-text "
+				onClick={changeStateHandler}>
 				<h1 className="main-metrics-text">Main Metrics</h1>
 				{stateOfIcon ? (
 					<div className="expand-less-icon">
-						<ExpandLessIcon onClick={changeStateHandler} />
+						<ExpandLessIcon />
 					</div>
 				) : (
 					<div className="expand-more-icon">
-						<ExpandMoreIcon onClick={changeStateHandler} />
+						<ExpandMoreIcon />
 					</div>
 				)}
 			</div>

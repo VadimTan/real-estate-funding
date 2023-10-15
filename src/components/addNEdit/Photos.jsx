@@ -6,6 +6,8 @@ import { Checkbox } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
+import buttonZoom from '../../assets/images/button_zoom.svg';
+import Modal from '../../common/Modal';
 
 export const PhotosBox = ({
 	onSubmit,
@@ -19,29 +21,46 @@ export const PhotosBox = ({
 	documentsPreview,
 	isAddMode,
 	onUpdate,
-	checkedFiles
+	checkedFiles,
 }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
-	
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedImage, setSelectedImage] = useState('');
 	// console.log(checkedFiles);
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
 		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
 	};
 
+	const openModal = (imageSrc) => {
+		setSelectedImage(imageSrc);
+		setIsModalOpen(true);
+	};
 
 	return (
 		<div className="photos-upload-container">
-			<div className="photos-upload-block-text">
+			{selectedImage && (
+				<Modal
+					active={isModalOpen}
+					setActive={() => openModal(false)}>
+					<img
+						src={selectedImage}
+						alt=""
+					/>
+				</Modal>
+			)}
+			<div
+				className="photos-upload-block-text"
+				onClick={changeStateHandler}>
 				<h1 className="photos-upload-text">Photos</h1>
 				{stateOfIcon ? (
 					<div className="expand-less-icon">
-						<ExpandLessIcon onClick={changeStateHandler} />
+						<ExpandLessIcon />
 					</div>
 				) : (
 					<div className="expand-more-icon">
-						<ExpandMoreIcon onClick={changeStateHandler} />
+						<ExpandMoreIcon />
 					</div>
 				)}
 			</div>
@@ -55,44 +74,51 @@ export const PhotosBox = ({
 					<span className="span-for-header-main-image">Main Image</span>
 				</div>
 				<div className="list-of-uploading-files">
-					{/* {photosPreview.length === 0 && <h3>No images!</h3>} */}
-					{[imagesPreview, photosPreview, documentsPreview].flat().map((img, index) => {
-						const isChecked = checkedFiles[index];
-						return (
-							<div
-								className={`photo-box${checkedFiles[index] ? ' checked' : ' disabled'}`}
-								key={img}>
-								<div>
-									<Label className="label-for-row">{index + 1}.</Label>
-								</div>
-								<div>
-									<img
-										className="picture-uploaded-file"
-										src={img}
-										alt="uploaded doc"
-									/>
-								</div>
-								<div>
-									<Button
-										className="delete-icon-div"
-										clickHandler={() => handleDelete(index)}>
-										<DeleteIcon />
-									</Button>
-								</div>
+					{[imagesPreview, photosPreview, documentsPreview]
+						.flat()
+						.map((img, index) => {
+							const isChecked = checkedFiles[index];
+							return (
 								<div
-									className="checkbox-container-upload"
-									style={{ marginLeft: 'auto' }}>
-									<Checkbox
-										// {...label}
-										checked={isChecked}
-										onChange={() => handleCheckboxChange(index, img)}
-										sx={{ display: 'flex', justifyContent: 'flex-end' }}
-									/>
+									className={`photo-box${
+										checkedFiles[index] ? ' checked' : ' disabled'
+									}`}
+									key={img}>
+									<div>
+										<Label className="label-for-row">{index + 1}.</Label>
+									</div>
+									<div>
+										<img
+											className="picture-uploaded-file"
+											src={img}
+											alt="uploaded doc"
+										/>
+										<img
+											className="button-zoom"
+											src={buttonZoom}
+											alt="zoom-img"
+											onClick={() => openModal(img)}
+										/>
+									</div>
+									<div>
+										<Button
+											className="delete-icon-div"
+											clickHandler={() => handleDelete(index)}>
+											<DeleteIcon color="error" />
+										</Button>
+									</div>
+									<div
+										className="checkbox-container-upload"
+										style={{ marginLeft: 'auto' }}>
+										<Checkbox
+											checked={isChecked}
+											onChange={() => handleCheckboxChange(index, img)}
+											sx={{ display: 'flex', justifyContent: 'flex-end' }}
+										/>
+									</div>
 								</div>
-							</div>
-						);
-						
-					})}
+							);
+						})}
 				</div>
 				<div className="button-upload-photos-container">
 					<Label

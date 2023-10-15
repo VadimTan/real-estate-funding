@@ -22,15 +22,17 @@ export const AboutProperty = ({
 
 	return (
 		<div className="about-property-container">
-			<div className="about-property-block-text">
+			<div
+				className="about-property-block-text"
+				onClick={changeStateHandler}>
 				<h1 className="about-property-text">About Property</h1>
 				{stateOfIcon ? (
 					<div className="expand-less-icon">
-						<ExpandLessIcon onClick={changeStateHandler} />
+						<ExpandLessIcon />
 					</div>
 				) : (
 					<div className="expand-more-icon">
-						<ExpandMoreIcon onClick={changeStateHandler} />
+						<ExpandMoreIcon />
 					</div>
 				)}
 			</div>

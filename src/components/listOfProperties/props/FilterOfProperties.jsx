@@ -99,7 +99,11 @@ export const FilterOfProperties = () => {
 							<span className="exchange-icon">= 1 USD</span>
 						</div>
 						<Button
-							className="fee-exchange-button"
+							className={
+								filterState.exchange_rate && filterState.dld_fee
+									? 'fee-exchange-button'
+									: 'fee-exchange-disabled'
+							}
 							clickHandler={onSaveFilters}>
 							<span className="text-fee-button">Save Changes</span>
 						</Button>

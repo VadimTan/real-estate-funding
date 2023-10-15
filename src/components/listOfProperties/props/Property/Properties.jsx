@@ -29,14 +29,6 @@ export const Properties = () => {
 							className="grid-element">
 							<div className="main-image-for-property">
 								{property.images.length ? (
-									// <img
-									// 	className="image-for-property"
-									// 	src={
-									// 		`https://afehe-hwf.buzz/storage/${property.images[0].path}` ||
-									// 		null
-									// 	}
-									// 	alt=""
-									// />
 									<div
 										className="image-for-property relative"
 										style={{

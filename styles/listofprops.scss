@@ -159,6 +159,19 @@
 	gap: 10px;
 	width: 145px;
 	height: 30px;
+	background: #007aff;
+	border-radius: 8px;
+}
+
+.fee-exchange-disabled {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 6px 24px;
+	gap: 10px;
+	width: 145px;
+	height: 30px;
 	background: #c7c7cc;
 	border-radius: 8px;
 }
@@ -174,7 +187,7 @@
 	text-align: center;
 	letter-spacing: 0px;
 	font-feature-settings: 'case' on;
-	color: #8e8e93;
+	color: #fff;
 }
 
 .dld-icon {
