@@ -11,24 +11,24 @@ export const PhotosBox = ({
 	onSubmit,
 	handleImage,
 	handleDelete,
-	selectedPhotos,
+	// selectedPhotos,
 	handleCheckboxChange,
 	inputRef,
 	photosPreview,
 	imagesPreview,
 	isAddMode,
 	onUpdate,
+	checkedFiles
 }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
-
+	
+	// console.log(checkedFiles);
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
 		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
 	};
-	// console.log('flat::', )
 
-	// console.log({images: imagesPreview, photos: photosPreview});
 
 	return (
 		<div className="photos-upload-container">
@@ -56,10 +56,10 @@ export const PhotosBox = ({
 				<div className="list-of-uploading-files">
 					{/* {photosPreview.length === 0 && <h3>No images!</h3>} */}
 					{[imagesPreview, photosPreview].flat().map((img, index) => {
-						const isChecked = selectedPhotos.includes(index);
+						const isChecked = checkedFiles[index];
 						return (
 							<div
-								className={`photo-box${isChecked ? ' checked' : ' disabled'}`}
+								className={`photo-box${checkedFiles[index] ? ' checked' : ' disabled'}`}
 								key={img}>
 								<div>
 									<Label className="label-for-row">{index + 1}.</Label>
@@ -84,7 +84,7 @@ export const PhotosBox = ({
 									<Checkbox
 										// {...label}
 										checked={isChecked}
-										onChange={() => handleCheckboxChange(index)}
+										onChange={() => handleCheckboxChange(index, img)}
 										sx={{ display: 'flex', justifyContent: 'flex-end' }}
 									/>
 								</div>

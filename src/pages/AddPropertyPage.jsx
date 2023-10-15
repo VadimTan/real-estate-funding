@@ -18,7 +18,8 @@ export const AddPropertyPage = () => {
 	const [uploadedFiles, setUploadedFiles] = useState([]);
 	const [photosPreview, setPhotosPreview] = useState([]);
 	const [imagesPreview, setImagesPreview] = useState([]);
-	const [selectedPhotoIndexes, setSelectedPhotoIndexes] = useState([]);
+	// const [selectedPhotoIndexes, setSelectedPhotoIndexes] = useState([]);
+	const [checkedFiles, setCheckedFiles] = useState([]);
 	const inputRef = useRef(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
@@ -84,6 +85,9 @@ export const AddPropertyPage = () => {
 					});
 					setImagesPreview(convertedImg);
 					// setImages(convertedImg);
+					setCheckedFiles(response.data.data.images.map(file => {
+						return !!file.main_image;
+					}))
 					setFormState(response.data.data && { ...response.data.data });
 					setIsLoading(false);
 				} catch (error) {
@@ -105,10 +109,12 @@ export const AddPropertyPage = () => {
 				response.data.responseCode.responseCode === '11'
 			) {
 				navigate('/');
+			} else {
+				setErrorMessage('It seems like you missed a few fields. Make sure to fill them all.');
 			}
 		} catch (error) {
 			setIsLoading(false);
-			console.log(error);
+			setErrorMessage(error.message);
 		}
 	};
 
@@ -121,6 +127,8 @@ export const AddPropertyPage = () => {
 				response.data.responseCode.responseCode === '11'
 			) {
 				navigate('/');
+			} else {
+				setErrorMessage('It seems like you missed a few fields. Make sure to fill them all.');
 			}
 			setIsLoading(false);
 		} catch (error) {
@@ -149,42 +157,57 @@ export const AddPropertyPage = () => {
 	const handleImage = async (e) => {
 		const file = e.target.files[0];
 		const base64 = await convertBase64(file);
+		//TODO: need to support documents
 		
-		if (
-		file.type.includes('application/') ||
-		file.type.includes('text/plain')
-		) {
-		setFormState({ ...formState, documents: [...formState.documents, file] });
+		if (file.type.includes('image')) {
+			setUploadedFiles([...uploadedFiles, file]);
+			setFormState({ ...formState, photos: [...uploadedFiles, file] });
 		} else {
-		setUploadedFiles([...uploadedFiles, file]);
-		setFormState({ ...formState, photos: [...uploadedFiles, file] });
+			setUploadedFiles([...uploadedFiles, file]);
+			setFormState({ ...formState, documents: [...uploadedFiles, file] });
 		}
-		
 		setPhotosPreview(() => [...photosPreview, base64]);
 	};
 
-	const handleCheckboxChange = (index) => {
-		if (selectedPhotoIndexes.includes(index)) {
-			// Uncheck the image and remove it from selectedPhotos
-			setSelectedPhotoIndexes((prevSelected) =>
-				prevSelected.filter((item) => item !== index)
-			);
+	const handleCheckboxChange = (index, preview) => {
+		const flattenedArray = [imagesPreview, photosPreview].flat();
+		const selectedItem = flattenedArray[index];
+
+		const updatedChecks = checkedFiles.map((item, i) =>
+			i === index ? !item : item
+		);
+
+
+		setCheckedFiles(updatedChecks);
+
+		if (selectedItem.includes('https://')){
+			const updatedFormStateImages = formState.images.map((item, i) => ({
+				...item,
+				main_image: updatedChecks[i] ? 1 : 0,
+			}));
+
+			console.log(formState);
+			
+			setFormState({ ...formState, images: updatedFormStateImages });
+			
 		} else {
-			// Check the image and move it to the start of the photos array
-			setSelectedPhotoIndexes((prevSelected) => [index, ...prevSelected]);
+			const cloneToUpdate = [...formState.photos]
+			const previewIndexOf = photosPreview.indexOf(preview);
+			const moved = cloneToUpdate.splice(previewIndexOf, 1);
+			cloneToUpdate.unshift(moved[0])
+			setFormState({...formState, photos: cloneToUpdate})
 		}
-		// const orderedPhotos = [...photos];
-		// const removed = orderedPhotos.splice(index, 1);
-		// orderedPhotos.unshift(removed[0]);
-		// console.log('spisok photo', orderedPhotos);
-		// setPhotos(orderedPhotos);
+
 	};
 
 	const handleDeleteImg = (index) => {
+		//TODO: need to support documents
+
 		const flattenedArray = [imagesPreview, photosPreview].flat();
 		const fileToRemove = flattenedArray[index];
 		if (fileToRemove.startsWith('https://')) {
 			const idx = imagesPreview.indexOf(fileToRemove);
+			setCheckedFiles((prev) =>  prev.filter(check => checkedFiles[index] !== check))
 			setFormState({...formState, images: formState.images.filter((_, i) => i !== idx)})
 			setImagesPreview((prev) => prev.filter((_, i) => i !== idx))
 		} else {
@@ -252,13 +275,14 @@ export const AddPropertyPage = () => {
 					onSubmit={onSubmit}
 					handleImage={handleImage}
 					handleDelete={handleDeleteImg}
-					selectedPhotos={selectedPhotoIndexes}
+					// selectedPhotos={selectedPhotoIndexes}
 					handleCheckboxChange={handleCheckboxChange}
 					inputRef={inputRef}
 					photosPreview={photosPreview}
 					imagesPreview={imagesPreview}
 					onUpdate={onUpdate}
 					isAddMode={isAddMode}
+					checkedFiles={checkedFiles}
 				/>
 			</div>
 			<Footer
