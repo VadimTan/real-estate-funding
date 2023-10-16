@@ -48,7 +48,8 @@ export const FilterOfProperties = () => {
 				const { dld_fee, exchange_rate } = response.data.data.config;
 				setFilterState({ dld_fee, exchange_rate });
 			} catch (error) {
-				console.log(error);
+				setIsLoading(false);
+				console.log(error.response.data.message);
 			}
 		};
 		getAllProperties();

@@ -64,9 +64,14 @@ export const AddPropertyPage = () => {
 	};
 
 	const updateProperty = async (formState) => {
+		const dataToSend = {
+			...formState,
+			images: JSON.stringify(formState.images),
+		};
+		console.log(dataToSend);
 		return await axios.post(
 			`${baseUrl}/admin/property/update/?id=${params.id}`,
-			formState,
+			dataToSend,
 			{
 				headers: { 'Content-Type': 'multipart/form-data' },
 			}
@@ -86,9 +91,11 @@ export const AddPropertyPage = () => {
 					});
 					setImagesPreview(convertedImg);
 					// setImages(convertedImg);
-					setCheckedFiles(response.data.data.images.map(file => {
-						return !!file.main_image;
-					}))
+					setCheckedFiles(
+						response.data.data.images.map((file) => {
+							return !!file.main_image;
+						})
+					);
 					setFormState(response.data.data && { ...response.data.data });
 					setIsLoading(false);
 				} catch (error) {
@@ -111,7 +118,10 @@ export const AddPropertyPage = () => {
 			) {
 				navigate('/');
 			} else {
-				setErrorMessage('It seems like you missed a few fields. Make sure to fill them all.');
+				setErrorMessage(
+					// 'It seems like you missed a few fields. Make sure to fill them all.'
+					'Woops, something went wrong!'
+				);
 			}
 		} catch (error) {
 			setIsLoading(false);
@@ -129,7 +139,9 @@ export const AddPropertyPage = () => {
 			) {
 				navigate('/');
 			} else {
-				setErrorMessage('It seems like you missed a few fields. Make sure to fill them all.');
+				setErrorMessage(
+					'It seems like you missed a few fields. Make sure to fill them all.'
+				);
 			}
 			setIsLoading(false);
 		} catch (error) {
@@ -153,13 +165,11 @@ export const AddPropertyPage = () => {
 		});
 	};
 
-
-  
 	const handleImage = async (e) => {
 		const file = e.target.files[0];
 		const base64 = await convertBase64(file);
 		//TODO: need to support documents
-		
+
 		if (file.type.includes('image')) {
 			setUploadedFiles([...uploadedFiles, file]);
 			setFormState({ ...formState, photos: [...uploadedFiles, file] });
@@ -167,24 +177,27 @@ export const AddPropertyPage = () => {
 		} else {
 			setUploadedDocuments([...uploadedDocuments, file]);
 			setFormState({ ...formState, documents: [...uploadedDocuments, file] });
-			setDocumentsPreview(() => [...documentsPreview, file])
+			setDocumentsPreview(() => [...documentsPreview, file]);
 		}
 	};
 
-	
-
 	const handleCheckboxChange = (index, preview) => {
-		const flattenedArray = [imagesPreview, photosPreview, documentsPreview].flat();
+		const flattenedArray = [
+			imagesPreview,
+			photosPreview,
+			documentsPreview,
+		].flat();
 		const selectedItem = flattenedArray[index];
 
-		
 		if (typeof selectedItem === 'object') {
-			const cloneToUpdate = [...formState.documents]
-			const docIndex = documentsPreview.findIndex(doc => doc.name === preview.name);
+			const cloneToUpdate = [...formState.documents];
+			const docIndex = documentsPreview.findIndex(
+				(doc) => doc.name === preview.name
+			);
 			const moved = cloneToUpdate.splice(docIndex, 1);
-			cloneToUpdate.unshift(moved[0])
-			setFormState({...formState, documents: cloneToUpdate})
-		} else if (selectedItem.includes('https://')){
+			cloneToUpdate.unshift(moved[0]);
+			setFormState({ ...formState, documents: cloneToUpdate });
+		} else if (selectedItem.includes('https://')) {
 			const updatedChecks = checkedFiles.map((item, i) =>
 				i === index ? !item : item
 			);
@@ -198,33 +211,53 @@ export const AddPropertyPage = () => {
 
 			setFormState({ ...formState, images: updatedFormStateImages });
 		} else {
-			const cloneToUpdate = [...formState.photos]
+			const cloneToUpdate = [...formState.photos];
 			const previewIndexOf = photosPreview.indexOf(preview);
 			const moved = cloneToUpdate.splice(previewIndexOf, 1);
-			cloneToUpdate.unshift(moved[0])
+			cloneToUpdate.unshift(moved[0]);
 
-			setFormState({...formState, photos: cloneToUpdate})
+			setFormState({ ...formState, photos: cloneToUpdate });
 		}
-
 	};
 
 	const handleDeleteImg = (index) => {
-		const flattenedArray = [imagesPreview, photosPreview, documentsPreview].flat();
+		const flattenedArray = [
+			imagesPreview,
+			photosPreview,
+			documentsPreview,
+		].flat();
 		const fileToRemove = flattenedArray[index];
 
 		//case of uploaded documents
 		if (typeof fileToRemove === 'object') {
-			setFormState({...formState, documents: formState.documents.filter((doc) => doc.name !== fileToRemove.name)})
-			setDocumentsPreview((prev) => prev.filter((doc) => doc.name !== fileToRemove.name))
-		} else if (fileToRemove.startsWith('https://')) { //case of received images
+			setFormState({
+				...formState,
+				documents: formState.documents.filter(
+					(doc) => doc.name !== fileToRemove.name
+				),
+			});
+			setDocumentsPreview((prev) =>
+				prev.filter((doc) => doc.name !== fileToRemove.name)
+			);
+		} else if (fileToRemove.startsWith('https://')) {
+			//case of received images
 			const idx = imagesPreview.indexOf(fileToRemove);
-			setCheckedFiles((prev) =>  prev.filter(check => checkedFiles[index] !== check))
-			setFormState({...formState, images: formState.images.filter((_, i) => i !== idx)})
-			setImagesPreview((prev) => prev.filter((_, i) => i !== idx))
-		} else {// case of uploaded images
+			setCheckedFiles((prev) =>
+				prev.filter((check) => checkedFiles[index] !== check)
+			);
+			setFormState({
+				...formState,
+				images: formState.images.filter((_, i) => i !== idx),
+			});
+			setImagesPreview((prev) => prev.filter((_, i) => i !== idx));
+		} else {
+			// case of uploaded images
 			const idx = photosPreview.indexOf(fileToRemove);
-			setFormState((prev) => ({...prev, photos: prev.photos.filter((_, i) => i !== idx)}))
-			setPhotosPreview((prev) => prev.filter((_, i) => i !== idx))
+			setFormState((prev) => ({
+				...prev,
+				photos: prev.photos.filter((_, i) => i !== idx),
+			}));
+			setPhotosPreview((prev) => prev.filter((_, i) => i !== idx));
 		}
 
 		inputRef.current.value = '';
