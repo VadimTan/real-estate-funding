@@ -11,17 +11,18 @@ import baseUrl from '../constants/config';
 import { Snackbar, Alert } from '@mui/material';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../common/Loader';
-import { hostUrl } from '../constants/constants';
+import { convertBase64 } from '../constants/constants';
 
 export const AddPropertyPage = () => {
+	const [filesPreview, setFilesPreview] = useState({images: [], photos: [], docs: [], documents: []})
 	const [errorMessage, setErrorMessage] = useState('');
-	const [uploadedFiles, setUploadedFiles] = useState([]);
-	const [uploadedDocuments, setUploadedDocuments] = useState([]);
-	const [photosPreview, setPhotosPreview] = useState([]);
-	const [imagesPreview, setImagesPreview] = useState([]);
-	const [documentsPreview, setDocumentsPreview] = useState([]);
+	// const [uploadedFiles, setUploadedFiles] = useState([]);
+	// const [uploadedDocuments, setUploadedDocuments] = useState([]);
+	// const [photosPreview, setPhotosPreview] = useState([]);
+	// const [imagesPreview, setImagesPreview] = useState([]);
+	// const [documentsPreview, setDocumentsPreview] = useState([]);
 	// const [selectedPhotoIndexes, setSelectedPhotoIndexes] = useState([]);
-	const [checkedFiles, setCheckedFiles] = useState([]);
+	// const [checkedFiles, setCheckedFiles] = useState([]);
 	const inputRef = useRef(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
@@ -52,12 +53,15 @@ export const AddPropertyPage = () => {
 		about: '',
 		images: [],
 		photos: [],
+		docs: [],
 		documents: [],
 		sold: 0,
 		completed: 0,
 	});
 
 	const saveProperty = async (formState) => {
+		console.log(formState.photos);
+
 		return await axios.post(`${baseUrl}/admin/property/add`, formState, {
 			headers: { 'Content-Type': 'multipart/form-data' },
 		});
@@ -67,6 +71,7 @@ export const AddPropertyPage = () => {
 		const dataToSend = {
 			...formState,
 			images: JSON.stringify(formState.images),
+			docs: JSON.stringify(formState.docs)
 		};
 		console.log(dataToSend);
 		return await axios.post(
@@ -86,17 +91,27 @@ export const AddPropertyPage = () => {
 					const response = await axios.get(
 						`${baseUrl}/admin/property/getOne?id=${params.id}`
 					);
-					const convertedImg = response.data.data.images.map((img) => {
-						return `${hostUrl}${img.path}`;
-					});
-					setImagesPreview(convertedImg);
+					// const convertedImages = response.data.data.images.map((img) => {
+					// 	return `${hostUrl}${img.path}`;
+					// });
+
+					// const convertedDocs = response.data.data.docs.map((file) => {
+					// 	return !!file.main_document;
+					// })
+
+					const docs = response.data.data.docs.map(doc => ({ ...doc, checked: !!doc.main_document }));
+					const images = response.data.data.images.map(image => ({ ...image, checked: !!image.main_image }));
+					setFilesPreview({ images, photos: [], docs, documents: [] });
+
+					// setFilesPreview([convertedImages, convertedDocs].flat())
+					// setImagesPreview(convertedImg);
 					// setImages(convertedImg);
-					setCheckedFiles(
-						response.data.data.images.map((file) => {
-							return !!file.main_image;
-						})
-					);
-					setFormState(response.data.data && { ...response.data.data });
+					// setCheckedFiles(
+					// 	response.data.data.images.map((file) => {
+					// 		return !!file.main_image;
+					// 	})
+					// );
+					setFormState(response.data.data && { ...response.data.data, photos: [], documents: [] });
 					setIsLoading(false);
 				} catch (error) {
 					setIsLoading(false);
@@ -150,114 +165,75 @@ export const AddPropertyPage = () => {
 		}
 	};
 
-	const convertBase64 = (file) => {
-		return new Promise((resolve, reject) => {
-			const fileReader = new FileReader();
-			fileReader.readAsDataURL(file);
-
-			fileReader.onload = () => {
-				resolve(fileReader.result);
-			};
-
-			fileReader.onerror = (error) => {
-				reject(error);
-			};
-		});
-	};
+	
 
 	const handleImage = async (e) => {
 		const file = e.target.files[0];
 		const base64 = await convertBase64(file);
-		//TODO: need to support documents
 
 		if (file.type.includes('image')) {
-			setUploadedFiles([...uploadedFiles, file]);
-			setFormState({ ...formState, photos: [...uploadedFiles, file] });
-			setPhotosPreview(() => [...photosPreview, base64]);
+			setFilesPreview({
+				...filesPreview,
+				photos: [...filesPreview.photos, base64],
+			})
+			setFormState({ ...formState, photos: [...formState.photos, file] });
 		} else {
-			setUploadedDocuments([...uploadedDocuments, file]);
-			setFormState({ ...formState, documents: [...uploadedDocuments, file] });
-			setDocumentsPreview(() => [...documentsPreview, file]);
+			setFilesPreview({
+				...filesPreview,
+				documents: [...filesPreview.documents, file]
+			})
+			setFormState({ ...formState, documents: [...formState.documents, file] });
 		}
 	};
 
-	const handleCheckboxChange = (index, preview) => {
-		const flattenedArray = [
-			imagesPreview,
-			photosPreview,
-			documentsPreview,
-		].flat();
-		const selectedItem = flattenedArray[index];
+	const handleCheckboxChange = (index, key) => {
+		const clonedFiles = [...formState[key]];
 
-		if (typeof selectedItem === 'object') {
-			const cloneToUpdate = [...formState.documents];
-			const docIndex = documentsPreview.findIndex(
-				(doc) => doc.name === preview.name
-			);
-			const moved = cloneToUpdate.splice(docIndex, 1);
-			cloneToUpdate.unshift(moved[0]);
-			setFormState({ ...formState, documents: cloneToUpdate });
-		} else if (selectedItem.includes('https://')) {
-			const updatedChecks = checkedFiles.map((item, i) =>
-				i === index ? !item : item
-			);
-
-			setCheckedFiles(updatedChecks);
-
-			const updatedFormStateImages = formState.images.map((item, i) => ({
-				...item,
-				main_image: updatedChecks[i] ? 1 : 0,
-			}));
-
-			setFormState({ ...formState, images: updatedFormStateImages });
-		} else {
-			const cloneToUpdate = [...formState.photos];
-			const previewIndexOf = photosPreview.indexOf(preview);
-			const moved = cloneToUpdate.splice(previewIndexOf, 1);
-			cloneToUpdate.unshift(moved[0]);
-
-			setFormState({ ...formState, photos: cloneToUpdate });
+		if (key === 'images') {// Handle the 'images' case
+			clonedFiles[index].main_image = clonedFiles[index].main_image === 0 ? 1 : 0;
+			setFormState({...formState, images: clonedFiles})
+			setFilesPreview({...filesPreview, [key]: clonedFiles})
+		} else if (key === 'photos') {// Handle the 'photos' case
+			const moved = clonedFiles.splice(index, 1);
+			clonedFiles.unshift(moved[0]);
+			setFormState({ ...formState, photos: clonedFiles });
+		} else if (key === 'docs') {// Handle the 'docs' case
+			clonedFiles[index].main_document = clonedFiles[index].main_document === 0 ? 1 : 0;
+			setFormState({...formState, docs: clonedFiles})
+			setFilesPreview({...filesPreview, [key]: clonedFiles})
+		} else if (key === 'documents') {// Handle the 'documents' case
+			const moved = clonedFiles.splice(index, 1);
+			clonedFiles.unshift(moved[0]);
+			setFormState({ ...formState, documents: clonedFiles });
 		}
 	};
 
-	const handleDeleteImg = (index) => {
-		const flattenedArray = [
-			imagesPreview,
-			photosPreview,
-			documentsPreview,
-		].flat();
-		const fileToRemove = flattenedArray[index];
+	const handleDeleteImg = (index, key) => {
+		
+		// key = photos | images | docs | documents
 
-		//case of uploaded documents
-		if (typeof fileToRemove === 'object') {
-			setFormState({
-				...formState,
-				documents: formState.documents.filter(
-					(doc) => doc.name !== fileToRemove.name
-				),
-			});
-			setDocumentsPreview((prev) =>
-				prev.filter((doc) => doc.name !== fileToRemove.name)
-			);
-		} else if (fileToRemove.startsWith('https://')) {
-			//case of received images
-			const idx = imagesPreview.indexOf(fileToRemove);
-			setCheckedFiles((prev) =>
-				prev.filter((check) => checkedFiles[index] !== check)
-			);
-			setFormState({
-				...formState,
-				images: formState.images.filter((_, i) => i !== idx),
-			});
-			setImagesPreview((prev) => prev.filter((_, i) => i !== idx));
-		} else {
-			// case of uploaded images
-			const idx = photosPreview.indexOf(fileToRemove);
-			setFormState((prev) => ({
-				...prev,
-				photos: prev.photos.filter((_, i) => i !== idx),
-			}));
-			setPhotosPreview((prev) => prev.filter((_, i) => i !== idx));
+		if (key === 'images') {
+			// Handle the 'images' case
+			const filteredImages = formState[key].filter((_, i) => i !== index )
+			const filteredImagesPreview = filesPreview[key].filter((_, i) => i !== index )
+			setFormState({ ...formState, [key]: filteredImages });
+			setFilesPreview({ ...filesPreview, [key]: filteredImagesPreview });
+		} else if (key === 'photos') {
+			const filteredPhotos = formState[key].filter((_, i) => i !== index )
+			const filteredPhotosPreview = filesPreview[key].filter((_, i) => i !== index )
+			setFormState({ ...formState, [key]: filteredPhotos });
+			setFilesPreview({ ...filesPreview, [key]: filteredPhotosPreview });
+		} else if (key === 'docs') {
+			// Handle the 'docs' case
+			const filteredDocs = formState[key].filter((_, i) => i !== index )
+			const filteredDocsPreview = filesPreview[key].filter((_, i) => i !== index )
+			setFormState({ ...formState, [key]: filteredDocs });
+			setFilesPreview({ ...filesPreview, [key]: filteredDocsPreview });
+		} else if (key === 'documents') {
+			const filteredDocuments = formState[key].filter((_, i) => i !== index )
+			const filteredDocumentsPreview = filesPreview[key].filter((_, i) => i !== index )
+			setFormState({ ...formState, [key]: filteredDocuments });
+			setFilesPreview({ ...filesPreview, [key]: filteredDocumentsPreview });
 		}
 
 		inputRef.current.value = '';
@@ -322,12 +298,13 @@ export const AddPropertyPage = () => {
 					// selectedPhotos={selectedPhotoIndexes}
 					handleCheckboxChange={handleCheckboxChange}
 					inputRef={inputRef}
-					photosPreview={photosPreview}
-					imagesPreview={imagesPreview}
-					documentsPreview={documentsPreview}
+					// photosPreview={photosPreview}
+					// imagesPreview={imagesPreview}
+					// documentsPreview={documentsPreview}
 					onUpdate={onUpdate}
 					isAddMode={isAddMode}
-					checkedFiles={checkedFiles}
+					filesPreview={filesPreview}
+					// checkedFiles={checkedFiles}
 				/>
 			</div>
 			<Footer
