@@ -20,7 +20,8 @@ export const AddPropertyPage = () => {
 	const [photosPreview, setPhotosPreview] = useState([]);
 	const [imagesPreview, setImagesPreview] = useState([]);
 	const [documentsPreview, setDocumentsPreview] = useState([]);
-	// const [selectedPhotoIndexes, setSelectedPhotoIndexes] = useState([]);
+	const [docsPreview, setDocsPreview] = useState([]);
+	const [checkedDocs, setCheckedDocs] = useState([]);
 	const [checkedFiles, setCheckedFiles] = useState([]);
 	const inputRef = useRef(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -52,6 +53,7 @@ export const AddPropertyPage = () => {
 		about: '',
 		images: [],
 		photos: [],
+		docs: [],
 		documents: [],
 		sold: 0,
 		completed: 0,
@@ -67,6 +69,7 @@ export const AddPropertyPage = () => {
 		const dataToSend = {
 			...formState,
 			images: JSON.stringify(formState.images),
+			docs: JSON.stringify(formState.docs),
 		};
 		console.log(dataToSend);
 		return await axios.post(
@@ -89,11 +92,20 @@ export const AddPropertyPage = () => {
 					const convertedImg = response.data.data.images.map((img) => {
 						return `${hostUrl}${img.path}`;
 					});
+					const convertedDocs = response.data.data.docs.map((doc) => {
+						return `${hostUrl}${doc.path}`;
+					});
 					setImagesPreview(convertedImg);
+					setDocsPreview(convertedDocs);
 					// setImages(convertedImg);
 					setCheckedFiles(
 						response.data.data.images.map((file) => {
 							return !!file.main_image;
+						})
+					);
+					setCheckedDocs(
+						response.data.data.docs.map((doc) => {
+							return !!doc.main_document;
 						})
 					);
 					setFormState(response.data.data && { ...response.data.data });
@@ -172,10 +184,12 @@ export const AddPropertyPage = () => {
 
 		if (file.type.includes('image')) {
 			setUploadedFiles([...uploadedFiles, file]);
+			setCheckedFiles([...checkedFiles, false]);
 			setFormState({ ...formState, photos: [...uploadedFiles, file] });
 			setPhotosPreview(() => [...photosPreview, base64]);
 		} else {
 			setUploadedDocuments([...uploadedDocuments, file]);
+			setCheckedDocs([...checkedDocs, false]);
 			setFormState({ ...formState, documents: [...uploadedDocuments, file] });
 			setDocumentsPreview(() => [...documentsPreview, file]);
 		}
@@ -185,11 +199,13 @@ export const AddPropertyPage = () => {
 		const flattenedArray = [
 			imagesPreview,
 			photosPreview,
+			docsPreview,
 			documentsPreview,
 		].flat();
 		const selectedItem = flattenedArray[index];
 
 		if (typeof selectedItem === 'object') {
+			console.log('selected', selectedItem);
 			const cloneToUpdate = [...formState.documents];
 			const docIndex = documentsPreview.findIndex(
 				(doc) => doc.name === preview.name
@@ -198,19 +214,42 @@ export const AddPropertyPage = () => {
 			cloneToUpdate.unshift(moved[0]);
 			setFormState({ ...formState, documents: cloneToUpdate });
 		} else if (selectedItem.includes('https://')) {
-			const updatedChecks = checkedFiles.map((item, i) =>
-				i === index ? !item : item
-			);
+			if (selectedItem.includes('/documents')) {
+				const idx = docsPreview.indexOf(preview);
+				const updatedChecks = checkedDocs.map((item, i) =>
+					i === idx ? !item : item
+				);
 
-			setCheckedFiles(updatedChecks);
+				setCheckedDocs(updatedChecks);
 
-			const updatedFormStateImages = formState.images.map((item, i) => ({
-				...item,
-				main_image: updatedChecks[i] ? 1 : 0,
-			}));
+				const updatedFormStateDocs = formState.docs.map((item, i) => ({
+					...item,
+					main_document: updatedChecks[i] ? 1 : 0,
+				}));
 
-			setFormState({ ...formState, images: updatedFormStateImages });
+				setFormState({ ...formState, docs: updatedFormStateDocs });
+			} else {
+				const idx = imagesPreview.indexOf(preview);
+				const updatedChecks = checkedFiles.map((item, i) =>
+					i === idx ? !item : item
+				);
+
+				setCheckedFiles(updatedChecks);
+
+				const updatedFormStateImages = formState.images.map((item, i) => ({
+					...item,
+					main_image: updatedChecks[i] ? 1 : 0,
+				}));
+
+				setFormState({ ...formState, images: updatedFormStateImages });
+			}
 		} else {
+			const idx = [imagesPreview, photosPreview, docsPreview, documentsPreview]
+				.flat()
+				.indexOf(preview);
+			setCheckedFiles((prev) =>
+				prev.map((item, i) => (i === idx ? !item : item))
+			);
 			const cloneToUpdate = [...formState.photos];
 			const previewIndexOf = photosPreview.indexOf(preview);
 			const moved = cloneToUpdate.splice(previewIndexOf, 1);
@@ -220,16 +259,22 @@ export const AddPropertyPage = () => {
 		}
 	};
 
-	const handleDeleteImg = (index) => {
+	const handleDeleteImg = (index, preview) => {
 		const flattenedArray = [
 			imagesPreview,
 			photosPreview,
+			docsPreview,
 			documentsPreview,
 		].flat();
 		const fileToRemove = flattenedArray[index];
-
 		//case of uploaded documents
 		if (typeof fileToRemove === 'object') {
+			const idx = [imagesPreview, photosPreview, docsPreview, documentsPreview]
+				.flat()
+				.indexOf(fileToRemove);
+			const checkedArray = [...checkedFiles, ...checkedDocs].flat();
+			checkedArray.splice(idx, 1);
+			console.log(checkedArray);
 			setFormState({
 				...formState,
 				documents: formState.documents.filter(
@@ -240,22 +285,47 @@ export const AddPropertyPage = () => {
 				prev.filter((doc) => doc.name !== fileToRemove.name)
 			);
 		} else if (fileToRemove.startsWith('https://')) {
-			//case of received images
-			const idx = imagesPreview.indexOf(fileToRemove);
-			setCheckedFiles((prev) =>
-				prev.filter((check) => checkedFiles[index] !== check)
-			);
-			setFormState({
-				...formState,
-				images: formState.images.filter((_, i) => i !== idx),
-			});
-			setImagesPreview((prev) => prev.filter((_, i) => i !== idx));
+			if (fileToRemove.includes('/documents')) {
+				const idx = docsPreview.indexOf(fileToRemove);
+				setCheckedDocs((prev) =>
+					prev.filter((check) => checkedDocs[index] !== check)
+				);
+				setFormState({
+					...formState,
+					docs: formState.docs.filter((_, i) => i !== idx),
+				});
+				setDocsPreview((prev) => prev.filter((_, i) => i !== idx));
+			} else {
+				//case of received images
+				const idx = imagesPreview.indexOf(fileToRemove);
+				setCheckedFiles((prev) =>
+					prev.filter((check) => checkedFiles[index] !== check)
+				);
+				setFormState({
+					...formState,
+					images: formState.images.filter((_, i) => i !== idx),
+				});
+				setImagesPreview((prev) => prev.filter((_, i) => i !== idx));
+			}
 		} else {
 			// case of uploaded images
+			const idxOfPreview = [
+				imagesPreview,
+				photosPreview,
+				docsPreview,
+				documentsPreview,
+			]
+				.flat()
+				.indexOf(preview);
+			const updatedArr = [...checkedFiles];
+			updatedArr.splice(idxOfPreview, 1);
+			setCheckedFiles(updatedArr);
 			const idx = photosPreview.indexOf(fileToRemove);
+			const updatedPhotos = [...formState.photos];
+			updatedPhotos.splice(idx, 1);
 			setFormState((prev) => ({
 				...prev,
-				photos: prev.photos.filter((_, i) => i !== idx),
+				photos: updatedPhotos,
 			}));
 			setPhotosPreview((prev) => prev.filter((_, i) => i !== idx));
 		}
@@ -319,15 +389,16 @@ export const AddPropertyPage = () => {
 					onSubmit={onSubmit}
 					handleImage={handleImage}
 					handleDelete={handleDeleteImg}
-					// selectedPhotos={selectedPhotoIndexes}
 					handleCheckboxChange={handleCheckboxChange}
 					inputRef={inputRef}
 					photosPreview={photosPreview}
 					imagesPreview={imagesPreview}
+					docsPreview={docsPreview}
 					documentsPreview={documentsPreview}
 					onUpdate={onUpdate}
 					isAddMode={isAddMode}
 					checkedFiles={checkedFiles}
+					checkedDocs={checkedDocs}
 				/>
 			</div>
 			<Footer

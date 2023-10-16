@@ -13,15 +13,16 @@ export const PhotosBox = ({
 	onSubmit,
 	handleImage,
 	handleDelete,
-	// selectedPhotos,
 	handleCheckboxChange,
 	inputRef,
 	photosPreview,
 	imagesPreview,
+	docsPreview,
 	documentsPreview,
 	isAddMode,
 	onUpdate,
 	checkedFiles,
+	checkedDocs,
 }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
@@ -74,15 +75,13 @@ export const PhotosBox = ({
 					<span className="span-for-header-main-image">Main Image</span>
 				</div>
 				<div className="list-of-uploading-files">
-					{[imagesPreview, photosPreview, documentsPreview]
+					{[imagesPreview, photosPreview, docsPreview, documentsPreview]
 						.flat()
 						.map((img, index) => {
-							const isChecked = checkedFiles[index];
+							const isChecked = [checkedFiles, checkedDocs].flat()[index];
 							return (
 								<div
-									className={`photo-box${
-										checkedFiles[index] ? ' checked' : ' disabled'
-									}`}
+									className={`photo-box${isChecked ? ' checked' : ' disabled'}`}
 									key={img}>
 									<div>
 										<Label className="label-for-row">{index + 1}.</Label>
@@ -103,7 +102,7 @@ export const PhotosBox = ({
 									<div>
 										<Button
 											className="delete-icon-div"
-											clickHandler={() => handleDelete(index)}>
+											clickHandler={() => handleDelete(index, img)}>
 											<DeleteIcon color="error" />
 										</Button>
 									</div>
