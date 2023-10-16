@@ -14,16 +14,11 @@ export const PhotosBox = ({
 	onSubmit,
 	handleImage,
 	handleDelete,
-	// selectedPhotos,
 	handleCheckboxChange,
 	inputRef,
-	// photosPreview,
-	// imagesPreview,
-	// documentsPreview,
 	isAddMode,
 	onUpdate,
-	filesPreview
-	// checkedFiles,
+	filesPreview,
 }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
@@ -37,7 +32,7 @@ export const PhotosBox = ({
 	const openModal = (imageSrc) => {
 		setSelectedImage(imageSrc);
 		setIsModalOpen(true);
-	};	
+	};
 
 	let counterInFrontOfFile = 0;
 
@@ -77,60 +72,65 @@ export const PhotosBox = ({
 					<span className="span-for-header-main-image">Main Image</span>
 				</div>
 				<div className="list-of-uploading-files">
-					{
-						Object.keys(filesPreview).map((key) => {
-							return filesPreview[key].map((file, fileIndex) => {
-								counterInFrontOfFile++
-								const generatedFileUrl =  key === 'images'
+					{Object.keys(filesPreview).map((key) => {
+						return filesPreview[key].map((file, fileIndex) => {
+							counterInFrontOfFile++;
+							const generatedFileUrl =
+								key === 'images'
 									? `${hostUrl}${file.path}`
 									: key === 'photos'
-										? file
-										: file.name;
-								const checkDocOrImg = key === 'images' ? !!file.main_image : key === 'docs' ? !!file.main_document : file.checked
-								return (
-									<div
-										className={`photo-box${
-											checkDocOrImg ? ' checked' : ' disabled'
-										}`}
-										key={fileIndex}>
-										<div>
-											<Label className="label-for-row">{counterInFrontOfFile}.</Label>
-										</div>
-										<div>
-											<img
-												className="picture-uploaded-file"
-												src={generatedFileUrl}
-												alt="uploaded doc"
-											/>
-											<img
-												className="button-zoom"
-												src={buttonZoom}
-												alt="zoom-img"
-												onClick={() => openModal(generatedFileUrl)}
-											/>
-										</div>
-										<div>
-											<Button
-												className="delete-icon-div"
-												clickHandler={() => handleDelete(fileIndex, key)}>
-												<DeleteIcon color="error" />
-											</Button>
-										</div>
-										<div
-											className="checkbox-container-upload"
-											style={{ marginLeft: 'auto' }}>
-											<Checkbox
-												checked={checkDocOrImg || file.checked}
-												onChange={() => handleCheckboxChange(fileIndex, key)}
-												sx={{ display: 'flex', justifyContent: 'flex-end' }}
-											/>
-										</div>
+									? file
+									: file.name;
+							const checkDocOrImg =
+								key === 'images'
+									? !!file.main_image
+									: key === 'docs'
+									? !!file.main_document
+									: file.checked;
+							return (
+								<div
+									className={`photo-box${
+										checkDocOrImg ? ' checked' : ' disabled'
+									}`}
+									key={fileIndex}>
+									<div>
+										<Label className="label-for-row">
+											{counterInFrontOfFile}.
+										</Label>
 									</div>
-								);
-							})
-						})
-					}
-					
+									<div>
+										<img
+											className="picture-uploaded-file"
+											src={generatedFileUrl}
+											alt="uploaded doc"
+										/>
+										<img
+											className="button-zoom"
+											src={buttonZoom}
+											alt="zoom-img"
+											onClick={() => openModal(generatedFileUrl)}
+										/>
+									</div>
+									<div>
+										<Button
+											className="delete-icon-div"
+											clickHandler={() => handleDelete(fileIndex, key)}>
+											<DeleteIcon color="error" />
+										</Button>
+									</div>
+									<div
+										className="checkbox-container-upload"
+										style={{ marginLeft: 'auto' }}>
+										<Checkbox
+											checked={checkDocOrImg || file.checked}
+											onChange={() => handleCheckboxChange(fileIndex, key)}
+											sx={{ display: 'flex', justifyContent: 'flex-end' }}
+										/>
+									</div>
+								</div>
+							);
+						});
+					})}
 				</div>
 				<div className="button-upload-photos-container">
 					<Label

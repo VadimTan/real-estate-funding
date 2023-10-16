@@ -14,15 +14,13 @@ import { Loader } from '../common/Loader';
 import { convertBase64 } from '../constants/constants';
 
 export const AddPropertyPage = () => {
-	const [filesPreview, setFilesPreview] = useState({images: [], photos: [], docs: [], documents: []})
+	const [filesPreview, setFilesPreview] = useState({
+		images: [],
+		photos: [],
+		docs: [],
+		documents: [],
+	});
 	const [errorMessage, setErrorMessage] = useState('');
-	// const [uploadedFiles, setUploadedFiles] = useState([]);
-	// const [uploadedDocuments, setUploadedDocuments] = useState([]);
-	// const [photosPreview, setPhotosPreview] = useState([]);
-	// const [imagesPreview, setImagesPreview] = useState([]);
-	// const [documentsPreview, setDocumentsPreview] = useState([]);
-	// const [selectedPhotoIndexes, setSelectedPhotoIndexes] = useState([]);
-	// const [checkedFiles, setCheckedFiles] = useState([]);
 	const inputRef = useRef(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
@@ -71,7 +69,7 @@ export const AddPropertyPage = () => {
 		const dataToSend = {
 			...formState,
 			images: JSON.stringify(formState.images),
-			docs: JSON.stringify(formState.docs)
+			docs: JSON.stringify(formState.docs),
 		};
 		console.log(dataToSend);
 		return await axios.post(
@@ -91,27 +89,22 @@ export const AddPropertyPage = () => {
 					const response = await axios.get(
 						`${baseUrl}/admin/property/getOne?id=${params.id}`
 					);
-					// const convertedImages = response.data.data.images.map((img) => {
-					// 	return `${hostUrl}${img.path}`;
-					// });
-
-					// const convertedDocs = response.data.data.docs.map((file) => {
-					// 	return !!file.main_document;
-					// })
-
-					const docs = response.data.data.docs.map(doc => ({ ...doc, checked: !!doc.main_document }));
-					const images = response.data.data.images.map(image => ({ ...image, checked: !!image.main_image }));
+					const docs = response.data.data.docs.map((doc) => ({
+						...doc,
+						checked: !!doc.main_document,
+					}));
+					const images = response.data.data.images.map((image) => ({
+						...image,
+						checked: !!image.main_image,
+					}));
 					setFilesPreview({ images, photos: [], docs, documents: [] });
-
-					// setFilesPreview([convertedImages, convertedDocs].flat())
-					// setImagesPreview(convertedImg);
-					// setImages(convertedImg);
-					// setCheckedFiles(
-					// 	response.data.data.images.map((file) => {
-					// 		return !!file.main_image;
-					// 	})
-					// );
-					setFormState(response.data.data && { ...response.data.data, photos: [], documents: [] });
+					setFormState(
+						response.data.data && {
+							...response.data.data,
+							photos: [],
+							documents: [],
+						}
+					);
 					setIsLoading(false);
 				} catch (error) {
 					setIsLoading(false);
@@ -165,8 +158,6 @@ export const AddPropertyPage = () => {
 		}
 	};
 
-	
-
 	const handleImage = async (e) => {
 		const file = e.target.files[0];
 		const base64 = await convertBase64(file);
@@ -175,13 +166,13 @@ export const AddPropertyPage = () => {
 			setFilesPreview({
 				...filesPreview,
 				photos: [...filesPreview.photos, base64],
-			})
+			});
 			setFormState({ ...formState, photos: [...formState.photos, file] });
 		} else {
 			setFilesPreview({
 				...filesPreview,
-				documents: [...filesPreview.documents, file]
-			})
+				documents: [...filesPreview.documents, file],
+			});
 			setFormState({ ...formState, documents: [...formState.documents, file] });
 		}
 	};
@@ -189,19 +180,25 @@ export const AddPropertyPage = () => {
 	const handleCheckboxChange = (index, key) => {
 		const clonedFiles = [...formState[key]];
 
-		if (key === 'images') {// Handle the 'images' case
-			clonedFiles[index].main_image = clonedFiles[index].main_image === 0 ? 1 : 0;
-			setFormState({...formState, images: clonedFiles})
-			setFilesPreview({...filesPreview, [key]: clonedFiles})
-		} else if (key === 'photos') {// Handle the 'photos' case
+		if (key === 'images') {
+			// Handle the 'images' case
+			clonedFiles[index].main_image =
+				clonedFiles[index].main_image === 0 ? 1 : 0;
+			setFormState({ ...formState, images: clonedFiles });
+			setFilesPreview({ ...filesPreview, [key]: clonedFiles });
+		} else if (key === 'photos') {
+			// Handle the 'photos' case
 			const moved = clonedFiles.splice(index, 1);
 			clonedFiles.unshift(moved[0]);
 			setFormState({ ...formState, photos: clonedFiles });
-		} else if (key === 'docs') {// Handle the 'docs' case
-			clonedFiles[index].main_document = clonedFiles[index].main_document === 0 ? 1 : 0;
-			setFormState({...formState, docs: clonedFiles})
-			setFilesPreview({...filesPreview, [key]: clonedFiles})
-		} else if (key === 'documents') {// Handle the 'documents' case
+		} else if (key === 'docs') {
+			// Handle the 'docs' case
+			clonedFiles[index].main_document =
+				clonedFiles[index].main_document === 0 ? 1 : 0;
+			setFormState({ ...formState, docs: clonedFiles });
+			setFilesPreview({ ...filesPreview, [key]: clonedFiles });
+		} else if (key === 'documents') {
+			// Handle the 'documents' case
 			const moved = clonedFiles.splice(index, 1);
 			clonedFiles.unshift(moved[0]);
 			setFormState({ ...formState, documents: clonedFiles });
@@ -209,29 +206,36 @@ export const AddPropertyPage = () => {
 	};
 
 	const handleDeleteImg = (index, key) => {
-		
 		// key = photos | images | docs | documents
 
 		if (key === 'images') {
 			// Handle the 'images' case
-			const filteredImages = formState[key].filter((_, i) => i !== index )
-			const filteredImagesPreview = filesPreview[key].filter((_, i) => i !== index )
+			const filteredImages = formState[key].filter((_, i) => i !== index);
+			const filteredImagesPreview = filesPreview[key].filter(
+				(_, i) => i !== index
+			);
 			setFormState({ ...formState, [key]: filteredImages });
 			setFilesPreview({ ...filesPreview, [key]: filteredImagesPreview });
 		} else if (key === 'photos') {
-			const filteredPhotos = formState[key].filter((_, i) => i !== index )
-			const filteredPhotosPreview = filesPreview[key].filter((_, i) => i !== index )
+			const filteredPhotos = formState[key].filter((_, i) => i !== index);
+			const filteredPhotosPreview = filesPreview[key].filter(
+				(_, i) => i !== index
+			);
 			setFormState({ ...formState, [key]: filteredPhotos });
 			setFilesPreview({ ...filesPreview, [key]: filteredPhotosPreview });
 		} else if (key === 'docs') {
 			// Handle the 'docs' case
-			const filteredDocs = formState[key].filter((_, i) => i !== index )
-			const filteredDocsPreview = filesPreview[key].filter((_, i) => i !== index )
+			const filteredDocs = formState[key].filter((_, i) => i !== index);
+			const filteredDocsPreview = filesPreview[key].filter(
+				(_, i) => i !== index
+			);
 			setFormState({ ...formState, [key]: filteredDocs });
 			setFilesPreview({ ...filesPreview, [key]: filteredDocsPreview });
 		} else if (key === 'documents') {
-			const filteredDocuments = formState[key].filter((_, i) => i !== index )
-			const filteredDocumentsPreview = filesPreview[key].filter((_, i) => i !== index )
+			const filteredDocuments = formState[key].filter((_, i) => i !== index);
+			const filteredDocumentsPreview = filesPreview[key].filter(
+				(_, i) => i !== index
+			);
 			setFormState({ ...formState, [key]: filteredDocuments });
 			setFilesPreview({ ...filesPreview, [key]: filteredDocumentsPreview });
 		}
