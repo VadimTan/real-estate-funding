@@ -122,7 +122,8 @@ export const AddPropertyPage = () => {
 			setIsLoading(false);
 			if (
 				response.data.responseCode.responseCode === '1' ||
-				response.data.responseCode.responseCode === '11'
+				response.data.responseCode.responseCode === '11' ||
+				response.data.responseCode.responseCode === '13'
 			) {
 				navigate('/');
 			} else {
