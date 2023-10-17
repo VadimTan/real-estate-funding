@@ -12,6 +12,7 @@ import { Snackbar, Alert } from '@mui/material';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../common/Loader';
 import { convertBase64 } from '../constants/constants';
+import { Documents } from '../components/AddNEdit/Documents';
 
 export const AddPropertyPage = () => {
 	const [filesPreview, setFilesPreview] = useState({
@@ -294,21 +295,28 @@ export const AddPropertyPage = () => {
 					onUpdate={onUpdate}
 					isAddMode={isAddMode}
 				/>
-				<PhotosBox
-					onSubmit={onSubmit}
-					handleImage={handleImage}
-					handleDelete={handleDeleteImg}
-					// selectedPhotos={selectedPhotoIndexes}
-					handleCheckboxChange={handleCheckboxChange}
-					inputRef={inputRef}
-					// photosPreview={photosPreview}
-					// imagesPreview={imagesPreview}
-					// documentsPreview={documentsPreview}
-					onUpdate={onUpdate}
-					isAddMode={isAddMode}
-					filesPreview={filesPreview}
-					// checkedFiles={checkedFiles}
-				/>
+				<div className="photo-and-docs-div">
+					<PhotosBox
+						onSubmit={onSubmit}
+						handleImage={handleImage}
+						handleDelete={handleDeleteImg}
+						handleCheckboxChange={handleCheckboxChange}
+						inputRef={inputRef}
+						onUpdate={onUpdate}
+						isAddMode={isAddMode}
+						filesPreview={filesPreview}
+					/>
+					<Documents
+						onSubmit={onSubmit}
+						handleImage={handleImage}
+						handleDelete={handleDeleteImg}
+						handleCheckboxChange={handleCheckboxChange}
+						inputRef={inputRef}
+						onUpdate={onUpdate}
+						isAddMode={isAddMode}
+						filesPreview={filesPreview}
+					/>
+				</div>
 			</div>
 			<Footer
 				isAddMode={isAddMode}

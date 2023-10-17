@@ -11,7 +11,7 @@ import { hostUrl } from '../../constants/constants';
 import trash from '../../assets/images/trash.svg';
 import { CheckCircleRounded, CircleOutlined } from '@mui/icons-material';
 
-export const PhotosBox = ({
+export const Documents = ({
 	onSubmit,
 	handleImage,
 	handleDelete,
@@ -36,10 +36,10 @@ export const PhotosBox = ({
 	};
 
 	let counterInFrontOfFile = 0;
-	const { images, photos } = filesPreview;
+	const { docs, documents } = filesPreview;
 
 	return (
-		<div className="photos-upload-container">
+		<div className="docs-upload-container">
 			{selectedImage && (
 				<Modal
 					active={isModalOpen}
@@ -51,9 +51,9 @@ export const PhotosBox = ({
 				</Modal>
 			)}
 			<div
-				className="photos-upload-block-text"
+				className="docs-upload-block-text"
 				onClick={changeStateHandler}>
-				<h1 className="photos-upload-text">Photos</h1>
+				<h1 className="photos-upload-text">Documents</h1>
 				{stateOfIcon ? (
 					<div className="expand-less-icon">
 						<ExpandLessIcon />
@@ -71,10 +71,10 @@ export const PhotosBox = ({
 					<span className="span-for-header-symbol">#</span>
 					<span className="span-for-header-photo">Photo</span>
 					<span className="span-for-header-delete">Delete</span>
-					<span className="span-for-header-main-image">Main Image</span>
+					<span className="span-for-header-main-image">Main Document</span>
 				</div>
 				<div className="list-of-uploading-files">
-					{Object.keys({ images, photos }).map((key) => {
+					{Object.keys({ docs, documents }).map((key) => {
 						return filesPreview[key].map((file, fileIndex) => {
 							counterInFrontOfFile++;
 							const generatedFileUrl =
@@ -146,7 +146,7 @@ export const PhotosBox = ({
 					<Label
 						for="files"
 						className="text-for-button-uploading">
-						Add Image(s)
+						Add Document(s)
 						<input
 							ref={inputRef}
 							type="file"
