@@ -115,7 +115,7 @@ export const AboutProperty = ({
 					</div>
 				</div>
 				<div className="main-metrics-field-1">
-					<Label className="main-metrics-label">DeveloperSpecs Subtitle</Label>
+					<Label className="main-metrics-label">Developer Specs Subtitle</Label>
 					<div className="input-field">
 						<input
 							className="main-metrics-input"
@@ -142,7 +142,7 @@ export const AboutProperty = ({
 					</div>
 				</div>
 				<div className="main-metrics-field-1">
-					<Label className="main-metrics-label">Bed(#)</Label>
+					<Label className="main-metrics-label">Bed</Label>
 					<div className="input-field">
 						<input
 							className="main-metrics-input"
@@ -151,7 +151,7 @@ export const AboutProperty = ({
 							value={formState.bed}
 							onChange={handleChange}
 						/>
-						{/* <span className="text-near-input-about">#</span> */}
+						<span className="text-near-input-about">#</span>
 					</div>
 				</div>
 				<div className="main-metrics-field-1">
@@ -164,7 +164,7 @@ export const AboutProperty = ({
 							value={formState.meter}
 							onChange={handleChange}
 						/>
-						{/* <span className="text-near-input-about-1">Sq.Ft</span> */}
+						<span className="text-near-input-about-1">Sq.Ft</span>
 					</div>
 				</div>
 				<div className="main-metrics-field-1">
