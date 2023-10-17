@@ -1,7 +1,6 @@
 import '../../../styles/photos-container.scss';
 import Button from '../../common/Button';
 import Label from '../../common/Label';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { Checkbox } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -9,6 +8,8 @@ import { useState } from 'react';
 import buttonZoom from '../../assets/images/button_zoom.svg';
 import Modal from '../../common/Modal';
 import { hostUrl } from '../../constants/constants';
+import trash from '../../assets/images/trash.svg';
+import { CheckCircleRounded, CircleOutlined } from '@mui/icons-material';
 
 export const PhotosBox = ({
 	onSubmit,
@@ -115,16 +116,24 @@ export const PhotosBox = ({
 										<Button
 											className="delete-icon-div"
 											clickHandler={() => handleDelete(fileIndex, key)}>
-											<DeleteIcon color="error" />
+											<img
+												src={trash}
+												alt=""
+											/>
 										</Button>
 									</div>
 									<div
 										className="checkbox-container-upload"
 										style={{ marginLeft: 'auto' }}>
 										<Checkbox
+											icon={<CircleOutlined />}
+											checkedIcon={<CheckCircleRounded />}
 											checked={checkDocOrImg || file.checked}
 											onChange={() => handleCheckboxChange(fileIndex, key)}
-											sx={{ display: 'flex', justifyContent: 'flex-end' }}
+											sx={{
+												display: 'flex',
+												justifyContent: 'flex-end',
+											}}
 										/>
 									</div>
 								</div>

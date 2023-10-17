@@ -71,7 +71,6 @@ export const AddPropertyPage = () => {
 			images: JSON.stringify(formState.images),
 			docs: JSON.stringify(formState.docs),
 		};
-		console.log(dataToSend);
 		return await axios.post(
 			`${baseUrl}/admin/property/update/?id=${params.id}`,
 			dataToSend,
