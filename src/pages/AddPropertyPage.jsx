@@ -32,12 +32,17 @@ export const AddPropertyPage = () => {
 	const [formState, setFormState] = useState({
 		total_price: '',
 		price: '',
-		annual_profit: '',
+		annual_profit_from: '',
+		annual_profit_to: '',
 		sell_price: '',
 		app_fee: '',
 		additional_charges: '',
-		period: '',
-		handover: '',
+		// period: '',
+		period_from: '',
+		period_to: '',
+		// handover: '',
+		handover_from: '',
+		handover_to: '',
 		name: '',
 		location: '',
 		coordinate_x: '',
@@ -59,11 +64,21 @@ export const AddPropertyPage = () => {
 	});
 
 	const saveProperty = async (formState) => {
-		console.log(formState.photos);
-
-		return await axios.post(`${baseUrl}/admin/property/add`, formState, {
-			headers: { 'Content-Type': 'multipart/form-data' },
-		});
+		return await axios.post(
+			`${baseUrl}/admin/property/add`,
+			{
+				...formState,
+				annual_profit: `${formState.annual_profit_from.replace(
+					',',
+					'.'
+				)} - ${formState.annual_profit_to.replace(',', '.')}`,
+				period: `${formState.period_from} - ${formState.period_to}`,
+				handover: `${formState.handover_from} - ${formState.handover_to}`,
+			},
+			{
+				headers: { 'Content-Type': 'multipart/form-data' },
+			}
+		);
 	};
 
 	const updateProperty = async (formState) => {
@@ -71,6 +86,12 @@ export const AddPropertyPage = () => {
 			...formState,
 			images: JSON.stringify(formState.images),
 			docs: JSON.stringify(formState.docs),
+			annual_profit: `${formState.annual_profit_from.replace(
+				',',
+				'.'
+			)} - ${formState.annual_profit_to.replace(',', '.')}`,
+			period: `${formState.period_from} - ${formState.period_to}`,
+			handover: `${formState.handover_from} - ${formState.handover_to}`,
 		};
 		return await axios.post(
 			`${baseUrl}/admin/property/update/?id=${params.id}`,
@@ -103,6 +124,14 @@ export const AddPropertyPage = () => {
 							...response.data.data,
 							photos: [],
 							documents: [],
+							annual_profit_from:
+								response.data.data.annual_profit.split(' - ')[0],
+							annual_profit_to:
+								response.data.data.annual_profit.split(' - ')[1],
+							period_from: response.data.data.period.split(' - ')[0],
+							period_to: response.data.data.period.split(' - ')[1],
+							handover_from: response.data.data.handover.split(' - ')[0],
+							handover_to: response.data.data.handover.split(' - ')[1],
 						}
 					);
 					setIsLoading(false);
@@ -246,22 +275,10 @@ export const AddPropertyPage = () => {
 
 	const handleChange = (event) => {
 		const { value, name } = event.target;
-		const updatedValue =
-			name === 'total_price' ||
-			name === 'price' ||
-			name === 'annual_profit' ||
-			name === 'sell_price' ||
-			name === 'app_fee' ||
-			name === 'additional_charges' ||
-			name === 'period' ||
-			name === 'handover' ||
-			name === 'bed' ||
-			name === 'meter'
-				? parseFloat(value)
-				: value;
+
 		setFormState({
 			...formState,
-			[name]: updatedValue,
+			[name]: value,
 		});
 	};
 

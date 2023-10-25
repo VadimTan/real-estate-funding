@@ -5,7 +5,6 @@ import { Checkbox } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
-import buttonZoom from '../../assets/images/button_zoom.svg';
 import Modal from '../../common/Modal';
 import { hostUrl } from '../../constants/constants';
 import trash from '../../assets/images/trash.svg';
@@ -69,7 +68,7 @@ export const Documents = ({
 				className="photos-global-container">
 				<div className="header-for-photos">
 					<span className="span-for-header-symbol">#</span>
-					<span className="span-for-header-photo">Photo</span>
+					<span className="span-for-header-photo">Name</span>
 					<span className="span-for-header-delete">Delete</span>
 					<span className="span-for-header-main-image">Main Document</span>
 				</div>
@@ -101,17 +100,9 @@ export const Documents = ({
 										</Label>
 									</div>
 									<div>
-										<img
-											className="picture-uploaded-file"
-											src={generatedFileUrl}
-											alt="uploaded doc"
-										/>
-										<img
-											className="button-zoom"
-											src={buttonZoom}
-											alt="zoom-img"
-											onClick={() => openModal(generatedFileUrl)}
-										/>
+										<span className="document-uploaded-file">
+											{generatedFileUrl}
+										</span>
 									</div>
 									<div>
 										<Button

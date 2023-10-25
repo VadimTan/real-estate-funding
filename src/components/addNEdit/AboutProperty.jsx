@@ -134,10 +134,11 @@ export const AboutProperty = ({
 							className="main-metrics-select"
 							type="text"
 							name="type"
-							value={formState.type}
-							onChange={handleChange}>
-							<option>Off-plan</option>
-							<option>Ready</option>
+							onChange={handleChange}
+							value={formState.type}>
+							<option></option>
+							<option value={'Off-plan'}>Off-plan</option>
+							<option value={'Ready'}>Ready</option>
 						</select>
 					</div>
 				</div>

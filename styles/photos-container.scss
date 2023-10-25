@@ -225,8 +225,17 @@
 	height: 80px;
 	background: #d9d9d9;
 	border-radius: 8px;
+	text-align: center;
 	position: absolute;
 	z-index: 0;
+}
+
+.document-uploaded-file {
+	display: flex;
+	align-items: center;
+	width: 80px;
+	height: 80px;
+	overflow-wrap: break-word;
 }
 
 .modal-window {

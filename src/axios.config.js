@@ -13,9 +13,26 @@ instance.interceptors.request.use(
 		if (accessToken) {
 			config.headers['Authorization'] = `Bearer ${accessToken}`;
 		}
+
 		return config;
 	},
 	(error) => {
+		return Promise.reject(error);
+	}
+);
+
+// Add a response interceptor to check for 401 error and remove the token
+instance.interceptors.response.use(
+	(response) => {
+		return response;
+	},
+	(error) => {
+		console.log('error', error);
+		if (error.response && error.response.status === 401) {
+			// Handle 401 error here
+			// You can remove the token from local storage
+			localStorage.removeItem('accessToken');
+		}
 		return Promise.reject(error);
 	}
 );

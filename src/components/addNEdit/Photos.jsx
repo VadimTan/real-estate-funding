@@ -1,7 +1,7 @@
 import '../../../styles/photos-container.scss';
 import Button from '../../common/Button';
 import Label from '../../common/Label';
-import { Checkbox } from '@mui/material';
+import { Radio } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
@@ -9,7 +9,6 @@ import buttonZoom from '../../assets/images/button_zoom.svg';
 import Modal from '../../common/Modal';
 import { hostUrl } from '../../constants/constants';
 import trash from '../../assets/images/trash.svg';
-import { CheckCircleRounded, CircleOutlined } from '@mui/icons-material';
 
 export const PhotosBox = ({
 	onSubmit,
@@ -25,6 +24,7 @@ export const PhotosBox = ({
 	const [show, setShow] = useState('closed');
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedImage, setSelectedImage] = useState('');
+	const [selectedRadio, setSelectedRadio] = useState();
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
 		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
@@ -104,7 +104,7 @@ export const PhotosBox = ({
 										<img
 											className="picture-uploaded-file"
 											src={generatedFileUrl}
-											alt="uploaded doc"
+											alt=""
 										/>
 										<img
 											className="button-zoom"
@@ -126,7 +126,7 @@ export const PhotosBox = ({
 									<div
 										className="checkbox-container-upload"
 										style={{ marginLeft: 'auto' }}>
-										<Checkbox
+										{/* <Checkbox
 											icon={<CircleOutlined />}
 											checkedIcon={<CheckCircleRounded />}
 											checked={checkDocOrImg || file.checked}
@@ -135,6 +135,15 @@ export const PhotosBox = ({
 												display: 'flex',
 												justifyContent: 'flex-end',
 											}}
+										/> */}
+										<Radio
+											checked={checkDocOrImg || selectedRadio === fileIndex}
+											onChange={() => {
+												setSelectedRadio(fileIndex);
+												handleCheckboxChange(fileIndex, key);
+											}}
+											name="radio-buttons"
+											inputProps={{ 'aria-label': 'A' }}
 										/>
 									</div>
 								</div>

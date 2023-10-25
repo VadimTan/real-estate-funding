@@ -21,8 +21,12 @@ const LoginPage = () => {
 
 	// redirect authenticated user to profile screen
 	useEffect(() => {
-		if (isLoggedIn) {
-			navigate('/');
+		try {
+			if (isLoggedIn) {
+				navigate('/');
+			}
+		} catch (error) {
+			return error.message;
 		}
 	}, [navigate, isLoggedIn]);
 

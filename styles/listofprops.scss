@@ -161,6 +161,7 @@
 	height: 30px;
 	background: #007aff;
 	border-radius: 8px;
+	white-space: nowrap;
 }
 
 .fee-exchange-disabled {
@@ -177,9 +178,8 @@
 }
 
 .text-fee-button {
-	font-family: SF Pro Regular;
 	font-style: normal;
-	font-weight: 600;
+	font-weight: bold;
 	font-size: 15px;
 	line-height: 20px;
 	display: flex;
