@@ -52,7 +52,7 @@ export const MainMetrics = ({
 					<div className="input-field">
 						<input
 							className="main-metrics-input"
-							type="number"
+							type="text"
 							name="total_price"
 							value={formState.total_price}
 							onChange={handleChange}
@@ -65,7 +65,7 @@ export const MainMetrics = ({
 					<div className="input-field">
 						<input
 							className="main-metrics-input"
-							type="number"
+							type="text"
 							name="price"
 							value={formState.price}
 							onChange={handleChange}

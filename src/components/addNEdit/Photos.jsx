@@ -9,6 +9,7 @@ import buttonZoom from '../../assets/images/button_zoom.svg';
 import Modal from '../../common/Modal';
 import { hostUrl } from '../../constants/constants';
 import trash from '../../assets/images/trash.svg';
+import { CheckCircleRounded } from '@mui/icons-material';
 
 export const PhotosBox = ({
 	onSubmit,
@@ -19,12 +20,14 @@ export const PhotosBox = ({
 	isAddMode,
 	onUpdate,
 	filesPreview,
+	selectedRadioImage,
+	setSelectedRadioImage,
 }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedImage, setSelectedImage] = useState('');
-	const [selectedRadio, setSelectedRadio] = useState();
+
 	const changeStateHandler = () => {
 		setStateOfIcon((icon) => !icon);
 		setShow((state) => (state === 'closed' ? 'show' : 'closed'));
@@ -137,9 +140,10 @@ export const PhotosBox = ({
 											}}
 										/> */}
 										<Radio
-											checked={checkDocOrImg || selectedRadio === fileIndex}
+											checked={selectedRadioImage === fileIndex}
+											checkedIcon={<CheckCircleRounded />}
 											onChange={() => {
-												setSelectedRadio(fileIndex);
+												setSelectedRadioImage(fileIndex);
 												handleCheckboxChange(fileIndex, key);
 											}}
 											name="radio-buttons"

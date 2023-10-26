@@ -1,14 +1,14 @@
 import '../../../styles/photos-container.scss';
 import Button from '../../common/Button';
 import Label from '../../common/Label';
-import { Checkbox } from '@mui/material';
+import { Radio } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useState } from 'react';
 import Modal from '../../common/Modal';
 import { hostUrl } from '../../constants/constants';
 import trash from '../../assets/images/trash.svg';
-import { CheckCircleRounded, CircleOutlined } from '@mui/icons-material';
+import { CheckCircleRounded } from '@mui/icons-material';
 
 export const Documents = ({
 	onSubmit,
@@ -19,6 +19,8 @@ export const Documents = ({
 	isAddMode,
 	onUpdate,
 	filesPreview,
+	selectedRadioDoc,
+	setSelectedRadioDoc,
 }) => {
 	const [stateOfIcon, setStateOfIcon] = useState(false);
 	const [show, setShow] = useState('closed');
@@ -117,15 +119,15 @@ export const Documents = ({
 									<div
 										className="checkbox-container-upload"
 										style={{ marginLeft: 'auto' }}>
-										<Checkbox
-											icon={<CircleOutlined />}
+										<Radio
+											checked={selectedRadioDoc === fileIndex}
 											checkedIcon={<CheckCircleRounded />}
-											checked={checkDocOrImg || file.checked}
-											onChange={() => handleCheckboxChange(fileIndex, key)}
-											sx={{
-												display: 'flex',
-												justifyContent: 'flex-end',
+											onChange={() => {
+												setSelectedRadioDoc(fileIndex);
+												handleCheckboxChange(fileIndex, key);
 											}}
+											name="radio-buttons"
+											inputProps={{ 'aria-label': 'A' }}
 										/>
 									</div>
 								</div>

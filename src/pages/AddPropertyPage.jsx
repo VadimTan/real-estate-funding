@@ -28,6 +28,10 @@ export const AddPropertyPage = () => {
 	const location = useLocation();
 	const isAddMode = location.pathname === '/add';
 	const params = useParams();
+	const [selectedRadioImage, setSelectedRadioImage] = useState();
+	const [selectedRadioDoc, setSelectedRadioDoc] = useState();
+	const [originalPhotosOrder, setOriginalPhotosOrder] = useState([]);
+	const [originalDocsOrder, setOriginalDocsOrder] = useState([]);
 
 	const [formState, setFormState] = useState({
 		total_price: '',
@@ -37,10 +41,8 @@ export const AddPropertyPage = () => {
 		sell_price: '',
 		app_fee: '',
 		additional_charges: '',
-		// period: '',
 		period_from: '',
 		period_to: '',
-		// handover: '',
 		handover_from: '',
 		handover_to: '',
 		name: '',
@@ -68,12 +70,21 @@ export const AddPropertyPage = () => {
 			`${baseUrl}/admin/property/add`,
 			{
 				...formState,
-				annual_profit: `${formState.annual_profit_from.replace(
-					',',
-					'.'
-				)} - ${formState.annual_profit_to.replace(',', '.')}`,
-				period: `${formState.period_from} - ${formState.period_to}`,
-				handover: `${formState.handover_from} - ${formState.handover_to}`,
+				annual_profit:
+					formState.annual_profit_from && formState.annual_profit_to
+						? `${formState.annual_profit_from.replace(
+								',',
+								'.'
+						  )} - ${formState.annual_profit_to.replace(',', '.')}`
+						: '',
+				period:
+					formState.period_from && formState.period_to
+						? `${formState.period_from} - ${formState.period_to}`
+						: '',
+				handover:
+					formState.handover_from && formState.handover_to
+						? `${formState.handover_from} - ${formState.handover_to}`
+						: '',
 			},
 			{
 				headers: { 'Content-Type': 'multipart/form-data' },
@@ -86,12 +97,21 @@ export const AddPropertyPage = () => {
 			...formState,
 			images: JSON.stringify(formState.images),
 			docs: JSON.stringify(formState.docs),
-			annual_profit: `${formState.annual_profit_from.replace(
-				',',
-				'.'
-			)} - ${formState.annual_profit_to.replace(',', '.')}`,
-			period: `${formState.period_from} - ${formState.period_to}`,
-			handover: `${formState.handover_from} - ${formState.handover_to}`,
+			annual_profit:
+				formState.annual_profit_from && formState.annual_profit_to
+					? `${formState.annual_profit_from.replace(
+							',',
+							'.'
+					  )} - ${formState.annual_profit_to.replace(',', '.')}`
+					: '',
+			period:
+				formState.period_from && formState.period_to
+					? `${formState.period_from} - ${formState.period_to}`
+					: '',
+			handover:
+				formState.handover_from && formState.handover_to
+					? `${formState.handover_from} - ${formState.handover_to}`
+					: '',
 		};
 		return await axios.post(
 			`${baseUrl}/admin/property/update/?id=${params.id}`,
@@ -110,28 +130,40 @@ export const AddPropertyPage = () => {
 					const response = await axios.get(
 						`${baseUrl}/admin/property/getOne?id=${params.id}`
 					);
-					const docs = response.data.data.docs.map((doc) => ({
-						...doc,
-						checked: !!doc.main_document,
-					}));
-					const images = response.data.data.images.map((image) => ({
-						...image,
-						checked: !!image.main_image,
-					}));
+					const docs = response.data.data.docs.map((doc, index) => {
+						if (doc.main_document > 0) {
+							setSelectedRadioDoc(index);
+						}
+						return {
+							...doc,
+							checked: !!doc.main_document,
+						};
+					});
+					const images = response.data.data.images.map((image, index) => {
+						if (image.main_image > 0) {
+							setSelectedRadioImage(index);
+						}
+						return {
+							...image,
+							checked: !!image.main_image,
+						};
+					});
 					setFilesPreview({ images, photos: [], docs, documents: [] });
 					setFormState(
 						response.data.data && {
 							...response.data.data,
 							photos: [],
 							documents: [],
-							annual_profit_from:
-								response.data.data.annual_profit.split(' - ')[0],
-							annual_profit_to:
-								response.data.data.annual_profit.split(' - ')[1],
-							period_from: response.data.data.period.split(' - ')[0],
-							period_to: response.data.data.period.split(' - ')[1],
-							handover_from: response.data.data.handover.split(' - ')[0],
-							handover_to: response.data.data.handover.split(' - ')[1],
+							annual_profit_from: response.data.data.annual_profit
+								.split('-')[0]
+								.trim(),
+							annual_profit_to: response.data.data.annual_profit
+								.split('-')[1]
+								.trim(),
+							period_from: response.data.data.period.split('-')[0].trim(),
+							period_to: response.data.data.period.split('-')[1].trim(),
+							handover_from: response.data.data.handover.split('-')[0].trim(),
+							handover_to: response.data.data.handover.split('-')[1].trim(),
 						}
 					);
 					setIsLoading(false);
@@ -198,38 +230,44 @@ export const AddPropertyPage = () => {
 				photos: [...filesPreview.photos, base64],
 			});
 			setFormState({ ...formState, photos: [...formState.photos, file] });
+			setOriginalPhotosOrder([...originalPhotosOrder, file]);
 		} else {
 			setFilesPreview({
 				...filesPreview,
 				documents: [...filesPreview.documents, file],
 			});
 			setFormState({ ...formState, documents: [...formState.documents, file] });
+			setOriginalDocsOrder([...originalDocsOrder, file]);
 		}
 	};
 
 	const handleCheckboxChange = (index, key) => {
 		const clonedFiles = [...formState[key]];
-
 		if (key === 'images') {
 			// Handle the 'images' case
-			clonedFiles[index].main_image =
-				clonedFiles[index].main_image === 0 ? 1 : 0;
+			clonedFiles[index].main_image = 1;
+			clonedFiles[selectedRadioImage].main_image = 0;
+			// clonedFiles[index].main_image === 0 ? 1 : 0;
 			setFormState({ ...formState, images: clonedFiles });
 			setFilesPreview({ ...filesPreview, [key]: clonedFiles });
 		} else if (key === 'photos') {
+			const img = originalPhotosOrder[index];
+			const indexOfCloned = clonedFiles.indexOf(img);
 			// Handle the 'photos' case
-			const moved = clonedFiles.splice(index, 1);
+			const moved = clonedFiles.splice(indexOfCloned, 1);
 			clonedFiles.unshift(moved[0]);
 			setFormState({ ...formState, photos: clonedFiles });
 		} else if (key === 'docs') {
 			// Handle the 'docs' case
-			clonedFiles[index].main_document =
-				clonedFiles[index].main_document === 0 ? 1 : 0;
+			clonedFiles[index].main_document = 1;
+			clonedFiles[selectedRadioDoc].main_document === 0;
 			setFormState({ ...formState, docs: clonedFiles });
 			setFilesPreview({ ...filesPreview, [key]: clonedFiles });
 		} else if (key === 'documents') {
+			const doc = originalDocsOrder[index];
+			const indexOfClonedDoc = clonedFiles.indexOf(doc);
 			// Handle the 'documents' case
-			const moved = clonedFiles.splice(index, 1);
+			const moved = clonedFiles.splice(indexOfClonedDoc, 1);
 			clonedFiles.unshift(moved[0]);
 			setFormState({ ...formState, documents: clonedFiles });
 		}
@@ -323,6 +361,8 @@ export const AddPropertyPage = () => {
 						onUpdate={onUpdate}
 						isAddMode={isAddMode}
 						filesPreview={filesPreview}
+						selectedRadioImage={selectedRadioImage}
+						setSelectedRadioImage={setSelectedRadioImage}
 					/>
 					<Documents
 						onSubmit={onSubmit}
@@ -333,6 +373,8 @@ export const AddPropertyPage = () => {
 						onUpdate={onUpdate}
 						isAddMode={isAddMode}
 						filesPreview={filesPreview}
+						selectedRadioDoc={selectedRadioDoc}
+						setSelectedRadioDoc={setSelectedRadioDoc}
 					/>
 				</div>
 			</div>
