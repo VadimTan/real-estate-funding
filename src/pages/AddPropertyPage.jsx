@@ -66,8 +66,8 @@ export const AddPropertyPage = () => {
 		completed: 0,
 	});
 
-	const saveProperty = async (formState) => {
-		return await axios.post(
+	const saveProperty = async (formState) =>
+		await axios.post(
 			`${baseUrl}/admin/property/add`,
 			{
 				...formState,
@@ -91,7 +91,6 @@ export const AddPropertyPage = () => {
 				headers: { 'Content-Type': 'multipart/form-data' },
 			}
 		);
-	};
 
 	const updateProperty = async (formState) => {
 		const dataToSend = {
@@ -100,11 +99,8 @@ export const AddPropertyPage = () => {
 			docs: JSON.stringify(formState.docs),
 			annual_profit:
 				formState.annual_profit_from && formState.annual_profit_to
-					? `${formState.annual_profit_from.replace(
-							',',
-							'.'
-					  )} - ${formState.annual_profit_to.replace(',', '.')}`
-					: '',
+					? `${formState.annual_profit_from} - ${formState.annual_profit_to}`
+					: `${(formState.annual_profit_from = 0)} - ${(formState.annual_profit_to = 0)}`,
 			period:
 				formState.period_from && formState.period_to
 					? `${formState.period_from} - ${formState.period_to}`
@@ -154,7 +150,8 @@ export const AddPropertyPage = () => {
 					const [annual_profit_from, annual_profit_to] =
 						response.data.data.annual_profit
 							.split('-')
-							.map((cur) => (isNaN(+cur) ? +cur : 0));
+							// eslint-disable-next-line use-isnan
+							.map((cur) => (+cur !== NaN ? +cur : 0));
 
 					setFormState(
 						response.data.data && {
