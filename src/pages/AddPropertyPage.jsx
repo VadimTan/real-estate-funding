@@ -154,7 +154,7 @@ export const AddPropertyPage = () => {
 					const [annual_profit_from, annual_profit_to] =
 						response.data.data.annual_profit
 							.split('-')
-							.map((cur) => (isNaN(+cur) ? +cur : null));
+							.map((cur) => (isNaN(+cur) ? +cur : 0));
 
 					setFormState(
 						response.data.data && {
