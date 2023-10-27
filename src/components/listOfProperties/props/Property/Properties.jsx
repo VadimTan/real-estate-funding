@@ -4,15 +4,12 @@ import tag_blue from '../../../../assets/images/tag_blue.svg';
 import tag_green from '../../../../assets/images/tag_green.svg';
 import '../../../../../styles/propertycard.scss';
 import { useSelector } from 'react-redux';
-import { Loader } from '../../../../common/Loader';
 import { useNavigate } from 'react-router-dom';
 import { hostUrl } from '../../../../constants/constants';
 
 export const Properties = () => {
 	const nav = useNavigate();
-	const { filteredProperties, isLoading } = useSelector(
-		(state) => state.search
-	);
+	const { filteredProperties } = useSelector((state) => state.search);
 
 	const handleNavigate = (id) => {
 		nav(`/edit/${id}`);
@@ -21,7 +18,6 @@ export const Properties = () => {
 	return (
 		<div className="main-container-of-cards">
 			<div className="property-card-container">
-				{isLoading ? <Loader /> : null}
 				{filteredProperties.length > 0 &&
 					filteredProperties.map((property, index) => (
 						<div
