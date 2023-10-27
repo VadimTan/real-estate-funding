@@ -11,7 +11,7 @@ const ProtectedRoute = ({ element }) => {
 	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
 	if (!isLoggedIn) {
-		return <Navigate to="/login" />;
+		return <Navigate to="/main" />;
 	}
 
 	return element;
@@ -20,7 +20,7 @@ const ProtectedRoute = ({ element }) => {
 function App() {
 	const routing = useRoutes([
 		{
-			path: '/login',
+			path: '/main',
 			element: <LoginPage />,
 		},
 		{

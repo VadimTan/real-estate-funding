@@ -14,7 +14,7 @@ export const NavMenu = () => {
 
 	const handleLogout = () => {
 		dispatch(logout());
-		nav('/login');
+		nav('/main');
 	};
 
 	const handleRedirect = () => {
