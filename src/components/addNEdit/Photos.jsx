@@ -129,16 +129,6 @@ export const PhotosBox = ({
 									<div
 										className="checkbox-container-upload"
 										style={{ marginLeft: 'auto' }}>
-										{/* <Checkbox
-											icon={<CircleOutlined />}
-											checkedIcon={<CheckCircleRounded />}
-											checked={checkDocOrImg || file.checked}
-											onChange={() => handleCheckboxChange(fileIndex, key)}
-											sx={{
-												display: 'flex',
-												justifyContent: 'flex-end',
-											}}
-										/> */}
 										<Radio
 											checked={selectedRadioImage === fileIndex}
 											checkedIcon={<CheckCircleRounded />}

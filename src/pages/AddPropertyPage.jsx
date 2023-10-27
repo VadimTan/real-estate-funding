@@ -259,7 +259,7 @@ export const AddPropertyPage = () => {
 		} else if (key === 'docs') {
 			// Handle the 'docs' case
 			clonedFiles[index].main_document = 1;
-			clonedFiles[selectedRadioDoc].main_document === 0;
+			clonedFiles[selectedRadioDoc].main_document = 0;
 			setFormState({ ...formState, docs: clonedFiles });
 			setFilesPreview({ ...filesPreview, [key]: clonedFiles });
 		} else if (key === 'documents') {
